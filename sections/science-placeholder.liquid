@@ -1,0 +1,45 @@
+{{ 'section-science-placeholder.css' | asset_url | stylesheet_tag }}
+
+<section class="science-placeholder">
+  <div class="science-placeholder__header">
+    <h2 class="science-placeholder__title">{{ section.settings.title }}</h2>
+    {% if section.settings.subtitle_link_text != blank %}
+      <a href="{{ section.settings.subtitle_link_url }}" class="science-placeholder__link">
+        {{ section.settings.subtitle_link_text }}
+      </a>
+    {% endif %}
+  </div>
+  <div class="science-placeholder__card">
+    <span class="science-placeholder__tbd">TBD</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Science Placeholder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Science section"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_link_text",
+      "label": "Subtitle link text",
+      "default": "Learn more about our science →"
+    },
+    {
+      "type": "url",
+      "id": "subtitle_link_url",
+      "label": "Subtitle link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Placeholder"
+    }
+  ]
+}
+{% endschema %}

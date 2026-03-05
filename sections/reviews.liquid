@@ -1,0 +1,102 @@
+{%- comment -%}
+  Reviews Section
+  Rating summary + photo review carousel
+{%- endcomment -%}
+
+{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+
+<section class="reviews-section" data-section-id="{{ section.id }}">
+  <div class="reviews-section__header">
+    <h2 class="reviews-section__title section-title">{{ section.settings.title | default: 'Reviews' }}</h2>
+  </div>
+
+  <div class="reviews-section__content">
+    {%- comment -%} Rating Summary {%- endcomment -%}
+    <div class="reviews-section__summary">
+      <p class="reviews-section__average-label">{{ 'products.product.average_score' | t }}</p>
+      <p class="reviews-section__average-score">{{ section.settings.average_rating | default: '4.7' }}/5</p>
+      <div class="reviews-section__stars-row">
+        {% render 'star-rating', rating: 4.7, size: 20 %}
+      </div>
+      <p class="reviews-section__total">out of {{ section.settings.review_count | default: '4,110' }} reviews</p>
+    </div>
+
+    {%- comment -%} Photo Review Carousel {%- endcomment -%}
+    <div class="reviews-section__carousel">
+      <div class="reviews-section__track" data-carousel-track="reviews" data-lenis-prevent>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review_photo' -%}
+            <div class="reviews-section__card {% if forloop.first %}reviews-section__card--featured{% else %}reviews-section__card--regular{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 740 }}"
+                  alt="{{ block.settings.alt | default: 'Customer review' | escape }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div style="width:100%;aspect-ratio:1;background:var(--color-surface);"></div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "average_rating",
+      "label": "Average rating",
+      "default": "4.7"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Total reviews",
+      "default": "4,110"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review_photo",
+      "name": "Review photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text",
+          "default": "Customer review photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        { "type": "review_photo" },
+        { "type": "review_photo" },
+        { "type": "review_photo" },
+        { "type": "review_photo" },
+        { "type": "review_photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

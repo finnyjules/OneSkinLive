@@ -1,0 +1,44 @@
+{{ 'section-lifestyle-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="lifestyle-hero">
+  <div class="lifestyle-hero__image-wrapper">
+    {% if section.settings.image != blank %}
+      <img
+        class="lifestyle-hero__image"
+        src="{{ section.settings.image | image_url: width: 1920 }}"
+        alt="{{ section.settings.image_alt | escape }}"
+        width="1920"
+        height="815"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="lifestyle-hero__placeholder">
+        <span class="lifestyle-hero__placeholder-text">Lifestyle hero image</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lifestyle Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "OneSkin lifestyle"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lifestyle Hero"
+    }
+  ]
+}
+{% endschema %}

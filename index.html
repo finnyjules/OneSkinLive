@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OS-01 FACE — OneSkin</title>
+
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+  <link rel="stylesheet" href="assets/section-header.css">
+  <link rel="stylesheet" href="assets/section-product-hero.css">
+  <link rel="stylesheet" href="assets/section-product-gallery.css">
+  <link rel="stylesheet" href="assets/section-cross-sell.css">
+  <link rel="stylesheet" href="assets/section-shade-compare.css">
+  <link rel="stylesheet" href="assets/section-benefits-bento.css">
+  <link rel="stylesheet" href="assets/section-science-placeholder.css">
+  <link rel="stylesheet" href="assets/section-key-ingredients.css">
+  <link rel="stylesheet" href="assets/section-clinical-results.css">
+  <link rel="stylesheet" href="assets/section-skincare-routine.css">
+  <link rel="stylesheet" href="assets/section-faq-questions.css">
+  <link rel="stylesheet" href="assets/section-reviews.css">
+  <link rel="stylesheet" href="assets/section-lifestyle-hero.css">
+
+  <style>
+    .site-footer {
+      max-width: var(--content-max, 1295px);
+      margin: 0 auto;
+      padding: 48px var(--container-padding, 48px);
+    }
+    .site-footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+    }
+    .site-footer__copyright {
+      font-family: var(--font-sans, 'PP Neue Montreal', Arial, sans-serif);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-muted, #808080);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header" data-section-id="header">
+  <div class="header__inner">
+    <nav class="header__nav" aria-label="Main navigation">
+      <a href="#" class="header__nav-link">Shop</a>
+      <a href="#" class="header__nav-link">Mission</a>
+      <a href="#" class="header__nav-link">Learn</a>
+    </nav>
+    <a href="/" class="header__logo" aria-label="OneSkin">
+      <img src="assets/images/oneskin.svg" alt="OneSkin" height="20">
+    </a>
+    <div class="header__actions">
+      <a href="#" class="header__account">Account</a>
+      <a href="#" class="header__cart"><span>Cart</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" role="main">
+
+  <!-- ========== PRODUCT HERO ========== -->
+  <section class="product-hero" data-section-id="product-hero">
+    <div class="product-hero__layout">
+
+      <!-- LEFT: Image Gallery (masonry) -->
+      <div class="product-hero__gallery">
+        <!-- Full-width hero image -->
+        <div class="product-hero__image-main">
+          <img src="assets/images/hero_1.png" alt="OS-01 FACE product" width="613" height="613">
+        </div>
+
+        <!-- Masonry: col1 image (rows 2-3), col2 quote (row 2) -->
+        <div class="product-hero__gallery-item" style="grid-column:1;grid-row:2/4;">
+          <img src="assets/images/carousel_1.png" alt="Gallery image" loading="lazy">
+        </div>
+
+        <div class="product-hero__quote-card" style="grid-column:2;grid-row:2;">
+          <p class="product-hero__quote-text">"Insert quote here"</p>
+          <p class="product-hero__quote-author">- Person name</p>
+        </div>
+
+        <!-- Masonry: col2 image (rows 3-4), col1 quote (row 4) -->
+        <div class="product-hero__gallery-item" style="grid-column:2;grid-row:3/5;">
+          <img src="assets/images/carousel_2.png" alt="Gallery image" loading="lazy">
+        </div>
+
+        <div class="product-hero__quote-card" style="grid-column:1;grid-row:4;">
+          <p class="product-hero__quote-text">"Insert quote here"</p>
+          <p class="product-hero__quote-author">- Person name</p>
+        </div>
+
+        <!-- Masonry: col1 image (rows 5-6), col2 image (rows 5-6) -->
+        <div class="product-hero__gallery-item" style="grid-column:1;grid-row:5/7;">
+          <img src="assets/images/carousel_3.png" alt="Gallery image" loading="lazy">
+        </div>
+
+        <div class="product-hero__gallery-item" style="grid-column:2;grid-row:5/7;">
+          <img src="assets/images/carousel_4.png" alt="Gallery image" loading="lazy">
+        </div>
+      </div>
+
+      <!-- RIGHT: Product Info -->
+      <div class="product-hero__info">
+
+        <!-- Title & Rating -->
+        <div class="product-hero__header">
+          <h1 class="product-hero__title">OS-01 FACE</h1>
+          <div class="product-hero__rating-stars-row">
+            <div class="star-rating" aria-label="4.7 out of 5 stars">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="half-star-hero"><stop offset="70%" stop-color="currentColor"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#half-star-hero)"/></svg>
+            </div>
+            <span class="product-hero__rating-number">4.7</span>
+          </div>
+        </div>
+
+        <div class="product-hero__subtitle">
+          <p class="product-hero__description-short">Topical supplement for skin longevity with OS-01 peptide...</p>
+          <span class="product-hero__review-count">4,110 Reviews</span>
+        </div>
+
+        <!-- Pills -->
+        <div class="product-hero__pills">
+          <span class="product-hero__pill">Adjective 1</span>
+          <span class="product-hero__pill">Adjective 2</span>
+          <span class="product-hero__pill">Adjective 3</span>
+        </div>
+
+        <!-- Shade Selector -->
+        <div class="product-hero__shade-selector" data-shade-selector>
+          <div class="product-hero__shade-row">
+            <div class="product-hero__shade-info">
+              <span class="product-hero__shade-label" data-shade-name-display>Untinted</span>
+              <span class="product-hero__shade-size">40 mL/~60 uses</span>
+            </div>
+            <div class="product-hero__shade-swatches">
+              <button class="shade-swatch shade-swatch--selected" data-shade-name="Untinted" type="button">
+                <span class="shade-swatch__color" style="background: #ecebeb;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Light/Medium" type="button">
+                <span class="shade-swatch__color" style="background: #c4a882;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Medium/Deep" type="button">
+                <span class="shade-swatch__color" style="background: #925835;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Deep" type="button">
+                <span class="shade-swatch__color" style="background: #7d491a;"></span>
+              </button>
+            </div>
+          </div>
+          <a href="#" class="product-hero__shade-guide">Find your shade</a>
+        </div>
+
+        <!-- Bullets -->
+        <ul class="product-hero__bullets">
+          <li>Description line 1</li>
+          <li>Description line 2</li>
+          <li>Description line 3</li>
+        </ul>
+
+        <!-- Purchase Options -->
+        <div class="product-hero__purchase" data-purchase-options>
+          <div class="product-hero__purchase-options">
+            <div class="purchase-option purchase-option--first" data-purchase-option="monthly" role="radio" aria-checked="false" tabindex="0">
+              <div class="purchase-option__radio"></div>
+              <div class="purchase-option__left">
+                <span class="purchase-option__title">Monthly delivery</span>
+                <span class="purchase-option__save">Save <strong>15%</strong> + Get a free gift</span>
+                <ul class="purchase-option__reasons">
+                  <li>Reason to subscribe 1</li>
+                  <li>Reason to subscribe 2</li>
+                  <li>Reason to subscribe 3</li>
+                </ul>
+              </div>
+              <div class="purchase-option__right">
+                <span class="purchase-option__price-old">$115</span>
+                <span class="purchase-option__price">$100</span>
+              </div>
+            </div>
+
+            <div class="purchase-option purchase-option--selected" data-purchase-option="bimonthly" role="radio" aria-checked="true" tabindex="0">
+              <div class="purchase-option__radio purchase-option__radio--checked"></div>
+              <div class="purchase-option__left">
+                <div class="purchase-option__title-row">
+                  <span class="purchase-option__title">2-month delivery</span>
+                  <span class="purchase-option__badge">Recommended</span>
+                </div>
+                <span class="purchase-option__save">Save <strong>15%</strong> + Get a free gift</span>
+                <ul class="purchase-option__reasons purchase-option__reasons--visible">
+                  <li>Reason to subscribe 1</li>
+                  <li>Reason to subscribe 2</li>
+                  <li>Reason to subscribe 3</li>
+                </ul>
+              </div>
+              <div class="purchase-option__right">
+                <span class="purchase-option__price-old">$115</span>
+                <span class="purchase-option__price">$100</span>
+              </div>
+            </div>
+
+            <div class="purchase-option purchase-option--last" data-purchase-option="one-time" role="radio" aria-checked="false" tabindex="0">
+              <div class="purchase-option__radio"></div>
+              <div class="purchase-option__left">
+                <span class="purchase-option__title">One-time purchase</span>
+              </div>
+              <div class="purchase-option__right">
+                <span class="purchase-option__price">$115</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="product-hero__cta-area">
+            <button type="button" class="product-hero__add-to-cart" data-add-to-cart>
+              <span>ADD TO CART</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="price-strikethrough">$115</span>
+              <span>&nbsp;&nbsp;</span>
+              <span class="price-current">$100</span>
+            </button>
+            <p class="product-hero__free-shipping">Free shipping on orders $79+</p>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="product-hero__certifications">
+          <div class="product-hero__cert">
+            <span class="product-hero__cert-text">Certified cruelty-free<br>by The Leaping Bunny</span>
+          </div>
+          <div class="product-hero__cert">
+            <span class="product-hero__cert-text">Approved by the National<br>Eczema Association</span>
+          </div>
+          <div class="product-hero__cert">
+            <span class="product-hero__cert-text">Certified<br>Plastic Neutral</span>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="product-hero__accordion" data-accordion>
+          <div class="accordion-item">
+            <button class="accordion-item__header" type="button" aria-expanded="false" data-accordion-trigger>
+              <span class="accordion-item__title">The science behind</span>
+              <span class="accordion-item__line"></span>
+              <span class="accordion-item__icon">+</span>
+            </button>
+            <div class="accordion-item__content" data-accordion-content>
+              <div class="accordion-item__body">
+                <p>Content about the science behind OS-01 FACE.</p>
+              </div>
+            </div>
+            <div class="accordion-item__separator"></div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-item__header" type="button" aria-expanded="false" data-accordion-trigger>
+              <span class="accordion-item__title">Clean and safe ingredients</span>
+              <span class="accordion-item__line"></span>
+              <span class="accordion-item__icon">+</span>
+            </button>
+            <div class="accordion-item__content" data-accordion-content>
+              <div class="accordion-item__body">
+                <p>Content about clean and safe ingredients.</p>
+              </div>
+            </div>
+            <div class="accordion-item__separator"></div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-item__header" type="button" aria-expanded="false" data-accordion-trigger>
+              <span class="accordion-item__title">How to use</span>
+              <span class="accordion-item__line"></span>
+              <span class="accordion-item__icon">+</span>
+            </button>
+            <div class="accordion-item__content" data-accordion-content>
+              <div class="accordion-item__body">
+                <p>Content about how to use OS-01 FACE.</p>
+              </div>
+            </div>
+            <div class="accordion-item__separator"></div>
+          </div>
+        </div>
+
+        <!-- Cross-Sell (Use it with) -->
+        <div class="cross-sell" data-section-id="cross-sell">
+          <div class="cross-sell__header">
+            <h2 class="cross-sell__title">Use it with</h2>
+            <div class="cross-sell__divider"></div>
+            <div class="cross-sell__nav">
+              <button class="carousel-nav-btn carousel-nav-btn--prev" data-carousel-prev="cross-sell" aria-label="Previous">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="carousel-nav-btn carousel-nav-btn--next" data-carousel-next="cross-sell" aria-label="Next">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="cross-sell__track-wrapper">
+            <div class="cross-sell__track" data-carousel-track="cross-sell" data-lenis-prevent>
+              <div class="cross-sell__card">
+                <div class="cross-sell__image-wrapper">
+                  <div style="width:220px;height:216px;background:var(--color-surface);border-radius:var(--radius-md);"></div>
+                  <span class="cross-sell__badge">Best-seller</span>
+                </div>
+                <h3 class="cross-sell__product-title">OS-01 BODY</h3>
+                <p class="cross-sell__description">Topical supplement for skin longevity</p>
+                <div class="cross-sell__rating">
+                  <div class="star-rating" aria-label="4.7 out of 5 stars">
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="half-star-cs1"><stop offset="70%" stop-color="currentColor"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#half-star-cs1)"/></svg>
+                  </div>
+                  <span class="cross-sell__rating-number">4.7</span>
+                </div>
+                <button class="cross-sell__add-btn" type="button">Add to Cart $70</button>
+              </div>
+              <div class="cross-sell__card">
+                <div class="cross-sell__image-wrapper">
+                  <div style="width:220px;height:216px;background:var(--color-surface);border-radius:var(--radius-md);"></div>
+                  <span class="cross-sell__badge">Best-seller</span>
+                </div>
+                <h3 class="cross-sell__product-title">OS-01 EYE</h3>
+                <p class="cross-sell__description">Targeted peptide eye cream for aging skin</p>
+                <div class="cross-sell__rating">
+                  <div class="star-rating" aria-label="4.7 out of 5 stars">
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="half-star-cs2"><stop offset="70%" stop-color="currentColor"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#half-star-cs2)"/></svg>
+                  </div>
+                  <span class="cross-sell__rating-number">4.7</span>
+                </div>
+                <button class="cross-sell__add-btn" type="button">Add to Cart $75</button>
+              </div>
+            </div>
+          </div>
+          <div class="cross-sell__dots" data-carousel-dots="cross-sell">
+            <button class="cross-sell__dot is-active" data-dot-index="0" aria-label="Go to slide 1"></button>
+            <button class="cross-sell__dot" data-dot-index="1" aria-label="Go to slide 2"></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      var section = document.querySelector('[data-section-id="cross-sell"]');
+      if (!section) return;
+      var track = section.querySelector('[data-carousel-track="cross-sell"]');
+      var prevBtn = section.querySelector('[data-carousel-prev="cross-sell"]');
+      var nextBtn = section.querySelector('[data-carousel-next="cross-sell"]');
+      var dots = section.querySelectorAll('[data-carousel-dots="cross-sell"] .cross-sell__dot');
+      if (!track) return;
+      var scrollAmount = 240;
+      function updateDots() {
+        if (!dots.length) return;
+        var cards = track.querySelectorAll('.cross-sell__card');
+        var trackRect = track.getBoundingClientRect();
+        var activeIndex = 0;
+        cards.forEach(function(card, i) {
+          var cardRect = card.getBoundingClientRect();
+          if (cardRect.left >= trackRect.left && cardRect.left < trackRect.left + trackRect.width / 2) { activeIndex = i; }
+        });
+        dots.forEach(function(dot, i) { dot.classList.toggle('is-active', i === activeIndex); });
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function() { track.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { track.scrollBy({ left: scrollAmount, behavior: 'smooth' }); });
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var index = parseInt(dot.getAttribute('data-dot-index'), 10);
+          var cards = track.querySelectorAll('.cross-sell__card');
+          if (cards[index]) cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        });
+      });
+      track.addEventListener('scroll', updateDots);
+    })();
+  </script>
+
+  <!-- ========== SHADE COMPARE ========== -->
+  <section class="shade-compare" data-section-id="shade-compare">
+    <div class="shade-compare__container">
+      <div class="shade-compare__bg-image-wrapper">
+        <img class="shade-compare__bg-image" src="assets/images/shade_lightmedium.png" alt="" aria-hidden="true">
+      </div>
+      <div class="shade-compare__content">
+        <div class="shade-compare__header">
+          <h2 class="shade-compare__title">Compare shades</h2>
+          <div class="shade-compare__nav">
+            <button class="carousel-nav-btn carousel-nav-btn--prev" data-carousel-prev="shade-compare" aria-label="Previous">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel-nav-btn carousel-nav-btn--next" data-carousel-next="shade-compare" aria-label="Next">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="shade-compare__carousel-wrapper">
+          <div class="shade-compare__track" data-carousel-track="shade-compare" data-lenis-prevent>
+            <div class="shade-compare__slide" data-model-name="Kitty" data-shade-name="Light/Medium">
+              <div style="width:100%;height:100%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--color-muted);">Kitty — Light/Medium</div>
+            </div>
+            <div class="shade-compare__slide" data-model-name="Emily" data-shade-name="Light">
+              <div style="width:100%;height:100%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--color-muted);">Emily — Light</div>
+            </div>
+            <div class="shade-compare__slide is-highlighted" data-model-name="Sarah" data-shade-name="Light/Medium">
+              <div style="width:100%;height:100%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--color-muted);">Sarah — Light/Medium</div>
+            </div>
+            <div class="shade-compare__slide" data-model-name="Maria" data-shade-name="Medium/Dark">
+              <div style="width:100%;height:100%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--color-muted);">Maria — Medium/Dark</div>
+            </div>
+            <div class="shade-compare__slide" data-model-name="Jasmine" data-shade-name="Dark">
+              <div style="width:100%;height:100%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--color-muted);">Jasmine — Dark</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shade-compare__bottom">
+          <div class="shade-compare__shade-selector">
+            <div>
+              <p class="shade-compare__shade-label">Tint</p>
+              <p class="shade-compare__shade-name" data-shade-active-name>Light/Medium</p>
+            </div>
+            <div class="shade-compare__swatches">
+              <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #ecebeb;" aria-label="Light shade" data-shade-swatch></button>
+              <button class="shade-compare__swatch shade-compare__swatch--color is-active" style="--swatch-color: #c9a68a;" aria-label="Light/Medium shade" data-shade-swatch>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"><circle cx="10" cy="10" r="4" fill="rgba(0,0,0,0.3)"/></svg>
+              </button>
+              <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #925835;" aria-label="Medium/Dark shade" data-shade-swatch></button>
+              <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #6f4636;" aria-label="Dark shade" data-shade-swatch></button>
+            </div>
+          </div>
+          <div class="shade-compare__caption" data-shade-caption>
+            Sarah is wearing OS-01 FACE SPF in <span class="shade-compare__caption-shade">Light/Medium</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var section = document.querySelector('[data-section-id="shade-compare"]');
+      if (!section) return;
+      var track = section.querySelector('[data-carousel-track="shade-compare"]');
+      var prevBtn = section.querySelector('[data-carousel-prev="shade-compare"]');
+      var nextBtn = section.querySelector('[data-carousel-next="shade-compare"]');
+      var caption = section.querySelector('[data-shade-caption]');
+      var slides = track ? track.querySelectorAll('.shade-compare__slide') : [];
+      if (!track) return;
+
+      function updateHighlight() {
+        var trackRect = track.getBoundingClientRect();
+        var center = trackRect.left + trackRect.width / 2;
+        var closest = null;
+        var closestDist = Infinity;
+        slides.forEach(function(slide) {
+          slide.classList.remove('is-highlighted');
+          var slideRect = slide.getBoundingClientRect();
+          var slideCenter = slideRect.left + slideRect.width / 2;
+          var dist = Math.abs(center - slideCenter);
+          if (dist < closestDist) { closestDist = dist; closest = slide; }
+        });
+        if (closest) {
+          closest.classList.add('is-highlighted');
+          var modelName = closest.getAttribute('data-model-name') || '';
+          var shadeName = closest.getAttribute('data-shade-name') || '';
+          if (caption && modelName) {
+            caption.innerHTML = modelName + ' is wearing OS-01 FACE SPF in <span class="shade-compare__caption-shade">' + shadeName + '</span>';
+          }
+        }
+      }
+
+      var currentIndex = 0;
+      slides.forEach(function(s, i) { if (s.classList.contains('is-highlighted')) currentIndex = i; });
+
+      function centerOnSlide(index, smooth) {
+        var slide = slides[index];
+        if (!slide) return;
+        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        var trackCenter = track.clientWidth / 2;
+        track.scrollTo({
+          left: slideCenter - trackCenter,
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function() {
+        currentIndex = currentIndex <= 0 ? slides.length - 1 : currentIndex - 1;
+        centerOnSlide(currentIndex, true);
+      });
+      if (nextBtn) nextBtn.addEventListener('click', function() {
+        currentIndex = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
+        centerOnSlide(currentIndex, true);
+      });
+      track.addEventListener('scroll', updateHighlight);
+
+      // Center the initially highlighted slide
+      centerOnSlide(currentIndex);
+      updateHighlight();
+
+      // Parallax effect for background image
+      var bgWrapper = section.querySelector('.shade-compare__bg-image-wrapper');
+      if (bgWrapper) {
+        var container = section.querySelector('.shade-compare__container');
+        function updateParallax() {
+          var rect = container.getBoundingClientRect();
+          var windowH = window.innerHeight;
+          // progress: 0 when section enters bottom, 1 when it exits top
+          var progress = (windowH - rect.top) / (windowH + rect.height);
+          progress = Math.max(0, Math.min(1, progress));
+          // shift from +120px to -120px as user scrolls through
+          var translateY = 120 - (progress * 240);
+          bgWrapper.style.transform = 'translate3d(0,' + translateY + 'px,0)';
+        }
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        updateParallax();
+      }
+    });
+  </script>
+
+  <!-- ========== PRODUCT BENEFITS BENTO ========== -->
+  <section class="benefits-bento">
+    <h2 class="benefits-bento__title">Product-specific benefits</h2>
+    <div class="benefits-bento__grid">
+      <div class="benefits-bento__card benefits-bento__card--wide">
+        <span class="benefits-bento__card-number">1.</span>
+        <p class="benefits-bento__card-text">Prevents cellular aging and UV-induced pigmentation</p>
+        <img class="benefits-bento__card-image" src="assets/images/benefits_1.png" alt="" loading="lazy">
+      </div>
+      <div class="benefits-bento__card">
+        <span class="benefits-bento__card-number">2.</span>
+        <p class="benefits-bento__card-text">The antioxidant power of common vitamin C serums</p>
+        <img class="benefits-bento__card-image" src="assets/images/benefits_2.png" alt="" loading="lazy">
+      </div>
+      <div class="benefits-bento__card">
+        <span class="benefits-bento__card-number">3.</span>
+        <p class="benefits-bento__card-text">Dermatologist tested, fragrance-free, safe for sensitive skin</p>
+        <img class="benefits-bento__card-image" src="assets/images/benefits_3.png" alt="" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var cards = document.querySelectorAll('.benefits-bento__card');
+      if (!cards.length) return;
+
+      var speeds = [0.35, 0.25, 0.45]; // different speed per card for depth
+
+      function updateParallax() {
+        var windowH = window.innerHeight;
+        cards.forEach(function (card, i) {
+          var rect = card.getBoundingClientRect();
+          var progress = (windowH - rect.top) / (windowH + rect.height);
+          progress = Math.max(0, Math.min(1, progress));
+          var speed = speeds[i] || 0.3;
+          var range = 80;
+          var translateY = range - (progress * range * 2);
+          var img = card.querySelector('.benefits-bento__card-image');
+          if (img) img.style.transform = 'translate3d(0,' + (translateY * speed) + 'px,0) scale(1.15)';
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
+    })();
+  </script>
+
+  <!-- ========== KEY INGREDIENTS ========== -->
+  <section class="key-ingredients" data-section-id="key-ingredients">
+    <div class="key-ingredients__container">
+      <div class="key-ingredients__bg">
+        <img src="assets/images/key_ingredients_bg.png" alt="" aria-hidden="true">
+      </div>
+      <div class="key-ingredients__header">
+        <h2 class="key-ingredients__title section-title">Key ingredients</h2>
+        <a href="#" class="key-ingredients__link">See all ingredients →</a>
+      </div>
+      <div class="key-ingredients__cards">
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">OS-01 Peptide</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Niacinamide</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Squalane</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Vitamin E</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Ceramides</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      var section = document.querySelector('[data-section-id="key-ingredients"]');
+      if (!section) return;
+      var container = section.querySelector('.key-ingredients__container');
+      var bg = section.querySelector('.key-ingredients__bg');
+      var cards = section.querySelectorAll('.key-ingredients__card');
+      if (!container || !bg || !cards.length) return;
+
+      // Each card gets a different parallax speed
+      var speeds = [-0.4, -0.65, -0.85, -0.55, -0.75];
+
+      function updateParallax() {
+        var rect = container.getBoundingClientRect();
+        var windowH = window.innerHeight;
+        var progress = (windowH - rect.top) / (windowH + rect.height);
+        progress = Math.max(0, Math.min(1, progress));
+        var centered = progress - 0.5; // -0.5 to 0.5
+
+        // Background moves slowly
+        var bgY = centered * -160;
+        bg.style.transform = 'translate3d(0,' + bgY + 'px,0)';
+
+        // Each card moves at its own speed
+        cards.forEach(function(card, i) {
+          var speed = speeds[i % speeds.length];
+          var cardY = centered * speed * 200;
+          card.style.transform = 'translate3d(0,' + cardY + 'px,0)';
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
+    })();
+  </script>
+
+  <!-- ========== CLINICAL RESULTS ========== -->
+  <section class="clinical-results" data-section-id="clinical-results">
+    <h2 class="clinical-results__title">Clinically-validated results:</h2>
+    <div class="clinical-results__track-wrapper">
+      <div class="clinical-results__track" data-carousel-track="clinical-results" data-lenis-prevent>
+        <div class="clinical-results__card">
+          <div class="clinical-results__stat-row">
+            <span class="clinical-results__stat-number">96%</span>
+            <span class="clinical-results__stat-desc">had improved firmness, radiance, and tone</span>
+          </div>
+
+          <div class="clinical-results__photos">
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/before.png" alt="Before – Week 1" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 1</span>
+            </div>
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/after.png" alt="After – Week 6" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 6</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-results__card">
+          <div class="clinical-results__stat-row">
+            <span class="clinical-results__stat-number">87%</span>
+            <span class="clinical-results__stat-desc">experienced a visible reduction in fine lines and wrinkles</span>
+          </div>
+
+          <div class="clinical-results__photos">
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/before.png" alt="Before – Week 1" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 1</span>
+            </div>
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/after.png" alt="After – Week 6" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 6</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-results__card">
+          <div class="clinical-results__stat-row">
+            <span class="clinical-results__stat-number">92%</span>
+            <span class="clinical-results__stat-desc">reported smoother, more hydrated skin texture</span>
+          </div>
+
+          <div class="clinical-results__photos">
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/before.png" alt="Before – Week 1" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 1</span>
+            </div>
+            <div class="clinical-results__photo-wrapper">
+              <img src="assets/images/after.png" alt="After – Week 6" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">Week 6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinical-results__dots" data-carousel-dots="clinical-results">
+      <button class="clinical-results__dot is-active" data-dot-index="0" aria-label="Go to result 1"></button>
+      <button class="clinical-results__dot" data-dot-index="1" aria-label="Go to result 2"></button>
+      <button class="clinical-results__dot" data-dot-index="2" aria-label="Go to result 3"></button>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      var section = document.querySelector('[data-section-id="clinical-results"]');
+      if (!section) return;
+      var track = section.querySelector('[data-carousel-track="clinical-results"]');
+      var dots = section.querySelectorAll('[data-carousel-dots="clinical-results"] .clinical-results__dot');
+      if (!track) return;
+      var scrollAmount = 555;
+      function updateDots() {
+        if (!dots.length) return;
+        var cards = track.querySelectorAll('.clinical-results__card');
+        var trackRect = track.getBoundingClientRect();
+        var activeIndex = 0;
+        cards.forEach(function(card, i) {
+          var cardRect = card.getBoundingClientRect();
+          if (cardRect.left >= trackRect.left && cardRect.left < trackRect.left + trackRect.width / 2) { activeIndex = i; }
+        });
+        dots.forEach(function(dot, i) { dot.classList.toggle('is-active', i === activeIndex); });
+      }
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var index = parseInt(dot.getAttribute('data-dot-index'), 10);
+          var cards = track.querySelectorAll('.clinical-results__card');
+          if (cards[index]) cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        });
+      });
+      track.addEventListener('scroll', updateDots);
+    })();
+  </script>
+
+  <!-- ========== SKINCARE ROUTINE ========== -->
+  <div class="skincare-routine-wrapper">
+  <section class="skincare-routine" data-section-id="skincare-routine">
+    <div class="skincare-routine__bg skincare-routine__bg--active" data-step="0">
+      <video src="https://www.oneskin.co/cdn/shop/videos/c/vp/8a163058155a467592e0abea6388be08/8a163058155a467592e0abea6388be08.HD-1080p-3.3Mbps-23489510.mp4?v=0"
+        autoplay muted loop playsinline></video>
+      <div class="skincare-routine__bg-overlay"></div>
+    </div>
+    <div class="skincare-routine__bg" data-step="1">
+      <video src="https://www.oneskin.co/cdn/shop/videos/c/vp/c2391339c2434992a0fdb3846adcc446/c2391339c2434992a0fdb3846adcc446.HD-1080p-7.2Mbps-47939133.mp4?v=0"
+        autoplay muted loop playsinline></video>
+      <div class="skincare-routine__bg-overlay"></div>
+    </div>
+    <div class="skincare-routine__bg" data-step="2">
+      <img src="assets/images/routine_bg.png" alt="" loading="lazy">
+      <div class="skincare-routine__bg-overlay"></div>
+    </div>
+    <div class="skincare-routine__bg" data-step="3">
+      <img src="assets/images/routine_bg.png" alt="" loading="lazy">
+      <div class="skincare-routine__bg-overlay"></div>
+    </div>
+
+    <div class="skincare-routine__header">
+      <h2 class="skincare-routine__title section-title">The OneSkin routine</h2>
+    </div>
+
+    <div class="skincare-routine__steps" data-lenis-prevent>
+      <div class="skincare-routine__step skincare-routine__step--active" data-step="0">
+        <div class="skincare-routine__step-image">
+          <img src="assets/images/routine_product.png" alt="Prep" loading="lazy">
+        </div>
+        <div class="skincare-routine__step-info">
+          <span class="skincare-routine__step-number">Step 1</span>
+          <span class="skincare-routine__step-name">Prep</span>
+          <p class="skincare-routine__step-desc">Gently exfoliate and prime skin for optimal absorption of the OS-01 peptide with our daily cleanser.</p>
+          <a href="#" class="skincare-routine__step-link">See PREP →</a>
+        </div>
+      </div>
+      <div class="skincare-routine__step" data-step="1">
+        <div class="skincare-routine__step-image">
+          <img src="assets/images/routine_product.png" alt="Shield" loading="lazy">
+        </div>
+        <div class="skincare-routine__step-info">
+          <span class="skincare-routine__step-number">Step 2</span>
+          <span class="skincare-routine__step-name">Shield</span>
+          <p class="skincare-routine__step-desc">Protect your skin from UV damage and environmental stressors with our mineral SPF.</p>
+          <a href="#" class="skincare-routine__step-link">See SHIELD →</a>
+        </div>
+      </div>
+      <div class="skincare-routine__step" data-step="2">
+        <div class="skincare-routine__step-image">
+          <img src="assets/images/routine_product.png" alt="Treat" loading="lazy">
+        </div>
+        <div class="skincare-routine__step-info">
+          <span class="skincare-routine__step-number">Step 3</span>
+          <span class="skincare-routine__step-name">Treat</span>
+          <p class="skincare-routine__step-desc">Target fine lines and wrinkles with our concentrated anti-aging serum.</p>
+          <a href="#" class="skincare-routine__step-link">See TREAT →</a>
+        </div>
+      </div>
+      <div class="skincare-routine__step" data-step="3">
+        <div class="skincare-routine__step-image">
+          <img src="assets/images/routine_product.png" alt="Nourish" loading="lazy">
+        </div>
+        <div class="skincare-routine__step-info">
+          <span class="skincare-routine__step-number">Step 4</span>
+          <span class="skincare-routine__step-name">Nourish</span>
+          <p class="skincare-routine__step-desc">Lock in moisture and support skin barrier health with our rich moisturizer.</p>
+          <a href="#" class="skincare-routine__step-link">See NOURISH →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- ========== SCIENCE PLACEHOLDER ========== -->
+  <section class="science-placeholder">
+    <div class="science-placeholder__header">
+      <h2 class="science-placeholder__title">Science section</h2>
+      <a href="#" class="science-placeholder__link">Learn more about our science →</a>
+    </div>
+    <div class="science-placeholder__card">
+      <span class="science-placeholder__tbd">TBD</span>
+    </div>
+  </section>
+
+  <!-- ========== FAQ QUESTIONS ========== -->
+  <section class="faq-questions">
+    <div class="faq-questions__layout">
+      <div class="faq-questions__left">
+        <h2 class="faq-questions__title">Questions?<br>We're here to help</h2>
+      </div>
+      <div class="faq-questions__right">
+        <div class="faq-questions__item faq-questions__item--open">
+          <button class="faq-questions__header" aria-expanded="true">
+            <span class="faq-questions__question">Is OS-01 FACE cruelty-free?</span>
+            <span class="faq-questions__line"></span>
+            <span class="faq-questions__icon">+</span>
+          </button>
+          <div class="faq-questions__answer">
+            <p>Yes absolutely! OS-01 FACE is certified cruelty-free and has never been tested on animals. We are committed to ethical beauty practices and hold ourselves to the highest standards of responsible skincare development.</p>
+          </div>
+          <div class="faq-questions__separator"></div>
+        </div>
+        <div class="faq-questions__item">
+          <button class="faq-questions__header" aria-expanded="false">
+            <span class="faq-questions__question">Can I refill OS-01 FACE?</span>
+            <span class="faq-questions__line"></span>
+            <span class="faq-questions__icon">+</span>
+          </button>
+          <div class="faq-questions__answer">
+            <p>Yes! We offer a refill program for OS-01 FACE. Simply purchase a refill pouch and use it to replenish your existing bottle, reducing waste and saving you money.</p>
+          </div>
+          <div class="faq-questions__separator"></div>
+        </div>
+        <div class="faq-questions__item">
+          <button class="faq-questions__header" aria-expanded="false">
+            <span class="faq-questions__question">How long does a bottle of OS-01 FACE last?</span>
+            <span class="faq-questions__line"></span>
+            <span class="faq-questions__icon">+</span>
+          </button>
+          <div class="faq-questions__answer">
+            <p>A single bottle of OS-01 FACE typically lasts around 2 months with daily use, applying the recommended amount each morning and evening.</p>
+          </div>
+          <div class="faq-questions__separator"></div>
+        </div>
+        <div class="faq-questions__item">
+          <button class="faq-questions__header" aria-expanded="false">
+            <span class="faq-questions__question">What skin types is OS-01 FACE suited for?</span>
+            <span class="faq-questions__line"></span>
+            <span class="faq-questions__icon">+</span>
+          </button>
+          <div class="faq-questions__answer">
+            <p>OS-01 FACE is formulated for all skin types, including sensitive skin. It is dermatologist tested, fragrance-free, and designed to work with your existing skincare routine.</p>
+          </div>
+          <div class="faq-questions__separator"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    var items = document.querySelectorAll('.faq-questions__item');
+    items.forEach(function(item) {
+      var header = item.querySelector('.faq-questions__header');
+      header.addEventListener('click', function() {
+        var isOpen = item.classList.contains('faq-questions__item--open');
+        items.forEach(function(i) {
+          i.classList.remove('faq-questions__item--open');
+          i.querySelector('.faq-questions__header').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('faq-questions__item--open');
+          header.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+  </script>
+
+  <!-- ========== REVIEWS ========== -->
+  <section class="reviews-section" data-section-id="reviews">
+    <div class="reviews-section__header">
+      <h2 class="reviews-section__title section-title">Reviews</h2>
+    </div>
+    <div class="reviews-section__content">
+      <div class="reviews-section__summary">
+        <p class="reviews-section__average-label">Average score</p>
+        <p class="reviews-section__average-score">4.7/5</p>
+        <div class="reviews-section__stars-row">
+          <div class="star-rating" aria-label="4.7 out of 5 stars">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="half-star-reviews"><stop offset="70%" stop-color="currentColor"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#half-star-reviews)"/></svg>
+          </div>
+        </div>
+        <p class="reviews-section__total">out of 4,110 reviews</p>
+      </div>
+
+      <div class="reviews-section__carousel">
+        <div class="reviews-section__track" data-carousel-track="reviews" data-lenis-prevent>
+          <div class="reviews-section__card reviews-section__card--featured">
+            <div style="width:100%;aspect-ratio:370/460;background:var(--color-surface);"></div>
+          </div>
+          <div class="reviews-section__card reviews-section__card--regular">
+            <div style="width:100%;aspect-ratio:319/440;background:var(--color-surface);"></div>
+          </div>
+          <div class="reviews-section__card reviews-section__card--regular">
+            <div style="width:100%;aspect-ratio:319/440;background:var(--color-surface);"></div>
+          </div>
+          <div class="reviews-section__card reviews-section__card--regular">
+            <div style="width:100%;aspect-ratio:319/440;background:var(--color-surface);"></div>
+          </div>
+          <div class="reviews-section__card reviews-section__card--regular">
+            <div style="width:100%;aspect-ratio:319/440;background:var(--color-surface);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LIFESTYLE HERO ========== -->
+  <section class="lifestyle-hero">
+    <div class="lifestyle-hero__image-wrapper">
+      <div class="lifestyle-hero__placeholder">
+        <span class="lifestyle-hero__placeholder-text">Lifestyle hero image</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copyright">&copy; OneSkin</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="assets/lenis-init.js"></script>
+<script src="assets/component-purchase-options.js" defer></script>
+<script src="assets/component-shade-selector.js" defer></script>
+<script src="assets/component-accordion.js" defer></script>
+<script src="assets/component-liquid-glass.js" defer></script>
+<script src="assets/component-skincare-routine.js" defer></script>
+</body>
+</html>

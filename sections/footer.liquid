@@ -1,0 +1,47 @@
+<style>
+  .site-footer {
+    max-width: var(--content-max, 1295px);
+    margin: 0 auto;
+    padding: 48px var(--container-padding, 48px);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+  }
+
+  .site-footer__copyright {
+    font-family: var(--font-sans, 'PP Neue Montreal', Arial, sans-serif);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-muted, #808080);
+    margin: 0;
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copyright">{{ section.settings.copyright_text }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "© OneSkin"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

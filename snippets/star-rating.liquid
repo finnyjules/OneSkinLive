@@ -1,0 +1,35 @@
+{%- comment -%}
+  Star rating component
+  Usage: {% render 'star-rating', rating: 4.7, size: 18, count: 5 %}
+{%- endcomment -%}
+
+{%- assign rating = rating | default: 5 -%}
+{%- assign size = size | default: 18 -%}
+{%- assign star_count = count | default: 5 -%}
+
+<div class="star-rating" aria-label="{{ rating }} out of {{ star_count }} stars">
+  {%- for i in (1..star_count) -%}
+    {%- if rating >= i -%}
+      {%- comment -%} Full star {%- endcomment -%}
+      <svg width="{{ size }}" height="{{ size }}" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="currentColor"/>
+      </svg>
+    {%- elsif rating > i | minus: 1 -%}
+      {%- comment -%} Partial star {%- endcomment -%}
+      <svg width="{{ size }}" height="{{ size }}" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="half-star-{{ i }}">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="#e1e1e1"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#half-star-{{ i }})"/>
+      </svg>
+    {%- else -%}
+      {%- comment -%} Empty star {%- endcomment -%}
+      <svg width="{{ size }}" height="{{ size }}" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="#e1e1e1"/>
+      </svg>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

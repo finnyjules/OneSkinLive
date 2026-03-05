@@ -1,0 +1,151 @@
+.skincare-routine-wrapper {
+  max-width: var(--content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.skincare-routine {
+  position: relative;
+  width: 100%;
+  height: 694px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.skincare-routine__bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.skincare-routine__bg--active {
+  opacity: 1;
+}
+
+.skincare-routine__bg img,
+.skincare-routine__bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skincare-routine__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-90deg, rgba(255,255,255,0) 60%, rgba(255,255,255,0.4) 80%);
+}
+
+.skincare-routine__header {
+  position: absolute;
+  top: 34px;
+  left: 26px;
+  z-index: 2;
+}
+
+.skincare-routine__title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.skincare-routine__steps {
+  position: absolute;
+  top: 91px;
+  left: 26px;
+  bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  width: 335px;
+  z-index: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scrollbar-width: none;
+}
+
+.skincare-routine__steps::-webkit-scrollbar {
+  display: none;
+}
+
+.skincare-routine__step {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.skincare-routine__step--active {
+  background: rgba(207, 237, 225, 0.6);
+  border: 2px solid rgba(255, 255, 255, 1);
+  position: relative;
+}
+
+.skincare-routine__step--active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(207, 237, 225, 0.3);
+  pointer-events: none;
+}
+
+.skincare-routine__step-image {
+  width: 40px;
+  height: 113px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.skincare-routine__step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skincare-routine__step-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skincare-routine__step-number {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.skincare-routine__step-name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.skincare-routine__step-desc {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.skincare-routine__step-link {
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .skincare-routine__steps {
+    width: calc(100% - 52px);
+  }
+}

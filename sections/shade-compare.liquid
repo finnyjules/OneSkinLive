@@ -1,0 +1,202 @@
+{{ 'section-shade-compare.css' | asset_url | stylesheet_tag }}
+
+<section class="shade-compare" data-section-id="{{ section.id }}">
+  <div class="shade-compare__container">
+    {%- if section.settings.background_image != blank -%}
+      <img
+        class="shade-compare__bg-image"
+        src="{{ section.settings.background_image | image_url: width: 1440 }}"
+        alt=""
+        loading="lazy"
+      >
+    {%- endif -%}
+
+    <div class="shade-compare__content">
+      <div class="shade-compare__header">
+        <h2 class="shade-compare__title">{{ section.settings.title }}</h2>
+        <div class="shade-compare__nav">
+          {% render 'carousel-controls', id: 'shade-compare' %}
+        </div>
+      </div>
+
+      <div class="shade-compare__shade-selector">
+        <div>
+          <p class="shade-compare__shade-label">Tint</p>
+          <p class="shade-compare__shade-name" data-shade-active-name>Light/Medium</p>
+        </div>
+        <div class="shade-compare__swatches">
+          <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #ecebeb;" aria-label="Light shade" data-shade-swatch></button>
+          <button class="shade-compare__swatch shade-compare__swatch--color is-active" style="--swatch-color: #c9a68a;" aria-label="Light/Medium shade" data-shade-swatch>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+              <circle cx="10" cy="10" r="4" fill="rgba(0,0,0,0.3)"/>
+            </svg>
+          </button>
+          <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #925835;" aria-label="Medium/Dark shade" data-shade-swatch></button>
+          <button class="shade-compare__swatch shade-compare__swatch--color" style="--swatch-color: #6f4636;" aria-label="Dark shade" data-shade-swatch></button>
+        </div>
+      </div>
+
+      <div class="shade-compare__carousel-wrapper">
+        <div class="shade-compare__track" data-carousel-track="shade-compare" data-lenis-prevent>
+          {%- for block in section.blocks -%}
+            <div class="shade-compare__slide{% if forloop.index == 2 %} is-highlighted{% endif %}" {{ block.shopify_attributes }} data-model-name="{{ block.settings.model_name | escape }}" data-shade-name="{{ block.settings.shade_name | escape }}">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 656 }}"
+                  alt="{{ block.settings.model_name | escape }} wearing {{ block.settings.shade_name | escape }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- assign first_visible = section.blocks[1] | default: section.blocks[0] -%}
+        <div class="shade-compare__caption" data-shade-caption>
+          {%- if first_visible -%}
+            {{ first_visible.settings.model_name }} is wearing OS-01 FACE SPF in <span class="shade-compare__caption-shade">{{ first_visible.settings.shade_name }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const track = section.querySelector('[data-carousel-track="shade-compare"]');
+    const prevBtn = section.querySelector('[data-carousel-prev="shade-compare"]');
+    const nextBtn = section.querySelector('[data-carousel-next="shade-compare"]');
+    const caption = section.querySelector('[data-shade-caption]');
+    const slides = track ? track.querySelectorAll('.shade-compare__slide') : [];
+
+    if (!track) return;
+
+    const slideWidth = 340;
+
+    function updateHighlight() {
+      var trackRect = track.getBoundingClientRect();
+      var center = trackRect.left + trackRect.width / 2;
+      var closest = null;
+      var closestDist = Infinity;
+
+      slides.forEach(function(slide) {
+        slide.classList.remove('is-highlighted');
+        var slideRect = slide.getBoundingClientRect();
+        var slideCenter = slideRect.left + slideRect.width / 2;
+        var dist = Math.abs(center - slideCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = slide;
+        }
+      });
+
+      if (closest) {
+        closest.classList.add('is-highlighted');
+        var modelName = closest.getAttribute('data-model-name') || '';
+        var shadeName = closest.getAttribute('data-shade-name') || '';
+        if (caption && modelName) {
+          caption.innerHTML = modelName + ' is wearing OS-01 FACE SPF in <span class="shade-compare__caption-shade">' + shadeName + '</span>';
+        }
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      });
+    }
+
+    track.addEventListener('scroll', updateHighlight);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shade Compare",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Compare shades"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "model_photo",
+      "name": "Model Photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Model photo"
+        },
+        {
+          "type": "text",
+          "id": "model_name",
+          "label": "Model name",
+          "default": "Sarah"
+        },
+        {
+          "type": "text",
+          "id": "shade_name",
+          "label": "Shade name",
+          "default": "Light/Medium"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shade Compare",
+      "blocks": [
+        {
+          "type": "model_photo",
+          "settings": {
+            "model_name": "Emily",
+            "shade_name": "Light"
+          }
+        },
+        {
+          "type": "model_photo",
+          "settings": {
+            "model_name": "Sarah",
+            "shade_name": "Light/Medium"
+          }
+        },
+        {
+          "type": "model_photo",
+          "settings": {
+            "model_name": "Maria",
+            "shade_name": "Medium/Dark"
+          }
+        },
+        {
+          "type": "model_photo",
+          "settings": {
+            "model_name": "Jasmine",
+            "shade_name": "Dark"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,119 @@
+.faq-questions {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 80px var(--container-padding) 60px;
+}
+
+.faq-questions__layout {
+  display: flex;
+  gap: 72px;
+  align-items: flex-start;
+}
+
+.faq-questions__left {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.faq-questions__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.faq-questions__right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Accordion item */
+.faq-questions__header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+.faq-questions__question {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.faq-questions__line {
+  flex: 1;
+}
+
+.faq-questions__icon {
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--color-text);
+  width: 12px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+.faq-questions__item--open .faq-questions__icon {
+  transform: rotate(45deg);
+}
+
+/* Answer */
+.faq-questions__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-questions__item--open .faq-questions__answer {
+  max-height: 300px;
+  opacity: 1;
+}
+
+.faq-questions__answer p {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text);
+  letter-spacing: 0.48px;
+  line-height: 1.6;
+  padding: 8px 0 4px;
+}
+
+/* Separator */
+.faq-questions__separator {
+  height: 1px;
+  background: var(--color-text);
+  opacity: 0.1;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .faq-questions__layout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .faq-questions__left {
+    width: 100%;
+  }
+
+  .faq-questions__question {
+    white-space: normal;
+  }
+}

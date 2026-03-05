@@ -1,0 +1,62 @@
+{
+  "general": {
+    "cart": "Cart",
+    "account": "Account",
+    "add_to_cart": "ADD TO CART",
+    "free_shipping": "Free shipping on orders $79+",
+    "recommended": "Recommended",
+    "best_seller": "Best-seller",
+    "powered_by": "Powered by"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "ADD TO CART",
+      "subscribe_monthly": "Deliver every month",
+      "subscribe_bimonthly": "Deliver every 2 months",
+      "one_time": "One-time purchase",
+      "save": "Save",
+      "reviews": "reviews",
+      "average_score": "Average score",
+      "out_of_reviews": "out of {{ count }} reviews"
+    }
+  },
+  "sections": {
+    "header": {
+      "shop": "Shop",
+      "mission": "Mission",
+      "learn": "Learn"
+    },
+    "product_hero": {
+      "science_behind": "The science behind",
+      "clean_ingredients": "Clean and safe ingredients",
+      "how_to_use": "How to use",
+      "shade_guide": "See which tint is right for your skin tone →",
+      "gift_headline": "Gift with purchase headline",
+      "free": "Free"
+    },
+    "cross_sell": {
+      "use_it_with": "Use it with"
+    },
+    "shade_compare": {
+      "compare_shades": "Compare shades",
+      "wearing": "is wearing OS-01 FACE SPF",
+      "in_shade": "in"
+    },
+    "ingredients": {
+      "key_ingredients": "Key ingredients",
+      "see_all": "See all ingredients →"
+    },
+    "results": {
+      "title": "Clinically-validated results:"
+    },
+    "routine": {
+      "title": "The OneSkin routine"
+    },
+    "faq": {
+      "title": "Questions"
+    },
+    "reviews": {
+      "title": "Reviews"
+    }
+  }
+}

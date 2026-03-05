@@ -1,0 +1,87 @@
+{%- comment -%}
+  Header section — Navigation bar
+  Logo centered, nav links left, account/cart right
+{%- endcomment -%}
+
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
+<header class="header" data-section-id="{{ section.id }}">
+  <div class="header__inner">
+    <nav class="header__nav" aria-label="Main navigation">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'nav_link' -%}
+          <a href="{{ block.settings.url }}" class="header__nav-link">
+            {{ block.settings.label }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+
+    <a href="/" class="header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: 240 }}"
+          alt="{{ shop.name }}"
+          width="120"
+          height="15"
+        >
+      {%- else -%}
+        <svg width="120" height="15" viewBox="0 0 120 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="12" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="black">ONE SKIN</text>
+        </svg>
+      {%- endif -%}
+    </a>
+
+    <div class="header__actions">
+      <a href="/account" class="header__account">{{ 'general.account' | t }}</a>
+      <a href="/cart" class="header__cart">
+        <span>{{ 'general.cart' | t }}</span>
+        {%- if cart.item_count > 0 -%}
+          <span class="header__cart-count">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        { "type": "nav_link", "settings": { "label": "Shop" } },
+        { "type": "nav_link", "settings": { "label": "Mission" } },
+        { "type": "nav_link", "settings": { "label": "Learn" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

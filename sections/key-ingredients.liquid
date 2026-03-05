@@ -1,0 +1,96 @@
+{%- comment -%}
+  Key Ingredients Section
+  Background image with scattered floating ingredient cards
+{%- endcomment -%}
+
+{{ 'section-key-ingredients.css' | asset_url | stylesheet_tag }}
+
+<section class="key-ingredients" data-section-id="{{ section.id }}">
+  {%- if section.settings.background_image -%}
+    <div class="key-ingredients__bg">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2590 }}"
+        alt=""
+        loading="lazy"
+      >
+    </div>
+  {%- endif -%}
+
+  <div class="key-ingredients__header">
+    <h2 class="key-ingredients__title section-title">{{ section.settings.title | default: 'Key ingredients' }}</h2>
+    <a href="{{ section.settings.link_url | default: '#' }}" class="key-ingredients__link">
+      {{ section.settings.link_text | default: 'See all ingredients →' }}
+    </a>
+  </div>
+
+  <div class="key-ingredients__cards">
+    {%- for block in section.blocks -%}
+      <div class="key-ingredients__card" {{ block.shopify_attributes }}>
+        <p class="key-ingredients__card-name">{{ block.settings.name }}</p>
+        <div class="key-ingredients__card-desc">{{ block.settings.description }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Key Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Key ingredients"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "See all ingredients →"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Ingredient name",
+          "default": "Ingredient name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Ingredient description, 2 lines\nIngredient description, 2 lines"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Key Ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "OS-01 Peptide" } },
+        { "type": "ingredient", "settings": { "name": "Niacinamide" } },
+        { "type": "ingredient", "settings": { "name": "Squalane" } },
+        { "type": "ingredient", "settings": { "name": "Vitamin E" } },
+        { "type": "ingredient", "settings": { "name": "Ceramides" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

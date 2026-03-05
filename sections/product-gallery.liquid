@@ -1,0 +1,86 @@
+{%- comment -%}
+  Product Image Gallery Section
+  Grid of product/lifestyle images with quote cards
+{%- endcomment -%}
+
+{{ 'section-product-gallery.css' | asset_url | stylesheet_tag }}
+
+<section class="product-gallery" data-section-id="{{ section.id }}">
+  <div class="product-gallery__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'image' -%}
+          <div class="product-gallery__item product-gallery__item--image" {{ block.shopify_attributes }}>
+            {%- if block.settings.image -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 608 }}"
+                alt="{{ block.settings.image.alt | default: 'Product image' | escape }}"
+                width="304"
+                height="304"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div style="width:100%;height:100%;background:var(--color-surface);"></div>
+            {%- endif -%}
+          </div>
+
+        {%- when 'quote' -%}
+          <div class="product-gallery__item product-gallery__item--quote" {{ block.shopify_attributes }}>
+            <p class="product-gallery__quote-text">"{{ block.settings.quote }}"</p>
+            <p class="product-gallery__quote-author">- {{ block.settings.author }}</p>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Gallery",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Quote card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote text",
+          "default": "Insert quote here"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Person name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Gallery",
+      "blocks": [
+        { "type": "image" },
+        { "type": "quote", "settings": { "quote": "Insert quote here", "author": "Person name" } },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "quote", "settings": { "quote": "Insert quote here", "author": "Person name" } },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

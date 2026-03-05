@@ -1,0 +1,109 @@
+{%- comment -%}
+  Skincare Routine Section
+  Full-width bg image with 4 step cards on the left
+{%- endcomment -%}
+
+{{ 'section-skincare-routine.css' | asset_url | stylesheet_tag }}
+
+<section class="skincare-routine" data-section-id="{{ section.id }}">
+  {%- if section.settings.background_image -%}
+    <div class="skincare-routine__bg">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2590 }}"
+        alt=""
+        loading="lazy"
+      >
+      <div class="skincare-routine__bg-overlay"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="skincare-routine__header">
+    <h2 class="skincare-routine__title section-title">{{ section.settings.title | default: 'The OneSkin routine' }}</h2>
+  </div>
+
+  <div class="skincare-routine__steps">
+    {%- for block in section.blocks -%}
+      <div class="skincare-routine__step{% if forloop.first %} skincare-routine__step--active{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.product_image -%}
+          <div class="skincare-routine__step-image">
+            <img
+              src="{{ block.settings.product_image | image_url: width: 160 }}"
+              alt="{{ block.settings.step_name }}"
+              loading="lazy"
+            >
+          </div>
+        {%- endif -%}
+        <div class="skincare-routine__step-info">
+          <span class="skincare-routine__step-number">Step {{ forloop.index }}</span>
+          <span class="skincare-routine__step-name">{{ block.settings.step_name }}</span>
+          <p class="skincare-routine__step-desc">{{ block.settings.description }}</p>
+          {%- if block.settings.link_url -%}
+            <a href="{{ block.settings.link_url }}" class="skincare-routine__step-link">
+              See {{ block.settings.step_name | upcase }} →
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Skincare Routine",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The OneSkin routine"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Routine step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_name",
+          "label": "Step name",
+          "default": "Prep"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Gently exfoliate and prime skin for optimal absorption of the OS-01 peptide with our daily cleanser."
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skincare Routine",
+      "blocks": [
+        { "type": "step", "settings": { "step_name": "Prep", "description": "Gently exfoliate and prime skin for optimal absorption of the OS-01 peptide with our daily cleanser." } },
+        { "type": "step", "settings": { "step_name": "Shield", "description": "Protect your skin from UV damage and environmental stressors with our mineral SPF." } },
+        { "type": "step", "settings": { "step_name": "Treat", "description": "Target fine lines and wrinkles with our concentrated anti-aging serum." } },
+        { "type": "step", "settings": { "step_name": "Nourish", "description": "Lock in moisture and support skin barrier health with our rich moisturizer." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

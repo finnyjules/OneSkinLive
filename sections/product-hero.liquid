@@ -1,0 +1,569 @@
+{%- comment -%}
+  Product Hero Section
+  Main product display: images, info, purchase options, gift, certifications, accordion
+{%- endcomment -%}
+
+{{ 'section-product-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="product-hero" data-section-id="{{ section.id }}">
+  <div class="product-hero__layout">
+
+    {%- comment -%} === LEFT: Image Gallery === {%- endcomment -%}
+    <div class="product-hero__gallery">
+      {%- if product.featured_image -%}
+        <div class="product-hero__image-main">
+          <img
+            src="{{ product.featured_image | image_url: width: 1226 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="613"
+            height="613"
+          >
+        </div>
+      {%- else -%}
+        <div class="product-hero__image-main">
+          <img src="{{ 'product-placeholder.svg' | asset_url }}" alt="Product image" width="613" height="613">
+        </div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'gallery_image' -%}
+            <div class="product-hero__image-thumb" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 608 }}"
+                  alt="{{ block.settings.image.alt | default: product.title | escape }}"
+                  width="304"
+                  height="304"
+                  loading="lazy"
+                >
+              {%- endif -%}
+            </div>
+
+          {%- when 'gallery_quote' -%}
+            <div class="product-hero__quote-card" {{ block.shopify_attributes }}>
+              <p class="product-hero__quote-text">"{{ block.settings.quote }}"</p>
+              <p class="product-hero__quote-author">- {{ block.settings.author }}</p>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} === RIGHT: Product Info === {%- endcomment -%}
+    <div class="product-hero__info">
+
+      {%- comment -%} Title & Rating {%- endcomment -%}
+      <div class="product-hero__header">
+        <h1 class="product-hero__title">{{ product.title }}</h1>
+        <div class="product-hero__rating-summary">
+          <span class="product-hero__rating-number">{{ section.settings.rating | default: '4.7' }}</span>
+          <div class="product-hero__rating-stars-row">
+            {% render 'star-rating', rating: 4.7, size: 18 %}
+          </div>
+        </div>
+      </div>
+
+      <div class="product-hero__subtitle">
+        <p class="product-hero__description-short">{{ product.description | strip_html | truncatewords: 8 }}</p>
+        <span class="product-hero__review-count">{{ section.settings.review_count | default: '4,110' }} {{ 'products.product.reviews' | t }}</span>
+      </div>
+
+      {%- comment -%} Adjective Pills {%- endcomment -%}
+      {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank or section.settings.pill_3 != blank -%}
+        <div class="product-hero__pills">
+          {%- if section.settings.pill_1 != blank -%}
+            <span class="product-hero__pill">{{ section.settings.pill_1 }}</span>
+          {%- endif -%}
+          {%- if section.settings.pill_2 != blank -%}
+            <span class="product-hero__pill">{{ section.settings.pill_2 }}</span>
+          {%- endif -%}
+          {%- if section.settings.pill_3 != blank -%}
+            <span class="product-hero__pill">{{ section.settings.pill_3 }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Shade Selector {%- endcomment -%}
+      <div class="product-hero__shade-selector" data-shade-selector>
+        <div class="product-hero__shade-row">
+          <div class="product-hero__shade-info">
+            <span class="product-hero__shade-label" data-shade-name-display>
+              {{ product.selected_or_first_available_variant.title | default: section.settings.default_shade_name }}
+            </span>
+            <span class="product-hero__shade-size">{{ section.settings.product_size | default: '40 mL/~60 uses' }}</span>
+          </div>
+          <div class="product-hero__shade-swatches">
+            {%- for variant in product.variants -%}
+              <button
+                class="shade-swatch{% if forloop.first %} shade-swatch--selected{% endif %}"
+                data-variant-id="{{ variant.id }}"
+                data-shade-name="{{ variant.title }}"
+                data-shade-color="{{ variant.metafields.custom.swatch_color | default: '#ecebeb' }}"
+                aria-label="{{ variant.title }}"
+                type="button"
+              >
+                <span class="shade-swatch__color" style="background: {{ variant.metafields.custom.swatch_color | default: '#ecebeb' }};"></span>
+              </button>
+            {%- else -%}
+              {%- comment -%} Fallback swatches when no variants {%- endcomment -%}
+              <button class="shade-swatch shade-swatch--selected" data-shade-name="Light/Medium" type="button">
+                <span class="shade-swatch__color" style="background: #ecebeb;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Medium" type="button">
+                <span class="shade-swatch__color" style="background: #c4a882;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Medium/Dark" type="button">
+                <span class="shade-swatch__color" style="background: #925835;"></span>
+              </button>
+              <button class="shade-swatch" data-shade-name="Dark" type="button">
+                <span class="shade-swatch__color" style="background: #7d491a;"></span>
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+        <a href="{{ section.settings.shade_guide_url | default: '#' }}" class="product-hero__shade-guide">
+          {{ 'sections.product_hero.shade_guide' | t }}
+        </a>
+      </div>
+
+      {%- comment -%} Description Bullets {%- endcomment -%}
+      <ul class="product-hero__bullets">
+        {%- if section.settings.bullet_1 != blank -%}
+          <li>{{ section.settings.bullet_1 }}</li>
+        {%- endif -%}
+        {%- if section.settings.bullet_2 != blank -%}
+          <li>{{ section.settings.bullet_2 }}</li>
+        {%- endif -%}
+        {%- if section.settings.bullet_3 != blank -%}
+          <li>{{ section.settings.bullet_3 }}</li>
+        {%- endif -%}
+      </ul>
+
+      {%- comment -%} === Purchase Options Card === {%- endcomment -%}
+      <div class="product-hero__purchase" data-purchase-options>
+        <div class="product-hero__purchase-options">
+          {%- comment -%} Option 1: Monthly {%- endcomment -%}
+          <div class="purchase-option" data-purchase-option="monthly" role="radio" aria-checked="false" tabindex="0">
+            <div class="purchase-option__left">
+              <div class="purchase-option__title-row">
+                <span class="purchase-option__title">{{ section.settings.option_1_title | default: 'Deliver every month' }}</span>
+              </div>
+            </div>
+            <div class="purchase-option__right">
+              <span class="purchase-option__price">{{ section.settings.option_1_price | default: '$100' }}</span>
+              <span class="purchase-option__save">Save <strong>{{ section.settings.option_1_save | default: '15%' }}</strong></span>
+            </div>
+          </div>
+
+          {%- comment -%} Option 2: Every 2 Months (Recommended) {%- endcomment -%}
+          <div class="purchase-option purchase-option--selected" data-purchase-option="bimonthly" role="radio" aria-checked="true" tabindex="0">
+            <div class="purchase-option__left">
+              <div class="purchase-option__title-row">
+                <span class="purchase-option__title">{{ section.settings.option_2_title | default: 'Deliver every 2 months' }}</span>
+                <span class="purchase-option__badge">{{ 'general.recommended' | t }}</span>
+              </div>
+              <ul class="purchase-option__reasons">
+                {%- if section.settings.reason_1 != blank -%}
+                  <li>{{ section.settings.reason_1 }}</li>
+                {%- endif -%}
+                {%- if section.settings.reason_2 != blank -%}
+                  <li>{{ section.settings.reason_2 }}</li>
+                {%- endif -%}
+                {%- if section.settings.reason_3 != blank -%}
+                  <li>{{ section.settings.reason_3 }}</li>
+                {%- endif -%}
+              </ul>
+            </div>
+            <div class="purchase-option__right">
+              <span class="purchase-option__price">{{ section.settings.option_2_price | default: '$100' }}</span>
+              <span class="purchase-option__save">Save <strong>{{ section.settings.option_2_save | default: '15%' }}</strong></span>
+            </div>
+          </div>
+
+          {%- comment -%} Option 3: One-time {%- endcomment -%}
+          <div class="purchase-option" data-purchase-option="one-time" role="radio" aria-checked="false" tabindex="0">
+            <div class="purchase-option__left">
+              <div class="purchase-option__title-row">
+                <span class="purchase-option__title">{{ section.settings.option_3_title | default: 'One-time purchase' }}</span>
+              </div>
+            </div>
+            <div class="purchase-option__right">
+              <span class="purchase-option__price">{{ section.settings.option_3_price | default: '$125' }}</span>
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} Gift With Purchase {%- endcomment -%}
+        {%- if section.settings.gift_enabled -%}
+          <div class="product-hero__gift">
+            <p class="product-hero__gift-headline">{{ section.settings.gift_headline | default: 'Gift with purchase headline' }}</p>
+            <div class="product-hero__gift-item">
+              {%- if section.settings.gift_image -%}
+                <div class="product-hero__gift-image">
+                  <img
+                    src="{{ section.settings.gift_image | image_url: width: 126 }}"
+                    alt="{{ section.settings.gift_product_name }}"
+                    width="63"
+                    height="63"
+                    loading="lazy"
+                  >
+                </div>
+              {%- endif -%}
+              <div class="product-hero__gift-details">
+                <div>
+                  <p class="product-hero__gift-name">{{ section.settings.gift_product_name | default: 'Product name' }}</p>
+                  <p class="product-hero__gift-size">{{ section.settings.gift_size | default: 'Travel size (10mL)' }}</p>
+                </div>
+                <div class="product-hero__gift-pricing">
+                  <span class="price-strikethrough">{{ section.settings.gift_original_price | default: '$59' }}</span>
+                  <strong>{{ 'sections.product_hero.free' | t }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} CTA Area {%- endcomment -%}
+        <div class="product-hero__cta-area">
+          <p class="product-hero__free-shipping">{{ 'general.free_shipping' | t }}</p>
+          <button type="button" class="product-hero__add-to-cart" data-add-to-cart>
+            <span>{{ 'general.add_to_cart' | t }}</span>
+            <span>&nbsp;&nbsp;</span>
+            <span class="price-strikethrough">{{ product.compare_at_price | money | default: '$125' }}</span>
+            <span>&nbsp;&nbsp;</span>
+            <span class="price-current">{{ product.price | money | default: '$100' }}</span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Certifications {%- endcomment -%}
+      <div class="product-hero__certifications">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'certification' -%}
+            <div class="product-hero__cert" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon -%}
+                <div class="product-hero__cert-icon">
+                  <img
+                    src="{{ block.settings.icon | image_url: width: 110 }}"
+                    alt="{{ block.settings.text }}"
+                    loading="lazy"
+                  >
+                </div>
+              {%- endif -%}
+              <span class="product-hero__cert-text">{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Accordion {%- endcomment -%}
+      <div class="product-hero__accordion" data-accordion>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion_item' -%}
+            <div class="accordion-item" {{ block.shopify_attributes }}>
+              <button class="accordion-item__header" type="button" aria-expanded="false" data-accordion-trigger>
+                <span class="accordion-item__title">{{ block.settings.title }}</span>
+                <span class="accordion-item__line"></span>
+                <span class="accordion-item__icon">+</span>
+              </button>
+              <div class="accordion-item__content" data-accordion-content>
+                <div class="accordion-item__body">
+                  {{ block.settings.content }}
+                </div>
+              </div>
+              <div class="accordion-item__separator"></div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'component-purchase-options.js' | asset_url }}" defer></script>
+<script src="{{ 'component-shade-selector.js' | asset_url }}" defer></script>
+<script src="{{ 'component-accordion.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Rating score",
+      "default": "4.7"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review count",
+      "default": "4,110"
+    },
+    {
+      "type": "header",
+      "content": "Pills"
+    },
+    {
+      "type": "text",
+      "id": "pill_1",
+      "label": "Adjective 1",
+      "default": "Adjective 1"
+    },
+    {
+      "type": "text",
+      "id": "pill_2",
+      "label": "Adjective 2",
+      "default": "Adjective 2"
+    },
+    {
+      "type": "text",
+      "id": "pill_3",
+      "label": "Adjective 3",
+      "default": "Adjective 3"
+    },
+    {
+      "type": "header",
+      "content": "Shade Selector"
+    },
+    {
+      "type": "text",
+      "id": "default_shade_name",
+      "label": "Default shade name",
+      "default": "Light/Medium Tint"
+    },
+    {
+      "type": "text",
+      "id": "product_size",
+      "label": "Product size",
+      "default": "40 mL/~60 uses"
+    },
+    {
+      "type": "url",
+      "id": "shade_guide_url",
+      "label": "Shade guide link"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "text",
+      "id": "bullet_1",
+      "label": "Bullet point 1",
+      "default": "Description line 1"
+    },
+    {
+      "type": "text",
+      "id": "bullet_2",
+      "label": "Bullet point 2",
+      "default": "Description line 2"
+    },
+    {
+      "type": "text",
+      "id": "bullet_3",
+      "label": "Bullet point 3",
+      "default": "Description line 3"
+    },
+    {
+      "type": "header",
+      "content": "Purchase Options"
+    },
+    {
+      "type": "text",
+      "id": "option_1_title",
+      "label": "Option 1 title",
+      "default": "Deliver every month"
+    },
+    {
+      "type": "text",
+      "id": "option_1_price",
+      "label": "Option 1 price",
+      "default": "$100"
+    },
+    {
+      "type": "text",
+      "id": "option_1_save",
+      "label": "Option 1 save %",
+      "default": "15%"
+    },
+    {
+      "type": "text",
+      "id": "option_2_title",
+      "label": "Option 2 title",
+      "default": "Deliver every 2 months"
+    },
+    {
+      "type": "text",
+      "id": "option_2_price",
+      "label": "Option 2 price",
+      "default": "$100"
+    },
+    {
+      "type": "text",
+      "id": "option_2_save",
+      "label": "Option 2 save %",
+      "default": "15%"
+    },
+    {
+      "type": "text",
+      "id": "option_3_title",
+      "label": "Option 3 title",
+      "default": "One-time purchase"
+    },
+    {
+      "type": "text",
+      "id": "option_3_price",
+      "label": "Option 3 price",
+      "default": "$125"
+    },
+    {
+      "type": "text",
+      "id": "reason_1",
+      "label": "Subscription reason 1",
+      "default": "Reason to subscribe 1"
+    },
+    {
+      "type": "text",
+      "id": "reason_2",
+      "label": "Subscription reason 2",
+      "default": "Reason to subscribe 2"
+    },
+    {
+      "type": "text",
+      "id": "reason_3",
+      "label": "Subscription reason 3",
+      "default": "Reason to subscribe 3"
+    },
+    {
+      "type": "header",
+      "content": "Gift with Purchase"
+    },
+    {
+      "type": "checkbox",
+      "id": "gift_enabled",
+      "label": "Enable gift with purchase",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gift_headline",
+      "label": "Gift headline",
+      "default": "Gift with purchase headline"
+    },
+    {
+      "type": "image_picker",
+      "id": "gift_image",
+      "label": "Gift product image"
+    },
+    {
+      "type": "text",
+      "id": "gift_product_name",
+      "label": "Gift product name",
+      "default": "Product name"
+    },
+    {
+      "type": "text",
+      "id": "gift_size",
+      "label": "Gift size",
+      "default": "Travel size (10mL)"
+    },
+    {
+      "type": "text",
+      "id": "gift_original_price",
+      "label": "Gift original price",
+      "default": "$59"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Gallery image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "gallery_quote",
+      "name": "Gallery quote",
+      "settings": [
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote text",
+          "default": "Insert quote here"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "Person name"
+        }
+      ]
+    },
+    {
+      "type": "certification",
+      "name": "Certification badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Badge icon"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Badge text",
+          "default": "Certified cruelty-free by The Leaping Bunny"
+        }
+      ]
+    },
+    {
+      "type": "accordion_item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "The science behind"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Hero",
+      "blocks": [
+        { "type": "gallery_image" },
+        { "type": "gallery_quote", "settings": { "quote": "Insert quote here", "author": "Person name" } },
+        { "type": "gallery_image" },
+        { "type": "gallery_image" },
+        { "type": "gallery_quote", "settings": { "quote": "Insert quote here", "author": "Person name" } },
+        { "type": "gallery_image" },
+        { "type": "certification", "settings": { "text": "Certified cruelty-free\nby The Leaping Bunny" } },
+        { "type": "certification", "settings": { "text": "Approved by the National\nEczema Association" } },
+        { "type": "certification", "settings": { "text": "Certified\nPlastic Neutral" } },
+        { "type": "accordion_item", "settings": { "title": "The science behind" } },
+        { "type": "accordion_item", "settings": { "title": "Clean and safe ingredients" } },
+        { "type": "accordion_item", "settings": { "title": "How to use" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Shade swatch circle
+  Usage: {% render 'shade-swatch', color: '#ecebeb', name: 'Light/Medium', selected: true, size: 40 %}
+{%- endcomment -%}
+
+{%- assign swatch_size = size | default: 40 -%}
+{%- assign is_selected = selected | default: false -%}
+
+<button
+  class="shade-swatch{% if is_selected %} shade-swatch--selected{% endif %}"
+  style="width: {{ swatch_size }}px; height: {{ swatch_size }}px;"
+  data-shade-color="{{ color }}"
+  data-shade-name="{{ name }}"
+  aria-label="{{ name }}"
+  type="button"
+>
+  <span class="shade-swatch__color" style="background: {{ color }};"></span>
+</button>

@@ -1,0 +1,192 @@
+{{ 'section-clinical-results.css' | asset_url | stylesheet_tag }}
+
+<section class="clinical-results" data-section-id="{{ section.id }}">
+  <h2 class="clinical-results__title">{{ section.settings.title }}</h2>
+
+  <div class="clinical-results__track-wrapper">
+    <div class="clinical-results__track" data-carousel-track="clinical-results" data-lenis-prevent>
+      {%- for block in section.blocks -%}
+        <div class="clinical-results__card" {{ block.shopify_attributes }}>
+          <div class="clinical-results__stat-row">
+            <span class="clinical-results__stat-number">{{ block.settings.stat_number }}</span>
+            <span class="clinical-results__stat-desc">{{ block.settings.stat_description }}</span>
+          </div>
+
+          <span class="clinical-results__week-pill">{{ block.settings.after_label }}</span>
+
+          <div class="clinical-results__photos">
+            <div class="clinical-results__photo-wrapper">
+              {%- if block.settings.before_image != blank -%}
+                <img
+                  class="clinical-results__photo"
+                  src="{{ block.settings.before_image | image_url: width: 480 }}"
+                  alt="Before - {{ block.settings.before_label }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'clinical-results__photo' }}
+              {%- endif -%}
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">{{ block.settings.before_label }}</span>
+            </div>
+
+            <div class="clinical-results__photo-wrapper">
+              {%- if block.settings.after_image != blank -%}
+                <img
+                  class="clinical-results__photo"
+                  src="{{ block.settings.after_image | image_url: width: 480 }}"
+                  alt="After - {{ block.settings.after_label }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'clinical-results__photo' }}
+              {%- endif -%}
+              <div class="clinical-results__photo-indicator"></div>
+              <span class="clinical-results__photo-label">{{ block.settings.after_label }}</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="clinical-results__dots" data-carousel-dots="clinical-results">
+      {%- for block in section.blocks -%}
+        <button class="clinical-results__dot{% if forloop.first %} is-active{% endif %}" data-dot-index="{{ forloop.index0 }}" aria-label="Go to result {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const track = section.querySelector('[data-carousel-track="clinical-results"]');
+    const dots = section.querySelectorAll('[data-carousel-dots="clinical-results"] .clinical-results__dot');
+
+    if (!track) return;
+
+    const scrollAmount = 555;
+
+    function updateDots() {
+      if (!dots.length) return;
+      var cards = track.querySelectorAll('.clinical-results__card');
+      var trackRect = track.getBoundingClientRect();
+      var activeIndex = 0;
+      cards.forEach(function(card, i) {
+        var cardRect = card.getBoundingClientRect();
+        if (cardRect.left >= trackRect.left && cardRect.left < trackRect.left + trackRect.width / 2) {
+          activeIndex = i;
+        }
+      });
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('is-active', i === activeIndex);
+      });
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var index = parseInt(dot.getAttribute('data-dot-index'), 10);
+        var cards = track.querySelectorAll('.clinical-results__card');
+        if (cards[index]) {
+          cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+    });
+
+    track.addEventListener('scroll', updateDots);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Clinical Results",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Clinically-validated results:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Result Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Stat number",
+          "default": "96%"
+        },
+        {
+          "type": "text",
+          "id": "stat_description",
+          "label": "Stat description",
+          "default": "had improved firmness, radiance, and tone"
+        },
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image"
+        },
+        {
+          "type": "text",
+          "id": "before_label",
+          "label": "Before label",
+          "default": "Week 1"
+        },
+        {
+          "type": "text",
+          "id": "after_label",
+          "label": "After label",
+          "default": "Week 6"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clinical Results",
+      "blocks": [
+        {
+          "type": "result",
+          "settings": {
+            "stat_number": "96%",
+            "stat_description": "had improved firmness, radiance, and tone",
+            "before_label": "Week 1",
+            "after_label": "Week 6"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "stat_number": "87%",
+            "stat_description": "experienced a visible reduction in fine lines and wrinkles",
+            "before_label": "Week 1",
+            "after_label": "Week 6"
+          }
+        },
+        {
+          "type": "result",
+          "settings": {
+            "stat_number": "92%",
+            "stat_description": "reported smoother, more hydrated skin texture",
+            "before_label": "Week 1",
+            "after_label": "Week 6"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

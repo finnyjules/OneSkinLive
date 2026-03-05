@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "product-hero": {
+      "type": "product-hero",
+      "settings": {}
+    },
+    "product-gallery": {
+      "type": "product-gallery",
+      "settings": {}
+    },
+    "cross-sell": {
+      "type": "cross-sell",
+      "settings": {}
+    },
+    "shade-compare": {
+      "type": "shade-compare",
+      "settings": {}
+    },
+    "science-placeholder": {
+      "type": "science-placeholder",
+      "settings": {}
+    },
+    "key-ingredients": {
+      "type": "key-ingredients",
+      "settings": {}
+    },
+    "clinical-results": {
+      "type": "clinical-results",
+      "settings": {}
+    },
+    "skincare-routine": {
+      "type": "skincare-routine",
+      "settings": {}
+    },
+    "faq-questions": {
+      "type": "faq-questions",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {}
+    },
+    "lifestyle-hero": {
+      "type": "lifestyle-hero",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "product-hero",
+    "product-gallery",
+    "cross-sell",
+    "shade-compare",
+    "science-placeholder",
+    "key-ingredients",
+    "clinical-results",
+    "skincare-routine",
+    "faq-questions",
+    "reviews",
+    "lifestyle-hero",
+    "footer"
+  ]
+}

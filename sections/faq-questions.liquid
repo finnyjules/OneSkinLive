@@ -1,0 +1,87 @@
+{{ 'section-faq-questions.css' | asset_url | stylesheet_tag }}
+
+<section class="faq-questions">
+  <h2 class="faq-questions__title">Questions</h2>
+
+  <div class="faq-questions__pills">
+    {% for block in section.blocks %}
+      {% if block.type == 'question' %}
+        <div class="faq-questions__pill" {{ block.shopify_attributes }}>
+          <span class="faq-questions__pill-icon">
+            {% render 'icon-spark' %}
+          </span>
+          <span class="faq-questions__pill-text">{{ block.settings.text }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if section.settings.powered_by_image != blank %}
+    <div class="faq-questions__footer">
+      <span class="faq-questions__powered-label">Powered by</span>
+      <img
+        class="faq-questions__powered-logo"
+        src="{{ section.settings.powered_by_image | image_url: height: 36 }}"
+        alt="Powered by"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Questions",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "powered_by_image",
+      "label": "Powered by logo image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Question text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Questions",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "text": "Is OS-01 FACE cruelty-free?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "text": "Can I refill OS-01 FACE?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "text": "How long does a bottle of OS-01 FACE last?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "text": "What skin types is OS-01 FACE suited for?"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

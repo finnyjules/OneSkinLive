@@ -1,0 +1,187 @@
+.cross-sell {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.cross-sell__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  margin-bottom: 16px;
+}
+
+.cross-sell__title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.cross-sell__divider {
+  flex: 1;
+}
+
+.cross-sell__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cross-sell__track-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.cross-sell__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+
+.cross-sell__track::-webkit-scrollbar {
+  display: none;
+}
+
+.cross-sell__card {
+  flex: 0 0 auto;
+  width: 220px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cross-sell__image-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.cross-sell__image {
+  width: 100%;
+  height: 216px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25);
+  display: block;
+}
+
+.cross-sell__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  line-height: 1.2;
+}
+
+.cross-sell__product-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.cross-sell__description {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-muted);
+  margin: 0 0 8px 0;
+  max-width: 136px;
+  line-height: 1.4;
+}
+
+.cross-sell__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.cross-sell__rating .star-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-text);
+}
+
+.cross-sell__rating-number {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.cross-sell__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 40px;
+  border: 0.5px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cross-sell__add-btn:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.cross-sell__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.cross-sell__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cacaca;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cross-sell__dot.is-active {
+  background: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .cross-sell {
+    padding: 0 20px;
+  }
+
+  .cross-sell__card {
+    width: 180px;
+  }
+
+  .cross-sell__image {
+    height: 180px;
+  }
+}

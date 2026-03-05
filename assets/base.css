@@ -1,0 +1,313 @@
+/* ============================================
+   OneSkin Theme — Base Styles
+   ============================================ */
+
+/* --- Font Faces --- */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('PPNeueMontreal-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('PPNeueMontreal-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Test Martina Plantijn';
+  src: url('TestMartinaPlantijn-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors */
+  --color-primary: #cfede1;
+  --color-primary-dark: #246048;
+  --color-accent-green: #49a480;
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-muted: #808080;
+  --color-muted-light: #adadad;
+  --color-border: #e1e1e1;
+  --color-surface: #f8f8f8;
+  --color-surface-light: #f6f5f5;
+  --color-surface-green: #f3fbf8;
+  --color-warm: #dfaf8e;
+  --color-green-overlay-start: rgba(207, 237, 225, 0.2);
+  --color-green-overlay-end: rgba(36, 96, 72, 0.2);
+
+  /* Typography */
+  --font-sans: 'PP Neue Montreal', Arial, Helvetica, sans-serif;
+  --font-serif: 'Test Martina Plantijn', Georgia, 'Times New Roman', serif;
+
+  /* Spacing */
+  --container-max: 1440px;
+  --container-padding: 24px;
+  --section-gap: 48px;
+  --content-max: 1440px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 100px;
+
+  /* Shadows */
+  --shadow-sm: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0px 16px 16px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0px 4px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --- Layout --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.content-width {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* --- Section Spacing --- */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+main > script {
+  display: none;
+}
+
+/* --- Typography --- */
+.font-sans { font-family: var(--font-sans); }
+.font-serif { font-family: var(--font-serif); }
+.text-light { font-weight: 300; }
+.text-regular { font-weight: 400; }
+.text-medium { font-weight: 500; }
+.text-bold { font-weight: 700; }
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.link-arrow {
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+  height: 48px;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* --- Shared Components --- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-light);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.price-strikethrough {
+  text-decoration: line-through;
+  color: var(--color-muted-light);
+}
+
+/* --- Carousel Controls --- */
+.carousel-nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--color-surface-light);
+}
+
+.carousel-nav-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cacaca;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.carousel-dot.active,
+.carousel-dot.is-active {
+  background: var(--color-text);
+}
+
+/* --- Star Rating --- */
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-rating svg {
+  fill: var(--color-text);
+}

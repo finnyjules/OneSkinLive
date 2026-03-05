@@ -1,0 +1,217 @@
+{{ 'section-cross-sell.css' | asset_url | stylesheet_tag }}
+
+<section class="cross-sell" data-section-id="{{ section.id }}">
+  <div class="cross-sell__header">
+    <h2 class="cross-sell__title">{{ section.settings.title }}</h2>
+    <div class="cross-sell__divider"></div>
+    <div class="cross-sell__nav">
+      {% render 'carousel-controls', id: 'cross-sell' %}
+    </div>
+  </div>
+
+  <div class="cross-sell__track-wrapper">
+    <div class="cross-sell__track" data-carousel-track="cross-sell" data-lenis-prevent>
+      {%- for block in section.blocks -%}
+        {%- assign product = block.settings.product -%}
+        <div class="cross-sell__card" {{ block.shopify_attributes }}>
+          <div class="cross-sell__image-wrapper">
+            {%- if product.featured_image != blank -%}
+              <img
+                class="cross-sell__image"
+                src="{{ product.featured_image | image_url: width: 440 }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                width="220"
+                height="216"
+                loading="lazy"
+              >
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'cross-sell__image' }}
+            {%- endif -%}
+            {%- if block.settings.badge_text != blank -%}
+              <span class="cross-sell__badge">{{ block.settings.badge_text }}</span>
+            {%- endif -%}
+          </div>
+
+          <h3 class="cross-sell__product-title">
+            {%- if block.settings.custom_title != blank -%}
+              {{ block.settings.custom_title }}
+            {%- elsif product != blank -%}
+              {{ product.title }}
+            {%- else -%}
+              Product Title
+            {%- endif -%}
+          </h3>
+
+          <p class="cross-sell__description">
+            {%- if block.settings.custom_description != blank -%}
+              {{ block.settings.custom_description }}
+            {%- elsif product != blank and product.description != blank -%}
+              {{ product.description | strip_html | truncate: 60 }}
+            {%- else -%}
+              Topical supplement for skin longevity
+            {%- endif -%}
+          </p>
+
+          <div class="cross-sell__rating">
+            {% render 'star-rating', rating: 4.7, size: 12 %}
+            <span class="cross-sell__rating-number">4.7</span>
+          </div>
+
+          {%- assign price_label = block.settings.custom_price -%}
+          {%- if price_label == blank and product != blank -%}
+            {%- assign price_label = product.price | money -%}
+          {%- endif -%}
+          {%- if price_label == blank -%}
+            {%- assign price_label = '$70' -%}
+          {%- endif -%}
+
+          <button class="cross-sell__add-btn" type="button"
+            {%- if product != blank %} data-product-id="{{ product.id }}" data-variant-id="{{ product.selected_or_first_available_variant.id }}"{% endif -%}
+          >
+            Add to Cart {{ price_label }}
+          </button>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="cross-sell__dots" data-carousel-dots="cross-sell">
+      {%- for block in section.blocks -%}
+        <button class="cross-sell__dot{% if forloop.first %} is-active{% endif %}" data-dot-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const track = section.querySelector('[data-carousel-track="cross-sell"]');
+    const prevBtn = section.querySelector('[data-carousel-prev="cross-sell"]');
+    const nextBtn = section.querySelector('[data-carousel-next="cross-sell"]');
+    const dots = section.querySelectorAll('[data-carousel-dots="cross-sell"] .cross-sell__dot');
+
+    if (!track) return;
+
+    const scrollAmount = 240;
+
+    function updateDots() {
+      if (!dots.length) return;
+      const cards = track.querySelectorAll('.cross-sell__card');
+      const trackRect = track.getBoundingClientRect();
+      let activeIndex = 0;
+      cards.forEach(function(card, i) {
+        const cardRect = card.getBoundingClientRect();
+        if (cardRect.left >= trackRect.left && cardRect.left < trackRect.left + trackRect.width / 2) {
+          activeIndex = i;
+        }
+      });
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('is-active', i === activeIndex);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var index = parseInt(dot.getAttribute('data-dot-index'), 10);
+        var cards = track.querySelectorAll('.cross-sell__card');
+        if (cards[index]) {
+          cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+    });
+
+    track.addEventListener('scroll', updateDots);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cross Sell",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Use it with"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "Product Item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Best-seller"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title",
+          "info": "Overrides product title if set"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_description",
+          "label": "Custom description",
+          "info": "Overrides product description if set"
+        },
+        {
+          "type": "text",
+          "id": "custom_price",
+          "label": "Custom price label",
+          "info": "e.g. $70 -- overrides product price if set"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cross Sell",
+      "blocks": [
+        {
+          "type": "product_item",
+          "settings": {
+            "badge_text": "Best-seller",
+            "custom_title": "OS-01 BODY",
+            "custom_description": "Topical supplement for skin longevity",
+            "custom_price": "$70"
+          }
+        },
+        {
+          "type": "product_item",
+          "settings": {
+            "badge_text": "Best-seller",
+            "custom_title": "OS-01 EYE",
+            "custom_description": "Targeted peptide eye cream for aging skin",
+            "custom_price": "$75"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

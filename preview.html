@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneSkin — OS-01 FACE SPF</title>
+
+  <!-- Fonts: Using PP Neue Montreal from CDN fallback, and serif from Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,500&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       Design Tokens
+       ============================================ */
+    :root {
+      --color-primary: #cfede1;
+      --color-primary-dark: #246048;
+      --color-accent-green: #49a480;
+      --color-bg: #ffffff;
+      --color-text: #000000;
+      --color-muted: #808080;
+      --color-muted-light: #adadad;
+      --color-border: #e1e1e1;
+      --color-surface: #f8f8f8;
+      --color-surface-light: #f6f5f5;
+      --color-surface-green: #f3fbf8;
+      --color-warm: #dfaf8e;
+
+      --font-sans: 'DM Sans', 'PP Neue Montreal', Arial, Helvetica, sans-serif;
+      --font-serif: 'Playfair Display', 'Test Martina Plantijn', Georgia, serif;
+
+      --container-max: 1440px;
+      --container-padding: 48px;
+      --content-max: 1295px;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 100px;
+
+      --shadow-sm: 0px 4px 16px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0px 8px 16px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0px 16px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ============================================
+       Reset & Base
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; padding: 0; }
+    ul, ol { list-style: none; }
+
+    /* Placeholder images */
+    .placeholder {
+      background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 50%, #f0f0f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .placeholder-green {
+      background: linear-gradient(135deg, var(--color-surface-green) 0%, #e8f5ee 100%);
+    }
+
+    /* ============================================
+       Header
+       ============================================ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0.92));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      height: 60px;
+      padding: 0 var(--container-padding);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .header__inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      position: relative;
+    }
+    .header__nav { display: flex; gap: 48px; align-items: center; }
+    .header__nav-link {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      transition: opacity 0.2s;
+    }
+    .header__nav-link:hover { opacity: 0.5; }
+    .header__logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .header__actions { display: flex; gap: 48px; align-items: center; font-size: 15px; }
+    .header__cart { display: flex; gap: 6px; align-items: center; font-weight: 500; }
+    .header__cart-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* ============================================
+       Product Hero
+       ============================================ */
+    .product-hero {
+      padding: 40px var(--container-padding) 0;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+    .product-hero__layout {
+      display: grid;
+      grid-template-columns: 613px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .product-hero__gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    .product-hero__image-main {
+      grid-column: 1 / -1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+    .product-hero__image-thumb {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      aspect-ratio: 1;
+    }
+    .product-hero__quote-card {
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      aspect-ratio: 1;
+    }
+    .product-hero__quote-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .product-hero__quote-author { font-size: 13px; color: var(--color-muted); }
+
+    /* Info */
+    .product-hero__info { padding-top: 50px; }
+    .product-hero__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+    .product-hero__title { font-size: 32px; font-weight: 500; line-height: 1.2; }
+    .product-hero__rating-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .product-hero__rating-number { font-size: 32px; font-weight: 500; }
+    .product-hero__stars { display: flex; gap: 2px; align-items: center; }
+    .product-hero__stars svg { fill: var(--color-text); }
+    .product-hero__subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+    .product-hero__review-count { color: var(--color-text); font-size: 15px; }
+
+    /* Pills */
+    .product-hero__pills { display: flex; gap: 13px; margin-bottom: 24px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-light);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* Shade selector */
+    .shade-row { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }
+    .shade-info { flex: 1; }
+    .shade-label { font-size: 16px; display: block; }
+    .shade-size { font-size: 12px; font-weight: 500; display: block; margin-top: 2px; }
+    .shade-swatches { display: flex; gap: 0; }
+    .swatch {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--color-primary);
+      display: flex;
+      align-items: start;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+    .swatch--active { border-color: var(--color-text); }
+    .swatch__color { display: block; width: 48px; height: 48px; flex-shrink: 0; }
+    .shade-guide {
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: underline;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* Bullets */
+    .product-hero__bullets {
+      list-style: disc;
+      padding-left: 21px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      letter-spacing: 0.56px;
+      line-height: 21px;
+    }
+    .product-hero__bullets li { list-style: disc; }
+
+    /* ============================================
+       Purchase Options Card
+       ============================================ */
+    .purchase-card {
+      background: linear-gradient(to bottom, rgba(207,237,225,0.2) 49%, rgba(36,96,72,0.2));
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .purchase-options { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px 16px; }
+    .purchase-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--color-bg);
+      border: 0.5px solid var(--color-text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .purchase-option--selected {
+      background: var(--color-primary);
+      border: 2px solid var(--color-text);
+    }
+    .purchase-option__title { font-size: 16px; font-weight: 500; line-height: 1; }
+    .purchase-option--selected .purchase-option__title { font-weight: 700; }
+    .purchase-option__badge {
+      display: inline-flex;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--color-bg);
+      font-size: 10px;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+    .purchase-option__reasons {
+      list-style: disc;
+      padding-left: 18px;
+      font-size: 12px;
+      letter-spacing: 0.48px;
+      line-height: 1.4;
+      margin-top: 8px;
+    }
+    .purchase-option__reasons li { list-style: disc; }
+    .purchase-option__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      text-align: center;
+    }
+    .purchase-option__price { font-size: 14px; font-weight: 700; }
+    .purchase-option__save { font-size: 14px; font-weight: 500; }
+    .purchase-option__save strong { font-weight: 700; }
+
+    /* Gift */
+    .gift-area { padding: 16px 20px; }
+    .gift-headline { font-size: 14px; font-weight: 700; line-height: 21px; letter-spacing: 0.28px; margin-bottom: 12px; }
+    .gift-item { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+    .gift-item__image { width: 63px; height: 63px; border-radius: 4px; flex-shrink: 0; }
+    .gift-item__details { flex: 1; display: flex; justify-content: space-between; align-items: center; }
+    .gift-item__name { font-size: 14px; font-weight: 500; }
+    .gift-item__size { font-size: 12px; margin-top: 2px; }
+    .gift-item__pricing { font-size: 14px; }
+    .price-strike { text-decoration: line-through; color: var(--color-muted-light); }
+
+    /* CTA */
+    .cta-area { background: #d0ddd8; padding: 8px 17px 18px; }
+    .free-shipping { font-size: 14px; font-weight: 500; text-align: center; margin-bottom: 8px; letter-spacing: 0.28px; }
+    .btn-add-to-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-text);
+      color: var(--color-bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 8px;
+      width: 100%;
+      height: 48px;
+      font-family: var(--font-sans);
+      font-size: 20px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      gap: 8px;
+    }
+    .btn-add-to-cart:hover { opacity: 0.85; }
+
+    /* Certifications */
+    .certifications { display: flex; gap: 24px; align-items: center; padding: 16px 12px; margin-bottom: 16px; }
+    .cert { display: flex; gap: 12px; align-items: center; }
+    .cert__icon { height: 40px; width: 40px; opacity: 0.8; border-radius: 4px; flex-shrink: 0; }
+    .cert__text { font-size: 12px; font-weight: 500; line-height: 1.3; }
+
+    /* Accordion */
+    .accordion { display: flex; flex-direction: column; gap: 8px; }
+    .accordion-item__header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      width: 100%;
+      padding: 8px 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-align: left;
+    }
+    .accordion-item__title { font-size: 20px; font-weight: 500; flex-shrink: 0; }
+    .accordion-item__line { flex: 1; height: 1px; background: var(--color-text); opacity: 0.15; }
+    .accordion-item__icon {
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1;
+      width: 12px;
+      text-align: center;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .accordion-item--open .accordion-item__icon { transform: rotate(45deg); }
+    .accordion-item__content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .accordion-item--open .accordion-item__content { max-height: 500px; }
+    .accordion-item__body { padding: 8px 0 16px; font-size: 14px; line-height: 1.6; }
+    .accordion-sep { height: 1px; background: var(--color-text); opacity: 0.08; }
+
+    /* ============================================
+       Full-Width Sections
+       ============================================ */
+    .section-full {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Compare Shades */
+    .shade-compare {
+      height: 553px;
+      background: var(--color-warm);
+    }
+    .shade-compare__header {
+      position: absolute;
+      top: 25px;
+      left: 26px;
+      right: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .shade-compare__title { font-size: 24px; font-weight: 500; color: white; }
+    .shade-compare__nav { display: flex; gap: 8px; }
+    .nav-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+      color: var(--color-text);
+    }
+    .nav-btn--light { border-color: rgba(255,255,255,0.5); color: white; }
+    .nav-btn svg { width: 14px; height: 14px; }
+
+    .shade-compare__shades {
+      position: absolute;
+      top: 486px;
+      left: 26px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .shade-compare__carousel {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding: 0 26px;
+    }
+    .shade-compare__carousel::-webkit-scrollbar { display: none; }
+    .shade-compare__slide {
+      flex: 0 0 328px;
+      height: 388px;
+      border-radius: 2px;
+      scroll-snap-align: center;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .shade-compare__slide--highlighted { box-shadow: var(--shadow-card); }
+    .shade-compare__caption {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .shade-compare__caption strong { font-weight: 500; }
+
+    /* Science Placeholder */
+    .science-section {
+      height: 553px;
+      background: var(--color-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .science-section__header {
+      position: absolute;
+      top: 34px;
+      left: 26px;
+      z-index: 2;
+    }
+    .science-section__title { font-size: 24px; font-weight: 500; }
+    .science-section__link { font-size: 12px; font-weight: 500; text-decoration: underline; margin-top: 10px; display: block; }
+    .science-section__tbd {
+      font-size: 400px;
+      font-weight: 700;
+      opacity: 0.06;
+      user-select: none;
+      letter-spacing: -8px;
+    }
+
+    /* Key Ingredients */
+    .key-ingredients {
+      height: 553px;
+      background: var(--color-surface);
+    }
+    .key-ingredients__header {
+      position: absolute;
+      top: 34px;
+      left: 26px;
+      z-index: 2;
+    }
+    .key-ingredients__card {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+    }
+    .key-ingredients__card-name { font-size: 32px; font-weight: 500; }
+    .key-ingredients__card-desc { font-size: 12px; line-height: 1.4; color: var(--color-muted); }
+
+    /* Clinical Results */
+    .clinical-results {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      padding: 0 var(--container-padding);
+    }
+    .clinical-results__title { font-size: 24px; font-weight: 500; margin-bottom: 24px; }
+    .clinical-results__track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .clinical-results__track::-webkit-scrollbar { display: none; }
+    .result-card {
+      flex: 0 0 535px;
+      height: 385px;
+      scroll-snap-align: start;
+      background: linear-gradient(135deg, rgba(219,239,231,0.25) 0%, rgba(144,195,175,0.25) 100%);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card__stat-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+    .result-card__stat { font-size: 40px; font-weight: 500; color: var(--color-accent-green); line-height: 1; }
+    .result-card__desc { font-size: 14px; font-weight: 500; letter-spacing: 0.28px; line-height: 1.4; padding-top: 8px; max-width: 250px; }
+    .result-card__pill {
+      display: inline-flex;
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.44px;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+    .result-card__photos { display: flex; gap: 12px; flex: 1; min-height: 0; }
+    .result-card__photo {
+      flex: 1;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card__photo-label {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 500;
+      color: #fff;
+      background: rgba(0,0,0,0.35);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      backdrop-filter: blur(4px);
+    }
+    .result-card__indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .carousel-dots { display: flex; gap: 6px; justify-content: center; margin-top: 20px; }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #cacaca;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dot--active { background: var(--color-text); }
+
+    /* Routine */
+    .routine-section {
+      height: 694px;
+      background: var(--color-surface);
+    }
+    .routine-section__header {
+      position: absolute;
+      top: 34px;
+      left: 26px;
+      z-index: 2;
+    }
+    .routine-section__title { font-size: 24px; font-weight: 500; }
+    .routine-steps {
+      position: absolute;
+      top: 91px;
+      left: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 335px;
+      z-index: 2;
+    }
+    .routine-step {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.5);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+    .routine-step--active {
+      background: rgba(207,237,225,0.65);
+      border: 2px solid white;
+    }
+    .routine-step__icon {
+      width: 40px;
+      height: 90px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .routine-step__info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .routine-step__number { font-size: 11px; color: var(--color-muted); letter-spacing: 0.5px; }
+    .routine-step__name { font-size: 22px; font-weight: 500; }
+    .routine-step__desc { font-size: 12px; font-weight: 500; line-height: 1.4; }
+    .routine-step__link { font-size: 12px; font-weight: 500; text-decoration: underline; text-align: right; margin-top: 4px; }
+
+    /* Cross-sell */
+    .cross-sell {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      padding: 0 var(--container-padding);
+    }
+    .cross-sell__header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .cross-sell__title { font-size: 20px; font-weight: 500; flex-shrink: 0; }
+    .cross-sell__line { flex: 1; height: 1px; background: var(--color-text); opacity: 0.12; }
+    .cross-sell__track {
+      display: flex;
+      gap: 32px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 16px;
+    }
+    .cross-sell__track::-webkit-scrollbar { display: none; }
+    .product-card { flex: 0 0 220px; }
+    .product-card__image {
+      width: 151px;
+      height: 216px;
+      box-shadow: var(--shadow-lg);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .product-card__badge {
+      position: absolute;
+      top: -8px;
+      left: 0;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .product-card__title { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+    .product-card__desc { font-size: 12px; font-weight: 500; max-width: 136px; line-height: 1.3; margin-bottom: 8px; color: var(--color-text); }
+    .product-card__rating { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .product-card__rating-stars { display: flex; gap: 1px; }
+    .product-card__rating-stars svg { width: 12px; height: 12px; fill: var(--color-text); }
+    .product-card__rating-num { font-size: 20px; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0.5px solid var(--color-text);
+      border-radius: var(--radius-sm);
+      padding: 12px 8px;
+      font-size: 16px;
+      text-transform: uppercase;
+      width: 170px;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: var(--color-surface-light); }
+
+    /* FAQ */
+    .faq-section {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      padding: 0 var(--container-padding);
+    }
+    .faq-section__title { font-size: 24px; font-weight: 500; margin-bottom: 32px; padding-left: 32px; }
+    .faq-pills { display: flex; flex-wrap: wrap; gap: 16px 20px; padding: 0 20px; }
+    .faq-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(207,237,225,0.2);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-lg);
+      padding: 12px 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .faq-pill:hover { transform: translateY(-2px); box-shadow: 0px 6px 20px rgba(0,0,0,0.12); }
+    .faq-pill:nth-child(1) { margin-left: 60px; }
+    .faq-pill:nth-child(3) { margin-left: 100px; }
+    .faq-pill:nth-child(4) { margin-top: 8px; }
+    .faq-pill__icon { color: var(--color-accent-green); display: flex; }
+    .faq-pill__text { font-size: 20px; font-weight: 500; }
+    .faq-powered {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 32px;
+      padding-right: 20px;
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+
+    /* Reviews */
+    .reviews-section {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      padding: 0 var(--container-padding);
+    }
+    .reviews-section__title { font-size: 24px; font-weight: 500; margin-bottom: 24px; }
+    .reviews-section__content { display: flex; gap: 40px; align-items: flex-start; }
+    .reviews-summary { flex-shrink: 0; width: 200px; }
+    .reviews-summary__label { font-size: 12px; margin-bottom: 4px; }
+    .reviews-summary__score { font-size: 48px; line-height: 1; margin-bottom: 8px; }
+    .reviews-summary__stars { display: flex; gap: 2px; margin-bottom: 4px; }
+    .reviews-summary__stars svg { width: 20px; height: 20px; fill: var(--color-text); }
+    .reviews-summary__total { font-size: 12px; }
+    .reviews-carousel { flex: 1; overflow: hidden; }
+    .reviews-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .reviews-track::-webkit-scrollbar { display: none; }
+    .review-card { flex: 0 0 auto; border-radius: var(--radius-lg); overflow: hidden; }
+    .review-card--featured { width: 370px; box-shadow: var(--shadow-sm); }
+    .review-card--regular { width: 319px; }
+
+    /* Lifestyle Hero */
+    .lifestyle-hero {
+      max-width: var(--content-max);
+      margin: 0 auto 64px;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 48px var(--container-padding);
+      text-align: center;
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+
+    /* Star SVG helper */
+    .star-svg { display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="header__inner">
+      <nav class="header__nav">
+        <a href="#" class="header__nav-link">Shop</a>
+        <a href="#" class="header__nav-link">Mission</a>
+        <a href="#" class="header__nav-link">Learn</a>
+      </nav>
+      <a href="#" class="header__logo">ONE SKIN</a>
+      <div class="header__actions">
+        <a href="#">Account</a>
+        <a href="#" class="header__cart">
+          <span>Cart</span>
+          <span class="header__cart-count">3</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== PRODUCT HERO ==================== -->
+    <section class="product-hero">
+      <div class="product-hero__layout">
+
+        <!-- Left: Gallery -->
+        <div class="product-hero__gallery">
+          <div class="product-hero__image-main placeholder" style="background:linear-gradient(135deg, #f5f0eb 0%, #e8e0d8 100%);">
+            <span style="font-size:16px; opacity:0.5;">Product Image</span>
+          </div>
+          <div class="product-hero__image-thumb placeholder" style="background:linear-gradient(135deg, #eee 0%, #ddd 100%);"><span style="opacity:0.4;">Image 2</span></div>
+          <div class="product-hero__quote-card">
+            <p class="product-hero__quote-text">"Insert quote here"</p>
+            <p class="product-hero__quote-author">- Person name</p>
+          </div>
+          <div class="product-hero__image-thumb placeholder" style="background:linear-gradient(135deg, #e8e4de 0%, #d8d4ce 100%);"><span style="opacity:0.4;">Image 3</span></div>
+          <div class="product-hero__image-thumb placeholder" style="background:linear-gradient(135deg, #f0ece6 0%, #ddd8d0 100%);"><span style="opacity:0.4;">Image 4</span></div>
+          <div class="product-hero__quote-card">
+            <p class="product-hero__quote-text">"Insert quote here"</p>
+            <p class="product-hero__quote-author">- Person name</p>
+          </div>
+          <div class="product-hero__image-thumb placeholder" style="background:linear-gradient(135deg, #eee 0%, #e0dcd6 100%);"><span style="opacity:0.4;">Image 5</span></div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="product-hero__info">
+          <div class="product-hero__header">
+            <h1 class="product-hero__title">Product Title</h1>
+            <div class="product-hero__rating-summary">
+              <span class="product-hero__rating-number">4.7</span>
+              <div class="product-hero__stars">
+                <svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 20 20"><defs><linearGradient id="hs"><stop offset="70%" stop-color="black"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#hs)"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="product-hero__subtitle">
+            <span>One-line max product description</span>
+            <span class="product-hero__review-count">4,110 reviews</span>
+          </div>
+
+          <div class="product-hero__pills">
+            <span class="pill">Adjective 1</span>
+            <span class="pill">Adjective 2</span>
+            <span class="pill">Adjective 3</span>
+          </div>
+
+          <!-- Shade Selector -->
+          <div class="shade-row">
+            <div class="shade-info">
+              <span class="shade-label" id="shade-display">Light/Medium Tint</span>
+              <span class="shade-size">40 mL/~60 uses</span>
+            </div>
+            <div class="shade-swatches">
+              <button class="swatch swatch--active" data-shade="Light/Medium" onclick="selectShade(this)"><span class="swatch__color" style="background:#ecebeb;"></span></button>
+              <button class="swatch" data-shade="Medium" onclick="selectShade(this)"><span class="swatch__color" style="background:#c4a882;"></span></button>
+              <button class="swatch" data-shade="Medium/Dark" onclick="selectShade(this)"><span class="swatch__color" style="background:#925835;"></span></button>
+              <button class="swatch" data-shade="Dark" onclick="selectShade(this)"><span class="swatch__color" style="background:#7d491a;"></span></button>
+            </div>
+          </div>
+          <a href="#" class="shade-guide">See which tint is right for your skin tone →</a>
+
+          <ul class="product-hero__bullets">
+            <li>Description line 1</li>
+            <li>Description line 2</li>
+            <li>Description line 3</li>
+          </ul>
+
+          <!-- Purchase Options -->
+          <div class="purchase-card">
+            <div class="purchase-options">
+              <div class="purchase-option" onclick="selectOption(this)">
+                <div>
+                  <span class="purchase-option__title">Deliver every month</span>
+                </div>
+                <div class="purchase-option__right">
+                  <span class="purchase-option__price">$100</span>
+                  <span class="purchase-option__save">Save <strong>15%</strong></span>
+                </div>
+              </div>
+              <div class="purchase-option purchase-option--selected" onclick="selectOption(this)">
+                <div>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span class="purchase-option__title">Deliver every 2 months</span>
+                    <span class="purchase-option__badge">Recommended</span>
+                  </div>
+                  <ul class="purchase-option__reasons">
+                    <li>Reason to subscribe 1</li>
+                    <li>Reason to subscribe 2</li>
+                    <li>Reason to subscribe 3</li>
+                  </ul>
+                </div>
+                <div class="purchase-option__right">
+                  <span class="purchase-option__price">$100</span>
+                  <span class="purchase-option__save">Save <strong>15%</strong></span>
+                </div>
+              </div>
+              <div class="purchase-option" onclick="selectOption(this)">
+                <div>
+                  <span class="purchase-option__title">One-time purchase</span>
+                </div>
+                <div class="purchase-option__right">
+                  <span class="purchase-option__price">$125</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gift -->
+            <div class="gift-area">
+              <p class="gift-headline">Gift with purchase headline</p>
+              <div class="gift-item">
+                <div class="gift-item__image placeholder" style="border-radius:4px;"><span style="font-size:10px;opacity:0.4;">Gift</span></div>
+                <div class="gift-item__details">
+                  <div>
+                    <p class="gift-item__name">Product name</p>
+                    <p class="gift-item__size">Travel size (10mL)</p>
+                  </div>
+                  <div class="gift-item__pricing">
+                    <span class="price-strike">$59</span>&nbsp;&nbsp;<strong>Free</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-area">
+              <p class="free-shipping">Free shipping on orders $79+</p>
+              <button class="btn-add-to-cart">
+                ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<span class="price-strike" style="color:#adadad;">$125</span>&nbsp;&nbsp;<strong>$100</strong>
+              </button>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div class="certifications">
+            <div class="cert">
+              <div class="cert__icon placeholder" style="border-radius:4px;width:55px;"></div>
+              <span class="cert__text">Certified cruelty-free<br>by The Leaping Bunny</span>
+            </div>
+            <div class="cert">
+              <div class="cert__icon placeholder" style="border-radius:4px;width:30px;"></div>
+              <span class="cert__text">Approved by the National<br>Eczema Association</span>
+            </div>
+            <div class="cert">
+              <div class="cert__icon placeholder" style="border-radius:4px;width:30px;"></div>
+              <span class="cert__text">Certified<br>Plastic Neutral</span>
+            </div>
+          </div>
+
+          <!-- Accordion -->
+          <div class="accordion">
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+              <button class="accordion-item__header">
+                <span class="accordion-item__title">The science behind</span>
+                <span class="accordion-item__line"></span>
+                <span class="accordion-item__icon">+</span>
+              </button>
+              <div class="accordion-item__content">
+                <div class="accordion-item__body">Our proprietary OS-01 peptide is backed by peer-reviewed research demonstrating its ability to reverse biological age markers at the cellular level.</div>
+              </div>
+              <div class="accordion-sep"></div>
+            </div>
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+              <button class="accordion-item__header">
+                <span class="accordion-item__title">Clean and safe ingredients</span>
+                <span class="accordion-item__line"></span>
+                <span class="accordion-item__icon">+</span>
+              </button>
+              <div class="accordion-item__content">
+                <div class="accordion-item__body">Every ingredient is carefully selected for safety and efficacy. Free from parabens, sulfates, phthalates, and synthetic fragrances.</div>
+              </div>
+              <div class="accordion-sep"></div>
+            </div>
+            <div class="accordion-item" onclick="toggleAccordion(this)">
+              <button class="accordion-item__header">
+                <span class="accordion-item__title">How to use</span>
+                <span class="accordion-item__line"></span>
+                <span class="accordion-item__icon">+</span>
+              </button>
+              <div class="accordion-item__content">
+                <div class="accordion-item__body">Apply a thin, even layer to clean skin each morning as the last step of your skincare routine, before makeup. Reapply every 2 hours with sun exposure.</div>
+              </div>
+              <div class="accordion-sep"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CROSS-SELL ==================== -->
+    <section class="cross-sell" style="margin-top:64px;">
+      <div class="cross-sell__header">
+        <span class="cross-sell__title">Use it with</span>
+        <span class="cross-sell__line"></span>
+        <div style="display:flex;gap:8px;">
+          <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="cross-sell__track">
+        <div class="product-card">
+          <div class="product-card__image placeholder" style="background:linear-gradient(135deg, #f0ece6 0%, #e0dcd6 100%);">
+            <span class="product-card__badge">Best-seller</span>
+            <span style="opacity:0.4;">Product</span>
+          </div>
+          <h3 class="product-card__title">Product Title</h3>
+          <p class="product-card__desc">10 words max product description</p>
+          <div class="product-card__rating">
+            <div class="product-card__rating-stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="#e1e1e1"/></svg>
+            </div>
+            <span class="product-card__rating-num">4.7</span>
+          </div>
+          <button class="btn-outline">Add TO CART&nbsp;&nbsp;<strong>$70</strong></button>
+        </div>
+        <div class="product-card">
+          <div class="product-card__image placeholder" style="background:linear-gradient(135deg, #eee8e0 0%, #ddd6ce 100%);"><span style="opacity:0.4;">Product</span></div>
+          <h3 class="product-card__title">Product Title</h3>
+          <p class="product-card__desc">10 words max product description</p>
+          <div class="product-card__rating">
+            <div class="product-card__rating-stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="#e1e1e1"/></svg>
+            </div>
+            <span class="product-card__rating-num">4.7</span>
+          </div>
+          <button class="btn-outline">Add TO CART&nbsp;&nbsp;<strong>$70</strong></button>
+        </div>
+      </div>
+      <div class="carousel-dots"><button class="carousel-dot carousel-dot--active"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button></div>
+    </section>
+
+    <!-- ==================== COMPARE SHADES ==================== -->
+    <div class="section-full shade-compare">
+      <div class="shade-compare__header">
+        <span class="shade-compare__title">Compare shades</span>
+        <div class="shade-compare__nav" style="display:flex;gap:8px;">
+          <button class="nav-btn nav-btn--light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="nav-btn nav-btn--light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="shade-compare__shades">
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-size:12px;font-weight:500;color:white;">Tint</span>
+          <span style="font-size:16px;font-weight:500;color:white;">Light/Medium</span>
+        </div>
+        <button class="swatch swatch--active" style="border-color:white;"><span class="swatch__color" style="background:#ecebeb;"></span></button>
+        <button class="swatch"><span class="swatch__color" style="background:#c4a882;"></span></button>
+        <button class="swatch"><span class="swatch__color" style="background:#925835;"></span></button>
+        <button class="swatch"><span class="swatch__color" style="background:#6f4636;"></span></button>
+      </div>
+      <div class="shade-compare__carousel">
+        <div class="shade-compare__slide placeholder" style="background:linear-gradient(135deg, #d4a882 0%, #c49872 100%);"><span style="opacity:0.4;">Model 1</span></div>
+        <div class="shade-compare__slide shade-compare__slide--highlighted placeholder" style="background:linear-gradient(135deg, #dfaf8e 0%, #cf9f7e 100%);"><span style="opacity:0.4;">Model 2</span></div>
+        <div class="shade-compare__slide placeholder" style="background:linear-gradient(135deg, #c49872 0%, #b48862 100%);"><span style="opacity:0.4;">Model 3</span></div>
+        <div class="shade-compare__slide placeholder" style="background:linear-gradient(135deg, #b48862 0%, #a47852 100%);"><span style="opacity:0.4;">Model 4</span></div>
+      </div>
+      <div class="shade-compare__caption">Kitty is wearing OS-01 FACE SPF in <strong>Light/Medium</strong></div>
+    </div>
+
+    <!-- ==================== SCIENCE PLACEHOLDER ==================== -->
+    <div class="section-full science-section">
+      <div class="science-section__header">
+        <h2 class="science-section__title">Science section</h2>
+        <a href="#" class="science-section__link">Learn more about our science →</a>
+      </div>
+      <span class="science-section__tbd">TBD</span>
+    </div>
+
+    <!-- ==================== KEY INGREDIENTS ==================== -->
+    <div class="section-full key-ingredients" style="background: linear-gradient(135deg, #f0ece6 0%, #e8e0d8 50%, #f0ece6 100%);">
+      <div class="key-ingredients__header">
+        <h2 class="science-section__title">Key ingredients</h2>
+        <a href="#" class="science-section__link">See all ingredients →</a>
+      </div>
+      <div class="key-ingredients__card" style="top:139px;left:182px;"><p class="key-ingredients__card-name">OS-01 Peptide</p><p class="key-ingredients__card-desc">Proprietary peptide proven to<br>reverse biological age markers</p></div>
+      <div class="key-ingredients__card" style="top:326px;left:386px;"><p class="key-ingredients__card-name">Niacinamide</p><p class="key-ingredients__card-desc">Brightens skin tone and<br>reduces inflammation</p></div>
+      <div class="key-ingredients__card" style="top:145px;left:621px;"><p class="key-ingredients__card-name">Squalane</p><p class="key-ingredients__card-desc">Deep hydration without<br>clogging pores</p></div>
+      <div class="key-ingredients__card" style="top:350px;left:820px;"><p class="key-ingredients__card-name">Vitamin E</p><p class="key-ingredients__card-desc">Powerful antioxidant that<br>protects against free radicals</p></div>
+      <div class="key-ingredients__card" style="top:49px;left:969px;"><p class="key-ingredients__card-name">Ceramides</p><p class="key-ingredients__card-desc">Strengthens skin barrier<br>and locks in moisture</p></div>
+    </div>
+
+    <!-- ==================== CLINICAL RESULTS ==================== -->
+    <section class="clinical-results">
+      <h2 class="clinical-results__title">Clinically-validated results:</h2>
+      <div class="clinical-results__track">
+        <div class="result-card">
+          <div class="result-card__stat-row">
+            <span class="result-card__stat">96%</span>
+            <span class="result-card__desc">had improved<br>firmness, radiance, and tone</span>
+          </div>
+          <span class="result-card__pill">Week 6</span>
+          <div class="result-card__photos">
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #e0dcd6 0%, #d0ccc6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 1</span></div>
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #f0ece6 0%, #e0dcd6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 6</span></div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card__stat-row">
+            <span class="result-card__stat">96%</span>
+            <span class="result-card__desc">had improved<br>firmness, radiance, and tone</span>
+          </div>
+          <span class="result-card__pill">Week 6</span>
+          <div class="result-card__photos">
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #e0dcd6 0%, #d0ccc6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 1</span></div>
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #f0ece6 0%, #e0dcd6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 6</span></div>
+          </div>
+        </div>
+        <div class="result-card">
+          <div class="result-card__stat-row">
+            <span class="result-card__stat">96%</span>
+            <span class="result-card__desc">had improved<br>firmness, radiance, and tone</span>
+          </div>
+          <span class="result-card__pill">Week 6</span>
+          <div class="result-card__photos">
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #e0dcd6 0%, #d0ccc6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 1</span></div>
+            <div class="result-card__photo placeholder" style="background:linear-gradient(135deg, #f0ece6 0%, #e0dcd6 100%);"><div class="result-card__indicator"></div><span class="result-card__photo-label">Week 6</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots"><button class="carousel-dot carousel-dot--active"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button></div>
+    </section>
+
+    <!-- ==================== ROUTINE ==================== -->
+    <div class="section-full routine-section" style="background:linear-gradient(135deg, #f0ece6 0%, #e8e4de 50%, #e0dcd6 100%);">
+      <div class="routine-section__header">
+        <h2 class="routine-section__title">The OneSkin routine</h2>
+      </div>
+      <div class="routine-steps">
+        <div class="routine-step routine-step--active">
+          <div class="routine-step__icon placeholder" style="border-radius:20px;background:linear-gradient(135deg, #ddd 0%, #ccc 100%);"></div>
+          <div class="routine-step__info">
+            <span class="routine-step__number">Step 1</span>
+            <span class="routine-step__name">Prep</span>
+            <p class="routine-step__desc">Gently exfoliate and prime skin for optimal absorption of the OS-01 peptide with our daily cleanser.</p>
+            <a href="#" class="routine-step__link">See PREP →</a>
+          </div>
+        </div>
+        <div class="routine-step">
+          <div class="routine-step__icon placeholder" style="border-radius:20px;background:linear-gradient(135deg, #ddd 0%, #ccc 100%);"></div>
+          <div class="routine-step__info">
+            <span class="routine-step__number">Step 2</span>
+            <span class="routine-step__name">Shield</span>
+            <p class="routine-step__desc">Protect your skin from UV damage and environmental stressors with our mineral SPF.</p>
+            <a href="#" class="routine-step__link">See SHIELD →</a>
+          </div>
+        </div>
+        <div class="routine-step">
+          <div class="routine-step__icon placeholder" style="border-radius:20px;background:linear-gradient(135deg, #ddd 0%, #ccc 100%);"></div>
+          <div class="routine-step__info">
+            <span class="routine-step__number">Step 3</span>
+            <span class="routine-step__name">Treat</span>
+            <p class="routine-step__desc">Target fine lines and wrinkles with our concentrated anti-aging serum.</p>
+            <a href="#" class="routine-step__link">See TREAT →</a>
+          </div>
+        </div>
+        <div class="routine-step">
+          <div class="routine-step__icon placeholder" style="border-radius:20px;background:linear-gradient(135deg, #ddd 0%, #ccc 100%);"></div>
+          <div class="routine-step__info">
+            <span class="routine-step__number">Step 4</span>
+            <span class="routine-step__name">Nourish</span>
+            <p class="routine-step__desc">Lock in moisture and support skin barrier health with our rich moisturizer.</p>
+            <a href="#" class="routine-step__link">See NOURISH →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="faq-section">
+      <h2 class="faq-section__title">Questions</h2>
+      <div class="faq-pills">
+        <div class="faq-pill">
+          <span class="faq-pill__icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 5.5L14 4L10.5 8L14 12L9.5 10.5L8 16L6.5 10.5L2 12L5.5 8L2 4L6.5 5.5L8 0Z" fill="currentColor"/></svg></span>
+          <span class="faq-pill__text">Is OS-01 FACE cruelty-free?</span>
+        </div>
+        <div class="faq-pill">
+          <span class="faq-pill__icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 5.5L14 4L10.5 8L14 12L9.5 10.5L8 16L6.5 10.5L2 12L5.5 8L2 4L6.5 5.5L8 0Z" fill="currentColor"/></svg></span>
+          <span class="faq-pill__text">Is OS-01 FACE cruelty-free?</span>
+        </div>
+        <div class="faq-pill">
+          <span class="faq-pill__icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 5.5L14 4L10.5 8L14 12L9.5 10.5L8 16L6.5 10.5L2 12L5.5 8L2 4L6.5 5.5L8 0Z" fill="currentColor"/></svg></span>
+          <span class="faq-pill__text">Can I refill OS-01 FACE?</span>
+        </div>
+        <div class="faq-pill">
+          <span class="faq-pill__icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L9.5 5.5L14 4L10.5 8L14 12L9.5 10.5L8 16L6.5 10.5L2 12L5.5 8L2 4L6.5 5.5L8 0Z" fill="currentColor"/></svg></span>
+          <span class="faq-pill__text">Can I refill OS-01 FACE?</span>
+        </div>
+      </div>
+      <div class="faq-powered">
+        <span>Powered by</span>
+        <div class="placeholder" style="width:62px;height:18px;border-radius:4px;font-size:8px;"><span style="opacity:0.4;">Logo</span></div>
+      </div>
+    </section>
+
+    <!-- ==================== REVIEWS ==================== -->
+    <section class="reviews-section">
+      <h2 class="reviews-section__title">LOREM IPSUM REVIEW</h2>
+      <div class="reviews-section__content">
+        <div class="reviews-summary">
+          <p class="reviews-summary__label">Average score</p>
+          <p class="reviews-summary__score">4.7/5</p>
+          <div class="reviews-summary__stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z"/></svg>
+            <svg viewBox="0 0 20 20"><defs><linearGradient id="hs2"><stop offset="70%" stop-color="black"/><stop offset="70%" stop-color="#e1e1e1"/></linearGradient></defs><path d="M10 1.25L12.47 7.27L19 7.77L14 12.02L15.54 18.25L10 14.77L4.46 18.25L6 12.02L1 7.77L7.53 7.27L10 1.25Z" fill="url(#hs2)"/></svg>
+          </div>
+          <p class="reviews-summary__total">out of 4,110 reviews</p>
+        </div>
+        <div class="reviews-carousel">
+          <div class="reviews-track">
+            <div class="review-card review-card--featured placeholder" style="aspect-ratio:370/460;background:linear-gradient(135deg, #e8e4de 0%, #d8d4ce 100%);"><span style="opacity:0.3;">Review Photo</span></div>
+            <div class="review-card review-card--regular placeholder" style="aspect-ratio:319/440;background:linear-gradient(135deg, #eee8e0 0%, #ddd6ce 100%);"><span style="opacity:0.3;">Review Photo</span></div>
+            <div class="review-card review-card--regular placeholder" style="aspect-ratio:319/440;background:linear-gradient(135deg, #f0ece6 0%, #e0dcd6 100%);"><span style="opacity:0.3;">Review Photo</span></div>
+            <div class="review-card review-card--regular placeholder" style="aspect-ratio:319/440;background:linear-gradient(135deg, #e8e4de 0%, #d8d4ce 100%);"><span style="opacity:0.3;">Review Photo</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LIFESTYLE HERO ==================== -->
+    <div class="lifestyle-hero placeholder" style="background:linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 50%, #c8c0b8 100%);">
+      <span style="opacity:0.3;font-size:18px;">Lifestyle Hero Image</span>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">© OneSkin 2026</footer>
+
+  <!-- ==================== JS ==================== -->
+  <script>
+    function selectShade(el) {
+      el.closest('.shade-row, .shade-compare__shades').querySelectorAll('.swatch').forEach(s => s.classList.remove('swatch--active'));
+      el.classList.add('swatch--active');
+      const name = el.getAttribute('data-shade');
+      if (name) {
+        const display = document.getElementById('shade-display');
+        if (display) display.textContent = name + ' Tint';
+      }
+    }
+
+    function selectOption(el) {
+      el.closest('.purchase-options').querySelectorAll('.purchase-option').forEach(o => o.classList.remove('purchase-option--selected'));
+      el.classList.add('purchase-option--selected');
+    }
+
+    function toggleAccordion(el) {
+      const isOpen = el.classList.contains('accordion-item--open');
+      el.closest('.accordion').querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('accordion-item--open');
+        const content = item.querySelector('.accordion-item__content');
+        if (content) content.style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        el.classList.add('accordion-item--open');
+        const content = el.querySelector('.accordion-item__content');
+        if (content) content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    }
+  </script>
+</body>
+</html>

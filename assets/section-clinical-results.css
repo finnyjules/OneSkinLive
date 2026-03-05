@@ -1,0 +1,176 @@
+.clinical-results {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.clinical-results__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 24px 0;
+  text-align: left;
+}
+
+.clinical-results__track-wrapper {
+  overflow: visible;
+  position: relative;
+}
+
+.clinical-results__track {
+  display: flex;
+  gap: 20px;
+  padding: 8px;
+  margin: -8px;
+}
+
+.clinical-results__card {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 480px;
+  background: linear-gradient(135deg, rgba(219, 239, 231, 0.2) 0%, rgba(144, 195, 175, 0.2) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.clinical-results__stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.clinical-results__stat-number {
+  font-size: 40px;
+  font-weight: 500;
+  color: var(--color-accent-green);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.clinical-results__stat-desc {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: 0.28px;
+  line-height: 1.4;
+  max-width: 260px;
+}
+
+.clinical-results__week-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: 0.44px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.clinical-results__photos {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.clinical-results__photo-wrapper {
+  flex: 1;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 240px;
+}
+
+.clinical-results__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+.clinical-results__photo-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.clinical-results__photo-indicator {
+  display: none;
+}
+
+.clinical-results__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.clinical-results__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cacaca;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clinical-results__dot.is-active {
+  background: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .clinical-results {
+    padding: 0 20px;
+  }
+
+  .clinical-results__track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .clinical-results__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .clinical-results__card {
+    flex: 0 0 auto;
+    width: 340px;
+    height: auto;
+    min-height: 340px;
+    padding: 20px;
+    scroll-snap-align: start;
+  }
+
+  .clinical-results__stat-number {
+    font-size: 32px;
+  }
+
+  .clinical-results__photo-wrapper {
+    max-width: 100%;
+  }
+}
