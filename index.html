@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
 
   <link rel="stylesheet" href="assets/section-header.css">
+  <link rel="stylesheet" href="assets/section-sticky-bar.css">
   <link rel="stylesheet" href="assets/section-product-hero.css">
   <link rel="stylesheet" href="assets/section-product-gallery.css">
   <link rel="stylesheet" href="assets/section-cross-sell.css">
   <link rel="stylesheet" href="assets/section-shade-compare.css">
   <link rel="stylesheet" href="assets/section-benefits-bento.css">
+  <link rel="stylesheet" href="assets/section-timeline.css">
   <link rel="stylesheet" href="assets/section-science-placeholder.css">
   <link rel="stylesheet" href="assets/section-key-ingredients.css">
   <link rel="stylesheet" href="assets/section-clinical-results.css">
@@ -62,6 +64,29 @@
     </div>
   </div>
 </header>
+
+<div class="sticky-bar" data-sticky-bar>
+  <div class="sticky-bar__inner">
+    <div class="sticky-bar__info">
+      <p class="sticky-bar__title">OS-01 FACE SPF</p>
+      <p class="sticky-bar__desc">Tinted SPF 40 with OS-01 peptide for daily sun defense and skin longevity.</p>
+    </div>
+    <div class="sticky-bar__actions">
+      <div class="sticky-bar__frequency" data-sticky-dropdown>
+        <span data-sticky-dropdown-label>2-month delivery</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="sticky-bar__dropdown-menu" data-sticky-dropdown-menu>
+          <button class="sticky-bar__dropdown-option" data-sticky-option="monthly" type="button">Monthly delivery</button>
+          <button class="sticky-bar__dropdown-option sticky-bar__dropdown-option--active" data-sticky-option="bimonthly" type="button">2-month delivery</button>
+          <button class="sticky-bar__dropdown-option" data-sticky-option="one-time" type="button">One-time purchase</button>
+        </div>
+      </div>
+      <button class="sticky-bar__cta" type="button">
+        ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$115</s>&nbsp;&nbsp;<strong>$100</strong>
+      </button>
+    </div>
+  </div>
+</div>
 
 <main id="main-content" role="main">
 
@@ -581,75 +606,183 @@
     })();
   </script>
 
-  <!-- ========== KEY INGREDIENTS ========== -->
-  <section class="key-ingredients" data-section-id="key-ingredients">
-    <div class="key-ingredients__container">
-      <div class="key-ingredients__bg">
-        <img src="assets/images/key_ingredients_bg.png" alt="" aria-hidden="true">
+  <!-- ========== TIMELINE ========== -->
+  <section class="timeline-section" data-section-id="timeline">
+    <h2 class="timeline-section__title">Timeline</h2>
+    <div class="timeline-section__content">
+      <div class="timeline-section__track">
+        <div class="timeline-section__line">
+          <div class="timeline-section__line-fill" data-timeline-fill></div>
+        </div>
+        <div class="timeline-section__track-segment" data-segment="0">
+          <div class="timeline-section__marker">
+            <span class="timeline-section__dot" data-timeline-dot="0"></span>
+            <span class="timeline-section__week-label">Week 0</span>
+          </div>
+        </div>
+        <div class="timeline-section__track-segment" data-segment="1">
+          <div class="timeline-section__marker">
+            <span class="timeline-section__dot" data-timeline-dot="1"></span>
+            <span class="timeline-section__week-label">Week 3</span>
+          </div>
+        </div>
+        <div class="timeline-section__track-segment" data-segment="2">
+          <div class="timeline-section__marker">
+            <span class="timeline-section__dot" data-timeline-dot="2"></span>
+            <span class="timeline-section__week-label">Week 6</span>
+          </div>
+        </div>
       </div>
-      <div class="key-ingredients__header">
-        <h2 class="key-ingredients__title section-title">Key ingredients</h2>
-        <a href="#" class="key-ingredients__link">See all ingredients →</a>
-      </div>
-      <div class="key-ingredients__cards">
-        <div class="key-ingredients__card">
-          <p class="key-ingredients__card-name">OS-01 Peptide</p>
-          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+
+      <div class="timeline-section__grid">
+        <!-- Column 1 -->
+        <div class="timeline-section__col">
+          <div class="timeline-section__card" data-parallax-speed="0.2">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Immediate hydration boost</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.2">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Visible wrinkle reduction</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.2">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Significant age reversal signs</p>
+            </div>
+          </div>
         </div>
-        <div class="key-ingredients__card">
-          <p class="key-ingredients__card-name">Niacinamide</p>
-          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+
+        <!-- Column 2 -->
+        <div class="timeline-section__col">
+          <div class="timeline-section__card" data-parallax-speed="0.4">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Smoother skin texture</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.4">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">More even skin tone</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.4">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Reduced dark spots</p>
+            </div>
+          </div>
         </div>
-        <div class="key-ingredients__card">
-          <p class="key-ingredients__card-name">Squalane</p>
-          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
-        </div>
-        <div class="key-ingredients__card">
-          <p class="key-ingredients__card-name">Vitamin E</p>
-          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
-        </div>
-        <div class="key-ingredients__card">
-          <p class="key-ingredients__card-name">Ceramides</p>
-          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+
+        <!-- Column 3 -->
+        <div class="timeline-section__col">
+          <div class="timeline-section__card" data-parallax-speed="0.6">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Enhanced UV protection</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.6">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Increased skin firmness</p>
+            </div>
+          </div>
+          <div class="timeline-section__card" data-parallax-speed="0.6">
+            <img class="timeline-section__card-img" src="assets/images/timeline_card.png" alt="" loading="lazy">
+            <svg class="timeline-section__card-shape" viewBox="0 0 254 211" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C100 2, 180 5, 220 40 C250 65, 245 120, 210 160 C180 195, 120 205, 70 185 C30 168, 5 130, 8 90 C10 55, 25 20, 60 10Z" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/></svg>
+            <div class="timeline-section__card-overlay">
+              <p class="timeline-section__card-text">Long-lasting skin resilience</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <script>
-    (function() {
-      var section = document.querySelector('[data-section-id="key-ingredients"]');
-      if (!section) return;
-      var container = section.querySelector('.key-ingredients__container');
-      var bg = section.querySelector('.key-ingredients__bg');
-      var cards = section.querySelectorAll('.key-ingredients__card');
-      if (!container || !bg || !cards.length) return;
+  (function() {
+    var section = document.querySelector('[data-section-id="timeline"]');
+    if (!section) return;
 
-      // Each card gets a different parallax speed
-      var speeds = [-0.4, -0.65, -0.85, -0.55, -0.75];
+    var fill = section.querySelector('[data-timeline-fill]');
+    var dots = section.querySelectorAll('[data-timeline-dot]');
+    var markers = section.querySelectorAll('.timeline-section__marker');
+    var cards = section.querySelectorAll('.timeline-section__card');
 
-      function updateParallax() {
-        var rect = container.getBoundingClientRect();
-        var windowH = window.innerHeight;
-        var progress = (windowH - rect.top) / (windowH + rect.height);
-        progress = Math.max(0, Math.min(1, progress));
-        var centered = progress - 0.5; // -0.5 to 0.5
+    function update() {
+      var rect = section.getBoundingClientRect();
+      var windowH = window.innerHeight;
 
-        // Background moves slowly
-        var bgY = centered * -160;
-        bg.style.transform = 'translate3d(0,' + bgY + 'px,0)';
+      // Dot activation — activate when marker scrolls into view
+      markers.forEach(function(marker, i) {
+        var markerRect = marker.getBoundingClientRect();
+        if (markerRect.top < windowH * 0.7) {
+          dots[i].classList.add('timeline-section__dot--active');
+        } else {
+          dots[i].classList.remove('timeline-section__dot--active');
+        }
+      });
 
-        // Each card moves at its own speed
-        cards.forEach(function(card, i) {
-          var speed = speeds[i % speeds.length];
-          var cardY = centered * speed * 200;
-          card.style.transform = 'translate3d(0,' + cardY + 'px,0)';
+      // Timeline fill — extend to the last active dot
+      if (fill) {
+        var line = fill.parentElement;
+        var lineRect = line.getBoundingClientRect();
+        var lastActiveDot = null;
+        dots.forEach(function(dot) {
+          if (dot.classList.contains('timeline-section__dot--active')) {
+            lastActiveDot = dot;
+          }
         });
+        if (lastActiveDot) {
+          var dotRect = lastActiveDot.getBoundingClientRect();
+          var dotCenterY = dotRect.top + dotRect.height / 2;
+          var fillHeight = dotCenterY - lineRect.top;
+          fill.style.height = Math.max(0, Math.min(lineRect.height, fillHeight)) + 'px';
+        } else {
+          fill.style.height = '0px';
+        }
       }
 
-      window.addEventListener('scroll', updateParallax, { passive: true });
-      updateParallax();
-    })();
+      // Card parallax — move whole card + image inside
+      cards.forEach(function(card) {
+        var img = card.querySelector('.timeline-section__card-img');
+
+        var cardRect = card.getBoundingClientRect();
+        var cardProgress = (windowH - cardRect.top) / (windowH + cardRect.height);
+        cardProgress = Math.max(0, Math.min(1, cardProgress));
+        var centered = cardProgress - 0.5; // -0.5 to 0.5
+
+        var speed = parseFloat(card.getAttribute('data-parallax-speed')) || 0.3;
+
+        // Move the whole card
+        var cardY = centered * speed * -300;
+        card.style.transform = 'translate3d(0,' + cardY + 'px,0)';
+
+        // Move image inside at a different rate for depth
+        if (img) {
+          var imgY = centered * 60;
+          img.style.transform = 'translate3d(0,' + imgY + 'px,0)';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
   </script>
 
   <!-- ========== CLINICAL RESULTS ========== -->
@@ -756,6 +889,88 @@
     })();
   </script>
 
+  <!-- ========== KEY INGREDIENTS ========== -->
+  <section class="key-ingredients" data-section-id="key-ingredients">
+    <div class="key-ingredients__container">
+      <div class="key-ingredients__bg">
+        <img src="assets/images/key_ingredients_bg.png" alt="" aria-hidden="true">
+      </div>
+      <div class="key-ingredients__header">
+        <h2 class="key-ingredients__title section-title">Key ingredients</h2>
+        <a href="#" class="key-ingredients__link">See all ingredients →</a>
+      </div>
+      <div class="key-ingredients__cards">
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">OS-01 Peptide</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Niacinamide</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Squalane</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Vitamin E</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+        <div class="key-ingredients__card">
+          <p class="key-ingredients__card-name">Ceramides</p>
+          <div class="key-ingredients__card-desc">Ingredient description, 2 lines<br>Ingredient description, 2 lines</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      var section = document.querySelector('[data-section-id="key-ingredients"]');
+      if (!section) return;
+      var container = section.querySelector('.key-ingredients__container');
+      var bg = section.querySelector('.key-ingredients__bg');
+      var cards = section.querySelectorAll('.key-ingredients__card');
+      if (!container || !bg || !cards.length) return;
+
+      // Each card gets a different parallax speed
+      var speeds = [-0.4, -0.65, -0.85, -0.55, -0.75];
+
+      function updateParallax() {
+        var rect = container.getBoundingClientRect();
+        var windowH = window.innerHeight;
+        var progress = (windowH - rect.top) / (windowH + rect.height);
+        progress = Math.max(0, Math.min(1, progress));
+        var centered = progress - 0.5; // -0.5 to 0.5
+
+        // Background moves slowly
+        var bgY = centered * -160;
+        bg.style.transform = 'translate3d(0,' + bgY + 'px,0)';
+
+        // Each card moves at its own speed
+        cards.forEach(function(card, i) {
+          var speed = speeds[i % speeds.length];
+          var cardY = centered * speed * 200;
+          card.style.transform = 'translate3d(0,' + cardY + 'px,0)';
+        });
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
+    })();
+  </script>
+
+  <!-- ========== SCIENCE PLACEHOLDER ========== -->
+  <section class="science-placeholder">
+    <div class="science-placeholder__header">
+      <h2 class="science-placeholder__title">Science section</h2>
+      <a href="#" class="science-placeholder__link">Learn more about our science →</a>
+    </div>
+    <div class="science-placeholder__card">
+      <span class="science-placeholder__tbd">TBD</span>
+    </div>
+  </section>
+
   <!-- ========== SKINCARE ROUTINE ========== -->
   <div class="skincare-routine-wrapper">
   <section class="skincare-routine" data-section-id="skincare-routine">
@@ -830,17 +1045,6 @@
     </div>
   </section>
   </div>
-
-  <!-- ========== SCIENCE PLACEHOLDER ========== -->
-  <section class="science-placeholder">
-    <div class="science-placeholder__header">
-      <h2 class="science-placeholder__title">Science section</h2>
-      <a href="#" class="science-placeholder__link">Learn more about our science →</a>
-    </div>
-    <div class="science-placeholder__card">
-      <span class="science-placeholder__tbd">TBD</span>
-    </div>
-  </section>
 
   <!-- ========== FAQ QUESTIONS ========== -->
   <section class="faq-questions">
@@ -985,5 +1189,115 @@
 <script src="assets/component-accordion.js" defer></script>
 <script src="assets/component-liquid-glass.js" defer></script>
 <script src="assets/component-skincare-routine.js" defer></script>
+<script>
+(function() {
+  var bar = document.querySelector('[data-sticky-bar]');
+  var trigger = document.querySelector('[data-add-to-cart]');
+  if (!bar || !trigger) return;
+
+  // ---- Show/hide bar on scroll ----
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) {
+        bar.classList.add('sticky-bar--visible');
+      } else {
+        bar.classList.remove('sticky-bar--visible');
+      }
+    });
+  }, {
+    rootMargin: '-60px 0px 0px 0px'
+  });
+  observer.observe(trigger);
+
+  // ---- Dropdown toggle ----
+  var dropdown = bar.querySelector('[data-sticky-dropdown]');
+  var label = bar.querySelector('[data-sticky-dropdown-label]');
+  var options = bar.querySelectorAll('[data-sticky-option]');
+  var cta = bar.querySelector('.sticky-bar__cta');
+
+  if (dropdown) {
+    dropdown.addEventListener('click', function(e) {
+      // Don't toggle if clicking an option (let option handler run)
+      if (e.target.closest('[data-sticky-option]')) return;
+      dropdown.classList.toggle('sticky-bar__frequency--open');
+    });
+  }
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (dropdown && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('sticky-bar__frequency--open');
+    }
+  });
+
+  // ---- Option click → sync hero ----
+  var typeToLabel = {
+    'monthly': 'Monthly delivery',
+    'bimonthly': '2-month delivery',
+    'one-time': 'One-time purchase'
+  };
+
+  var syncingFromStickyBar = false;
+
+  options.forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var type = opt.getAttribute('data-sticky-option');
+
+      // Update dropdown label
+      if (label) label.textContent = typeToLabel[type] || type;
+
+      // Update active state
+      options.forEach(function(o) { o.classList.remove('sticky-bar__dropdown-option--active'); });
+      opt.classList.add('sticky-bar__dropdown-option--active');
+
+      // Close dropdown
+      dropdown.classList.remove('sticky-bar__frequency--open');
+
+      // Update sticky bar CTA immediately
+      if (cta) {
+        if (type === 'one-time') {
+          cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<strong>$115</strong>';
+        } else {
+          cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$115</s>&nbsp;&nbsp;<strong>$100</strong>';
+        }
+      }
+
+      // Sync hero purchase panel — defer to next tick so click event cycle completes first
+      syncingFromStickyBar = true;
+      setTimeout(function() {
+        var heroOption = document.querySelector('[data-purchase-option="' + type + '"]');
+        if (heroOption) heroOption.click();
+        syncingFromStickyBar = false;
+      }, 0);
+    });
+  });
+
+  // ---- Hero → sticky bar sync ----
+  document.addEventListener('purchase-option-changed', function(e) {
+    if (syncingFromStickyBar) return; // Avoid circular update
+    var type = e.detail && e.detail.type;
+    if (!type) return;
+
+    // Update dropdown label
+    if (label) label.textContent = typeToLabel[type] || type;
+
+    // Update active option
+    options.forEach(function(o) {
+      o.classList.toggle('sticky-bar__dropdown-option--active',
+        o.getAttribute('data-sticky-option') === type);
+    });
+
+    // Update CTA price
+    if (cta) {
+      if (type === 'one-time') {
+        cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<strong>$115</strong>';
+      } else {
+        cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$115</s>&nbsp;&nbsp;<strong>$100</strong>';
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>

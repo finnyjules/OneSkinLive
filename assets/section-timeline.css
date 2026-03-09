@@ -1,0 +1,219 @@
+/* ========== TIMELINE SECTION ========== */
+.timeline-section {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 80px var(--container-padding) 60px;
+}
+
+.timeline-section__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+.timeline-section__content {
+  display: flex;
+  gap: 0;
+  position: relative;
+}
+
+/* ---- Timeline track (left side) ---- */
+.timeline-section__track {
+  width: 120px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-section__line {
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  bottom: 7px;
+  width: 2px;
+  background: #e0e0e0;
+}
+
+.timeline-section__line-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: #000;
+  transition: none;
+}
+
+.timeline-section__track-segment {
+  flex: 1;
+  position: relative;
+}
+
+.timeline-section__marker {
+  position: sticky;
+  top: 120px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 3;
+}
+
+.timeline-section__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: #fff;
+  flex-shrink: 0;
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.timeline-section__dot--active {
+  background: #000;
+  transform: scale(1.15);
+}
+
+.timeline-section__week-label {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* ---- Cards grid (right side) ---- */
+.timeline-section__grid {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-section__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 560px;
+  min-width: 0;
+}
+
+.timeline-section__col:nth-child(2) {
+  padding-top: 300px;
+}
+
+.timeline-section__col:nth-child(3) {
+  padding-top: 600px;
+}
+
+/* ---- Individual card ---- */
+.timeline-section__card {
+  position: relative;
+  height: 360px;
+  border-radius: 4px;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.timeline-section__card-shape {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  width: 72%;
+  height: 58%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.timeline-section__card-shape path {
+  stroke-dasharray: 8 8;
+  animation: dash-move 12s linear infinite;
+}
+
+.timeline-section__card:nth-child(2) .timeline-section__card-shape path {
+  animation-duration: 15s;
+  animation-delay: -3s;
+}
+
+.timeline-section__card:nth-child(3) .timeline-section__card-shape path {
+  animation-duration: 18s;
+  animation-delay: -7s;
+}
+
+@keyframes dash-move {
+  to { stroke-dashoffset: -100; }
+}
+
+.timeline-section__card-img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+  scale: 1;
+  transition: scale 0.5s ease;
+}
+
+.timeline-section__card:hover .timeline-section__card-img {
+  scale: 1.06;
+}
+
+.timeline-section__card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: -18px;
+  right: -18px;
+  height: 80px;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  background: rgba(217, 217, 217, 0.4);
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  transition: height 0.35s ease;
+}
+
+.timeline-section__card:hover .timeline-section__card-overlay {
+  height: 110px;
+}
+
+.timeline-section__card-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .timeline-section__content {
+    flex-direction: column;
+  }
+
+  .timeline-section__track {
+    display: none;
+  }
+
+  .timeline-section__grid {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .timeline-section__col {
+    gap: 40px;
+  }
+
+  .timeline-section__col:nth-child(2),
+  .timeline-section__col:nth-child(3) {
+    padding-top: 0;
+  }
+
+  .timeline-section__card {
+    height: 300px;
+  }
+}
