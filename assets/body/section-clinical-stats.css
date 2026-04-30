@@ -99,14 +99,18 @@
   display: block;
 }
 
+/* Full-height vertical label on the right edge of each B/A photo. The
+   `writing-mode: vertical-rl` rotates the inline flow 90° so the square +
+   "before"/"after" text read top-to-bottom along the strip. */
 .clinical__photo-label {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  display: inline-flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 12px;
+  padding: 16px 14px;
   background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(6.4px);
   -webkit-backdrop-filter: blur(6.4px);
@@ -117,12 +121,15 @@
   letter-spacing: 1.6px;
   text-transform: uppercase;
   color: var(--color-black);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
 .clinical__photo-square {
-  display: inline-block;
+  display: block;
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
 }
 
 .clinical__photo-square--before {
