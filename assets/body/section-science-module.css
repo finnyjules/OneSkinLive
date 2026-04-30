@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Section: Science Module (Section I1-I3) — OS-01 BODY MOISTURIZER PDP
+   Figma: file ttnXSyu0hen75971OQWakO, node 359:1057
+   Two-column: image left, "The OS-01 Peptide™" copy right.
+   ========================================================================== */
+
+.science-module {
+  width: 100%;
+  background: var(--color-white);
+}
+
+.science-module__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 24px 24px 24px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: 644px;
+}
+
+.science-module__media {
+  position: relative;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+
+.science-module__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.science-module__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 40px;
+  gap: 60px;
+  max-width: 526px;
+}
+
+.science-module__headline {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.4;
+  letter-spacing: 1.28px;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.science-module__logo {
+  height: 10px;
+  width: auto;
+  display: inline-block;
+  align-self: center;
+}
+
+.science-module__body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+}
+
+.science-module__link {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+  text-decoration: underline;
+  align-self: flex-start;
+}
