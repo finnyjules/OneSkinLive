@@ -81,21 +81,53 @@
 }
 
 .key-ingredients__item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 16px 0;
   border-bottom: 0.5px solid var(--color-white);
 }
 
-.key-ingredients__item:first-child { padding-top: 0; }
+.key-ingredients__details {
+  padding: 16px 0;
+  interpolate-size: allow-keywords;
+}
 
-.key-ingredients__item-header {
+.key-ingredients__item:first-child .key-ingredients__details {
+  padding-top: 0;
+}
+
+/* Animate the collapse/expand. See section-details-accordion.css for the
+   pattern explanation. */
+.key-ingredients__details::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    content-visibility 320ms allow-discrete;
+}
+
+.key-ingredients__details[open]::details-content {
+  block-size: auto;
+}
+
+.key-ingredients__summary {
+  list-style: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
+
+.key-ingredients__summary::-webkit-details-marker { display: none; }
+.key-ingredients__summary::marker { content: ""; }
+
+.key-ingredients__summary:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+/* Toggle minus (open) / plus (closed) icon. */
+.key-ingredients__icon--plus { display: none; }
+.key-ingredients__details:not([open]) .key-ingredients__icon--minus { display: none; }
+.key-ingredients__details:not([open]) .key-ingredients__icon--plus  { display: block; }
 
 .key-ingredients__item-title {
   margin: 0;
@@ -117,7 +149,7 @@
   color: var(--color-orange);
 }
 
-.key-ingredients__item-icon svg {
+.key-ingredients__icon {
   width: 20px;
   height: 20px;
   display: block;
@@ -125,6 +157,7 @@
 
 .key-ingredients__item-description {
   margin: 0;
+  padding-top: 4px;
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 10px;
