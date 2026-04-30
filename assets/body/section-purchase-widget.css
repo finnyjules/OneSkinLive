@@ -4,12 +4,26 @@
    Lives inside the right column of the product hero (.product-hero__info).
    ========================================================================== */
 
+/* Registered as <integer> so it interpolates with integer steps — drives the
+   ticking counter in the CTA between 90 (subscription) and 105 (one-time). */
+@property --cta-price {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 90;
+}
+
 .purchase-widget {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
   padding-bottom: 32px;
+  --cta-price: 90;
+  transition: --cta-price 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.purchase-widget:has(.purchase-widget__radio[value="onetime"]:checked) {
+  --cta-price: 105;
 }
 
 /* Visually-hidden helper (used for the fieldset legend). */
@@ -260,17 +274,33 @@
   color: var(--color-white);
 }
 
-/* Show the subscription price by default; swap to one-time when its radio
-   is selected. The :has() selector on .purchase-widget reaches across the
-   options group and the CTA group. */
-.purchase-widget__cta-price--onetime { display: none; }
-
-.purchase-widget:has(.purchase-widget__radio[value="onetime"]:checked) .purchase-widget__cta-price--sub {
-  display: none;
+/* CTA strike-through: collapses to 0 width + fades out when one-time is
+   selected, since there is no discount to call out anymore. */
+.purchase-widget__cta-price .purchase-widget__price-strike {
+  max-width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition:
+    max-width 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 240ms ease,
+    margin-right 320ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.purchase-widget:has(.purchase-widget__radio[value="onetime"]:checked) .purchase-widget__cta-price--onetime {
-  display: flex;
+.purchase-widget:has(.purchase-widget__radio[value="onetime"]:checked) .purchase-widget__cta-price .purchase-widget__price-strike {
+  max-width: 0;
+  opacity: 0;
+  margin-right: -8px;
+}
+
+/* Counter: pseudo-element renders "$" + the live integer value of
+   --cta-price. Because --cta-price is registered as <integer>, the property
+   transition is interpolated in integer steps, ticking through every value. */
+.purchase-widget__cta-counter {
+  counter-reset: cta-price var(--cta-price);
+}
+
+.purchase-widget__cta-counter::before {
+  content: '$' counter(cta-price);
 }
 
 /* B2 — Extra benefit ("Free shipping on orders $79+"). */

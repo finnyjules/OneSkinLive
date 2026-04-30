@@ -256,14 +256,11 @@
           <div class="purchase-widget__cta-group">
             <button class="purchase-widget__cta" type="button">
               <span class="purchase-widget__cta-label">ADD TO CART</span>
-              <!-- Two price variants. CSS shows the right one based on which
-                   radio in the group is checked. -->
-              <span class="purchase-widget__cta-price purchase-widget__cta-price--sub">
+              <!-- Strike collapses + counter animates between 90 (sub) and 105
+                   (one-time) via @property-registered --cta-price. -->
+              <span class="purchase-widget__cta-price">
                 <span class="purchase-widget__price-strike">$105</span>
-                <span class="purchase-widget__price-final">$90</span>
-              </span>
-              <span class="purchase-widget__cta-price purchase-widget__cta-price--onetime">
-                <span class="purchase-widget__price-final">$105</span>
+                <span class="purchase-widget__price-final purchase-widget__cta-counter" aria-hidden="true"></span>
               </span>
             </button>
             <!-- B2 — Extra benefit (6 words max). -->
