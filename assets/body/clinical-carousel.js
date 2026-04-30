@@ -1,7 +1,6 @@
-// Before/after carousel for the clinical section. Uses Web Animations
-// API directly (instead of CSS transitions) so the slide animation fires
-// reliably across browsers. The after photo lags the before photo by a
-// small delay for a cascading slide.
+// Before/after carousel for the clinical section. JS sets each photo's
+// inline `transform`; CSS handles the transition. After photo gets a
+// transition-delay for a staggered slide.
 
 (function () {
   const carousel = document.querySelector('[data-clinical-carousel]');
@@ -14,59 +13,22 @@
   let index = pairs.findIndex((p) => p.classList.contains('clinical__pair--active'));
   if (index < 0) index = 0;
 
-  const DURATION = 520;
-  const STAGGER = 90;
-  const EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
+  // After photo lags before by 90ms regardless of direction.
+  pairs.forEach((p) => {
+    const photos = p.querySelectorAll('.clinical__photo');
+    if (photos[1]) photos[1].style.transitionDelay = '90ms';
+  });
 
-  // Track the last value applied to each photo so we can animate from
-  // the right starting position.
-  const photoState = new Map(); // element → 'left' | 'center' | 'right'
-
-  function offsetFor(state) {
-    if (state === 'left') return '-100%';
-    if (state === 'right') return '100%';
-    return '0%';
-  }
-
-  function applyState(photo, state, opts = {}) {
-    const from = photoState.get(photo) ?? state;
-    const to = state;
-    photoState.set(photo, to);
-
-    if (from === to && !opts.force) return;
-
-    // Cancel any in-flight or finished animations so a new one becomes
-    // the sole source of truth for transform.
-    photo.getAnimations().forEach((a) => a.cancel());
-
-    const anim = photo.animate(
-      [
-        { transform: `translateX(${offsetFor(from)})` },
-        { transform: `translateX(${offsetFor(to)})` },
-      ],
-      {
-        duration: DURATION,
-        easing: EASING,
-        delay: opts.delay || 0,
-        fill: 'forwards',
-      }
-    );
-
-    // Once finished, commit the result to inline style and remove the
-    // WAAPI animation entirely so it doesn't pollute future renders.
-    anim.onfinish = () => {
-      photo.style.transform = `translateX(${offsetFor(to)})`;
-      anim.cancel();
-    };
+  function offsetFor(i) {
+    return i < index ? '-100%' : i === index ? '0%' : '100%';
   }
 
   function render() {
     pairs.forEach((p, i) => {
-      const targetState = i < index ? 'left' : i === index ? 'center' : 'right';
+      const offset = offsetFor(i);
       p.classList.toggle('clinical__pair--active', i === index);
-      const photos = p.querySelectorAll('.clinical__photo');
-      photos.forEach((photo, photoIdx) => {
-        applyState(photo, targetState, { delay: photoIdx === 1 ? STAGGER : 0 });
+      p.querySelectorAll('.clinical__photo').forEach((photo) => {
+        photo.style.transform = `translateX(${offset})`;
       });
     });
     if (indicator) indicator.textContent = `${index + 1} / ${pairs.length}`;
@@ -74,25 +36,12 @@
     next.disabled = index === pairs.length - 1;
   }
 
-  // Initial state: place pairs at their resting positions without
-  // animating in.
-  pairs.forEach((p, i) => {
-    const state = i < index ? 'left' : i === index ? 'center' : 'right';
-    p.classList.toggle('clinical__pair--active', i === index);
-    p.querySelectorAll('.clinical__photo').forEach((photo) => {
-      photoState.set(photo, state);
-      photo.style.transform = `translateX(${offsetFor(state)})`;
-    });
-  });
-
-  if (indicator) indicator.textContent = `${index + 1} / ${pairs.length}`;
-  prev.disabled = index === 0;
-  next.disabled = index === pairs.length - 1;
-
   prev.addEventListener('click', () => {
     if (index > 0) { index -= 1; render(); }
   });
   next.addEventListener('click', () => {
     if (index < pairs.length - 1) { index += 1; render(); }
   });
+
+  render();
 })();
