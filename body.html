@@ -165,12 +165,32 @@
             <legend class="purchase-widget__visually-hidden">Subscription frequency</legend>
 
             <!-- Option 1: Monthly delivery -->
-            <label class="purchase-widget__option purchase-widget__option--off-white">
+            <label class="purchase-widget__option">
               <input type="radio" name="subscription" value="monthly" class="purchase-widget__radio">
               <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
               <span class="purchase-widget__option-body">
                 <span class="purchase-widget__option-title">Monthly delivery</span>
                 <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <ul class="purchase-widget__reasons">
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Exclusive early access to new products
+                  </li>
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Earn 2x points on all recurring orders
+                  </li>
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Easily change, skip or cancel anytime
+                  </li>
+                </ul>
               </span>
               <span class="purchase-widget__price">
                 <span class="purchase-widget__price-strike">$105</span>
@@ -179,7 +199,7 @@
             </label>
 
             <!-- Option 2: 2-month delivery — recommended, default selected -->
-            <label class="purchase-widget__option purchase-widget__option--viridian">
+            <label class="purchase-widget__option">
               <input type="radio" name="subscription" value="bimonthly" class="purchase-widget__radio" checked>
               <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
               <span class="purchase-widget__option-body">
@@ -217,7 +237,7 @@
             </label>
 
             <!-- Option 3: One-time purchase -->
-            <label class="purchase-widget__option purchase-widget__option--off-white">
+            <label class="purchase-widget__option">
               <input type="radio" name="subscription" value="onetime" class="purchase-widget__radio">
               <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
               <span class="purchase-widget__option-body">

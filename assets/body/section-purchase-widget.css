@@ -45,10 +45,14 @@
   width: 100%;
   cursor: pointer;
   position: relative;
+  background: var(--color-off-white);
+  transition: background-color 150ms ease;
 }
 
-.purchase-widget__option--off-white { background: var(--color-off-white); }
-.purchase-widget__option--viridian  { background: var(--color-viridian-light); }
+/* Selected option highlights with viridian. */
+.purchase-widget__option:has(.purchase-widget__radio:checked) {
+  background: var(--color-viridian-light);
+}
 
 /* Hide the native input but keep it accessible. The marker span draws the UI. */
 .purchase-widget__radio {
@@ -132,14 +136,20 @@
   white-space: nowrap;
 }
 
-/* B1 — Reasons to subscribe. */
+/* B1 — Reasons to subscribe. Hidden by default; shown only on the option
+   whose radio is currently checked (drives off the same :has() rule that
+   highlights the row). */
 .purchase-widget__reasons {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.purchase-widget__option:has(.purchase-widget__radio:checked) .purchase-widget__reasons {
+  display: flex;
 }
 
 .purchase-widget__reasons li {
