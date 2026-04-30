@@ -27,6 +27,9 @@
   flex-direction: column;
   gap: 4px;
   width: 613px;
+  position: sticky;
+  top: 60px;
+  align-self: start;
 }
 
 .product-hero__image-main {
@@ -231,16 +234,13 @@
 }
 
 /* ------- Best Seller badge ------- */
-/* Positioned relative to the .product-hero section. The Figma source places it
-   at top:115px / left:584px from the page top-left (gallery top-left is
-   page 80,90 → badge sits 25px down / 504px right of the gallery's top-left).
-   In our layout the gallery starts at section-padding-left/top inside
-   .product-hero, so we mirror that 25px / 504px offset from the section's
-   inner top-left content corner. */
+/* Positioned relative to the sticky .product-hero__gallery (which is the
+   nearest positioned ancestor) so it stays pinned with the imagery as the
+   right column scrolls past. */
 .product-hero__badge {
   position: absolute;
-  top: 55px;       /* 30 (section padding-top) + 25 (offset from gallery top) */
-  left: 552px;     /* 48 (container-padding)   + 504 (offset from gallery left) */
+  top: 25px;
+  left: 504px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

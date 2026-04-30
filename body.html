@@ -84,6 +84,7 @@
   <section class="product-hero" data-section-id="product-hero">
     <div class="product-hero__layout">
       <!-- ------- Gallery (left) ------- -->
+      <!-- Sticky: pins below the 60px header until the right column scrolls past. -->
       <div class="product-hero__gallery">
         <figure class="product-hero__image-main">
           <!-- Foreground product image; Figma also layers a blurred imgImage.png behind it. -->
@@ -103,6 +104,9 @@
             <img src="assets/images/body/imgImage66.png" alt="Product detail 4" loading="lazy" width="304" height="304">
           </figure>
         </div>
+        <!-- Best Seller badge — Figma node 253:5673. Lives inside the gallery so
+             it stays glued to the imagery while the gallery is sticky. -->
+        <div class="product-hero__badge" aria-label="Best Seller">Best Seller</div>
       </div>
 
       <!-- ------- Info (right) ------- -->
@@ -374,9 +378,6 @@
         </section>
       </div>
     </div>
-
-    <!-- Best Seller badge — Figma node 253:5673, abs-positioned over the gallery's top-right. -->
-    <div class="product-hero__badge" aria-label="Best Seller">Best Seller</div>
   </section>
 
   <!-- ========== HERO BENEFITS (Section E1) ========== -->
