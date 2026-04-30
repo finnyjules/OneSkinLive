@@ -28,6 +28,13 @@
   <script src="assets/body/clinical-counter.js" defer></script>
 </head>
 <body>
+  <!-- Shared rating-star symbol (used by product hero + upsell cards). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="rating-star" viewBox="0 0 18 18">
+      <polygon fill="currentColor" points="9,1 11,6.7 17.5,7 12.5,10.7 14.4,17 9,13.5 3.6,17 5.5,10.7 0.5,7 7,6.7"/>
+    </symbol>
+  </svg>
+
   <!-- ========== HEADER ========== -->
   <header class="header" data-section-id="header">
     <div class="header__inner">
@@ -129,9 +136,13 @@
               <h1 class="product-hero__name">BODY MOISTURIZER</h1>
             </div>
             <div class="product-hero__rating">
-              <img class="product-hero__rating-stars"
-                   src="assets/images/body/imgFrame155.png"
-                   alt="4.7 out of 5 stars" width="102" height="18">
+              <svg class="product-hero__rating-stars" viewBox="0 0 102 18" width="102" height="18" role="img" aria-label="4.7 out of 5 stars">
+                <use href="#rating-star" x="0" width="18" height="18"/>
+                <use href="#rating-star" x="21" width="18" height="18"/>
+                <use href="#rating-star" x="42" width="18" height="18"/>
+                <use href="#rating-star" x="63" width="18" height="18"/>
+                <use href="#rating-star" x="84" width="18" height="18"/>
+              </svg>
               <span class="product-hero__rating-score">4.7</span>
             </div>
           </div>
@@ -380,7 +391,13 @@
                   <h3 class="upsell__card-name">OS-01 FACE MOISTURIZER</h3>
                   <p class="upsell__card-desc">Your daily investment in firmer, smoother, more resilient skin.</p>
                   <div class="upsell__card-rating">
-                    <img class="upsell__card-stars" src="assets/images/body/imgFrame360.png" alt="4.8 out of 5 stars" width="57" height="11">
+                    <svg class="upsell__card-stars" viewBox="0 0 57 11" width="57" height="11" role="img" aria-label="4.8 out of 5 stars">
+                      <use href="#rating-star" x="0" width="11" height="11"/>
+                      <use href="#rating-star" x="11.5" width="11" height="11"/>
+                      <use href="#rating-star" x="23" width="11" height="11"/>
+                      <use href="#rating-star" x="34.5" width="11" height="11"/>
+                      <use href="#rating-star" x="46" width="11" height="11"/>
+                    </svg>
                     <span>4.8</span>
                   </div>
                   <a href="#" class="upsell__card-cta">SHOP NOW</a>
@@ -395,7 +412,13 @@
                   <h3 class="upsell__card-name">OS-01 FACE SPF</h3>
                   <p class="upsell__card-desc">Daily SPF designed to protect and repair aging skin.</p>
                   <div class="upsell__card-rating">
-                    <img class="upsell__card-stars" src="assets/images/body/imgFrame360.png" alt="4.7 out of 5 stars" width="57" height="11">
+                    <svg class="upsell__card-stars" viewBox="0 0 57 11" width="57" height="11" role="img" aria-label="4.7 out of 5 stars">
+                      <use href="#rating-star" x="0" width="11" height="11"/>
+                      <use href="#rating-star" x="11.5" width="11" height="11"/>
+                      <use href="#rating-star" x="23" width="11" height="11"/>
+                      <use href="#rating-star" x="34.5" width="11" height="11"/>
+                      <use href="#rating-star" x="46" width="11" height="11"/>
+                    </svg>
                     <span>4.7</span>
                   </div>
                   <a href="#" class="upsell__card-cta">SHOP NOW</a>
