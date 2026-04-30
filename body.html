@@ -171,26 +171,28 @@
               <span class="purchase-widget__option-body">
                 <span class="purchase-widget__option-title">Monthly delivery</span>
                 <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
-                <ul class="purchase-widget__reasons">
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Exclusive early access to new products
-                  </li>
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Earn 2x points on all recurring orders
-                  </li>
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Easily change, skip or cancel anytime
-                  </li>
-                </ul>
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
               </span>
               <span class="purchase-widget__price">
                 <span class="purchase-widget__price-strike">$105</span>
@@ -209,26 +211,28 @@
                 </span>
                 <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
                 <!-- B1 — Reasons to subscribe (1 sentence each). -->
-                <ul class="purchase-widget__reasons">
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Exclusive early access to new products
-                  </li>
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Earn 2x points on all recurring orders
-                  </li>
-                  <li>
-                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
-                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    Easily change, skip or cancel anytime
-                  </li>
-                </ul>
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
               </span>
               <span class="purchase-widget__price">
                 <span class="purchase-widget__price-strike">$105</span>
@@ -252,9 +256,14 @@
           <div class="purchase-widget__cta-group">
             <button class="purchase-widget__cta" type="button">
               <span class="purchase-widget__cta-label">ADD TO CART</span>
-              <span class="purchase-widget__cta-price">
+              <!-- Two price variants. CSS shows the right one based on which
+                   radio in the group is checked. -->
+              <span class="purchase-widget__cta-price purchase-widget__cta-price--sub">
                 <span class="purchase-widget__price-strike">$105</span>
                 <span class="purchase-widget__price-final">$90</span>
+              </span>
+              <span class="purchase-widget__cta-price purchase-widget__cta-price--onetime">
+                <span class="purchase-widget__price-final">$105</span>
               </span>
             </button>
             <!-- B2 — Extra benefit (6 words max). -->
