@@ -11,7 +11,7 @@
 .clinical__inner {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 48px 48px 96px;
+  padding: 128px 48px 96px;
   display: flex;
   gap: 60px;
   align-items: flex-start;
