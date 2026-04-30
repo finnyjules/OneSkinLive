@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 60px;
+  grid-column: 2;
 }
 
 .timeline__media {
@@ -32,8 +33,10 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #000;
+  grid-column: 1;
+  grid-row: 1;
   /* Pinned while the user scrolls through the tall timeline column on the
-     left. Releases when the section's grid row ends. */
+     right. Releases when the section's grid row ends. */
   position: sticky;
   top: 80px;
 }
