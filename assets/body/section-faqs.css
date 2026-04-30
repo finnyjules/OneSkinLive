@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Section: FAQs (Section K2-K3) — OS-01 BODY MOISTURIZER PDP
+   Figma: file ttnXSyu0hen75971OQWakO, node 260:6746
+   Two-column: heading on the left, 5 collapsible Q/A pairs on the right.
+   ========================================================================== */
+
+.faqs {
+  width: 100%;
+  background: var(--color-off-white);
+}
+
+.faqs__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.faqs__heading-col {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+.faqs__headline {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.25;
+  color: var(--color-black);
+}
+
+/* ------- Items ------- */
+
+.faqs__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.faqs__item {
+  border-bottom: 0.5px solid var(--color-black);
+  padding: 0 0 16px;
+}
+
+.faqs__summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.faqs__summary::-webkit-details-marker { display: none; }
+.faqs__summary::marker { content: ""; }
+
+.faqs__summary:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+.faqs__question {
+  flex: 1 1 auto;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  color: var(--color-black);
+}
+
+.faqs__indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-orange);
+  margin-top: 4px;
+}
+
+.faqs__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.faqs__icon--plus { display: none; }
+.faqs__item:not([open]) .faqs__icon--minus { display: none; }
+.faqs__item:not([open]) .faqs__icon--plus  { display: block; }
+
+.faqs__answer {
+  padding-top: 10px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.28px;
+  color: var(--color-black);
+}
+
+.faqs__answer p { margin: 0; }
