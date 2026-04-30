@@ -55,9 +55,11 @@
 .details-accordion__line {
   flex: 1 1 auto;
   min-width: 0;
-  height: 1px;
-  background: var(--color-black);
-  opacity: 1;
+  height: 0;
+  /* border-top renders crisp at integer pixels even when the parent flex
+     row sits on a sub-pixel y; height:1px + background was ending up
+     anti-aliased across two rows and reading as nearly invisible. */
+  border-top: 1px solid var(--color-black);
 }
 
 .details-accordion__indicator {
@@ -153,8 +155,8 @@
 .upsell__line {
   flex: 1 1 auto;
   min-width: 0;
-  height: 1px;
-  background: var(--color-black);
+  height: 0;
+  border-top: 1px solid var(--color-black);
 }
 
 .upsell__controls {
