@@ -28,7 +28,7 @@
     const traveled = vh - rect.top;
     const progress = Math.min(1, Math.max(0, traveled / total));
 
-    const translate = -RANGE / 2 + progress * RANGE;
+    const translate = RANGE / 2 - progress * RANGE;
     image.style.transform = `translate3d(0, ${translate.toFixed(2)}%, 0)`;
 
     ticking = false;
