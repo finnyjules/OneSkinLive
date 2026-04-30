@@ -1,0 +1,148 @@
+/* ==========================================================================
+   Section: Skin Longevity Protocol — OS-01 BODY MOISTURIZER PDP
+   Figma: file ttnXSyu0hen75971OQWakO, node 258:6622
+   Horizontal scroll carousel of 8 product cards.
+   ========================================================================== */
+
+.protocol {
+  width: 100%;
+  background: var(--color-white);
+}
+
+.protocol__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 48px 48px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.protocol__headline {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.25;
+  color: var(--color-black);
+}
+
+/* Horizontal carousel — overflow lets it scroll past the container. */
+
+.protocol__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.protocol__list::-webkit-scrollbar { display: none; }
+
+.protocol__card {
+  flex-shrink: 0;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.protocol__card-image {
+  width: 160px;
+  height: 200px;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+
+.protocol__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.protocol__card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.protocol__card-info {
+  padding: 2px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.protocol__card-step {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: var(--color-orange);
+  text-transform: uppercase;
+}
+
+.protocol__card-name {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.28px;
+  color: var(--color-black);
+}
+
+.protocol__card-price {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: #777;
+}
+
+.protocol__card-divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: 0.5px solid var(--color-black);
+}
+
+.protocol__card-frequency {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: var(--color-black);
+}
+
+.protocol__card-frequency-label { font-weight: 500; }
+.protocol__card-frequency-value { font-weight: 400; }
+
+.protocol__card-cta {
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  text-align: center;
+  border: 0.75px solid var(--color-black);
+  text-decoration: none;
+  white-space: nowrap;
+}
