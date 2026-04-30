@@ -73,5 +73,85 @@
       </div>
     </div>
   </header>
+
+  <!-- ========== PRODUCT HERO (Section A) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6055
+    Layout: 613px gallery (main image + 4-thumb 304px wrap-grid) + flex-1 info column.
+    Best Seller badge is absolutely positioned over the top-right corner of the gallery.
+    NOTE: copy below mirrors the Figma source — confirm before launch.
+  -->
+  <section class="product-hero" data-section-id="product-hero">
+    <div class="product-hero__layout">
+      <!-- ------- Gallery (left) ------- -->
+      <div class="product-hero__gallery">
+        <figure class="product-hero__image-main">
+          <!-- Foreground product image; Figma also layers a blurred imgImage.png behind it. -->
+          <img src="assets/images/body/imgImage1.png" alt="OS-01 BODY MOISTURIZER product bottle" loading="eager" width="613" height="613">
+        </figure>
+        <div class="product-hero__thumbs">
+          <figure class="product-hero__thumb">
+            <img src="assets/images/body/imgImage63.png" alt="Product detail 1" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/images/body/imgImage64.png" alt="Product detail 2" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/images/body/imgImage65.png" alt="Product detail 3" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/images/body/imgImage66.png" alt="Product detail 4" loading="lazy" width="304" height="304">
+          </figure>
+        </div>
+      </div>
+
+      <!-- ------- Info (right) ------- -->
+      <div class="product-hero__info">
+        <div class="product-hero__head">
+          <div class="product-hero__header-row">
+            <div class="product-hero__name-block">
+              <div class="product-hero__peptide-logo-wrap">
+                <img class="product-hero__peptide-logo"
+                     src="assets/images/body/imgOs01PeptideLogoBlack1.png"
+                     alt="OS-01 Peptide" width="44" height="10">
+              </div>
+              <!-- A1 — Product Name (32 chars max). OTT Neuf falls back to Playfair Display. -->
+              <h1 class="product-hero__name">BODY MOISTURIZER</h1>
+            </div>
+            <div class="product-hero__rating">
+              <img class="product-hero__rating-stars"
+                   src="assets/images/body/imgFrame155.png"
+                   alt="4.7 out of 5 stars" width="102" height="18">
+              <span class="product-hero__rating-score">4.7</span>
+            </div>
+          </div>
+          <div class="product-hero__sub-row">
+            <!-- A2 — One-line description (50 chars max). -->
+            <p class="product-hero__description">Addresses dry, crepey skin at the cellular level.</p>
+            <p class="product-hero__review-count">4,110 reviews</p>
+          </div>
+        </div>
+
+        <!-- A3 — Adjectives (pill row, 1 word per pill). -->
+        <ul class="product-hero__adjectives" aria-label="Product attributes">
+          <li class="product-hero__adjective">Clinically studied</li>
+          <li class="product-hero__adjective">Barrier-building</li>
+          <li class="product-hero__adjective">Fragrance-free</li>
+        </ul>
+
+        <p class="product-hero__volume">250 mL / 70 uses per bottle</p>
+
+        <!-- A4 — Benefits one-liners (1 sentence per benefit). -->
+        <ul class="product-hero__benefits">
+          <li>A daily body moisturizer powered by the OS-01 Peptide&trade;.&sup1; Engineered to address a key driver of visible skin aging.&sup2;</li>
+          <li>Fast-absorbing, never greasy. 93% of users reported improved hydration in 12 weeks.&sup1;</li>
+          <li>Clinically proven to strengthen the skin barrier by up to +41% in 12 weeks.&sup1; A stronger barrier supports every step of your longevity routine.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Best Seller badge — Figma node 253:5673, abs-positioned over the gallery's top-right. -->
+    <div class="product-hero__badge" aria-label="Best Seller">Best Seller</div>
+  </section>
 </body>
 </html>

@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Section: Product Hero (Section A) — OS-01 BODY MOISTURIZER PDP
+   Figma: file ttnXSyu0hen75971OQWakO, node 258:6055
+   Layout: 613px gallery (left) + flex-1 info (right) with absolutely-
+           positioned "Best Seller" badge overlapping the gallery.
+   ========================================================================== */
+
+.product-hero {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 30px var(--container-padding) 0;
+}
+
+.product-hero__layout {
+  display: grid;
+  grid-template-columns: 613px 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 10px 0 32px;
+}
+
+/* ------- Gallery (left column) ------- */
+
+.product-hero__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 613px;
+}
+
+.product-hero__image-main {
+  width: 613px;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #d9d9d9; /* Figma fallback color while image loads */
+}
+
+.product-hero__image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-hero__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 5px;
+  width: 100%;
+}
+
+.product-hero__thumb {
+  width: 304px;
+  height: 304px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-hero__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ------- Info (right column) ------- */
+
+.product-hero__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 24px;
+  min-width: 0; /* allow flex-1 column to shrink, mirrors Figma min-w-px */
+}
+
+.product-hero__head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.product-hero__header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.product-hero__name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.product-hero__peptide-logo-wrap {
+  padding: 4.5px 0;
+}
+
+.product-hero__peptide-logo {
+  width: 44px;
+  height: 10px;
+  display: block;
+}
+
+/* A1 — Product name. OTT Neuf is not yet loaded — falls back to Playfair Display
+   (matches the TODO in base.css). */
+.product-hero__name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 1.28px;
+  color: var(--color-black);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.product-hero__rating {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 10px;
+}
+
+.product-hero__rating-stars {
+  width: 102px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.product-hero__rating-score {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.product-hero__sub-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  color: var(--color-black);
+}
+
+.product-hero__description {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  white-space: nowrap;
+}
+
+.product-hero__review-count {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* A3 — Adjectives row (pills). */
+.product-hero__adjectives {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0 0 24px;
+  list-style: none;
+}
+
+.product-hero__adjective {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--color-viridian-light);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.24px;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.product-hero__volume {
+  margin: 0;
+  padding: 5px 8px 24px;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.24px;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+/* A4 — Benefits one-liners. */
+.product-hero__benefits {
+  margin: 0;
+  padding: 0 0 32px 24px;
+  list-style: disc;
+  width: 571px;
+  max-width: 100%;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+}
+
+.product-hero__benefits li + li {
+  margin-top: 8px;
+}
+
+/* ------- Best Seller badge ------- */
+/* Positioned relative to the .product-hero section. The Figma source places it
+   at top:115px / left:584px from the page top-left (gallery top-left is
+   page 80,90 → badge sits 25px down / 504px right of the gallery's top-left).
+   In our layout the gallery starts at section-padding-left/top inside
+   .product-hero, so we mirror that 25px / 504px offset from the section's
+   inner top-left content corner. */
+.product-hero__badge {
+  position: absolute;
+  top: 55px;       /* 30 (section padding-top) + 25 (offset from gallery top) */
+  left: 552px;     /* 48 (container-padding)   + 504 (offset from gallery left) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: var(--color-black);
+  border: 0.5px solid var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  text-align: right;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
