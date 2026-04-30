@@ -43,17 +43,15 @@
 
 .science-module__headline {
   margin: 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 32px;
-  line-height: 1.4;
-  letter-spacing: 1.28px;
+  font-size: 36px;
+  line-height: 1.25;
   color: var(--color-black);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  text-transform: uppercase;
+  gap: 12px;
 }
 
 .science-module__logo {
