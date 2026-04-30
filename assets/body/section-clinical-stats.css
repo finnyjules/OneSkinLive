@@ -14,7 +14,7 @@
   padding: 48px 48px 96px;
   display: flex;
   gap: 60px;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 /* ------- Copy column (left) ------- */
@@ -24,9 +24,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 60px;
-  padding-bottom: 32px;
 }
 
 .clinical__headline {
