@@ -147,6 +147,102 @@
           <li>Fast-absorbing, never greasy. 93% of users reported improved hydration in 12 weeks.&sup1;</li>
           <li>Clinically proven to strengthen the skin barrier by up to +41% in 12 weeks.&sup1; A stronger barrier supports every step of your longevity routine.</li>
         </ul>
+
+        <!-- ========== PURCHASE SUBSCRIPTION WIDGET (Section B) ========== -->
+        <!--
+          Figma: file ttnXSyu0hen75971OQWakO, node 254:5815
+          Lives in the right info column (sibling of A's text). 2-month delivery
+          is the default-selected option; row backgrounds are baked per-variant
+          (off-white for unselected, viridian for the recommended one) to match
+          the Figma frame.
+        -->
+        <section class="purchase-widget" data-section-id="purchase-widget" aria-label="Purchase options">
+          <fieldset class="purchase-widget__options">
+            <legend class="purchase-widget__visually-hidden">Subscription frequency</legend>
+
+            <!-- Option 1: Monthly delivery -->
+            <label class="purchase-widget__option purchase-widget__option--off-white">
+              <input type="radio" name="subscription" value="monthly" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">Monthly delivery</span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$105</span>
+                <span class="purchase-widget__price-final">$90</span>
+              </span>
+            </label>
+
+            <!-- Option 2: 2-month delivery — recommended, default selected -->
+            <label class="purchase-widget__option purchase-widget__option--viridian">
+              <input type="radio" name="subscription" value="bimonthly" class="purchase-widget__radio" checked>
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-header">
+                  <span class="purchase-widget__option-title">2-month delivery</span>
+                  <span class="purchase-widget__pill">Recommended</span>
+                </span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <!-- B1 — Reasons to subscribe (1 sentence each). -->
+                <ul class="purchase-widget__reasons">
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Exclusive early access to new products
+                  </li>
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Earn 2x points on all recurring orders
+                  </li>
+                  <li>
+                    <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                      <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Easily change, skip or cancel anytime
+                  </li>
+                </ul>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$105</span>
+                <span class="purchase-widget__price-final">$90</span>
+              </span>
+            </label>
+
+            <!-- Option 3: One-time purchase -->
+            <label class="purchase-widget__option purchase-widget__option--off-white">
+              <input type="radio" name="subscription" value="onetime" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">One-time purchase</span>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-final">$105</span>
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="purchase-widget__cta-group">
+            <button class="purchase-widget__cta" type="button">
+              <span class="purchase-widget__cta-label">ADD TO CART</span>
+              <span class="purchase-widget__cta-price">
+                <span class="purchase-widget__price-strike">$105</span>
+                <span class="purchase-widget__price-final">$90</span>
+              </span>
+            </button>
+            <!-- B2 — Extra benefit (6 words max). -->
+            <p class="purchase-widget__shipping">
+              <svg class="purchase-widget__shipping-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M2 5l6-3 6 3v6l-6 3-6-3V5z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+                <path d="M2 5l6 3 6-3M8 8v6" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+              </svg>
+              Free shipping on orders $79+
+            </p>
+          </div>
+        </section>
       </div>
     </div>
 
