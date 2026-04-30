@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Section: Key Ingredients — OS-01 BODY MOISTURIZER PDP
+   Figma: file ttnXSyu0hen75971OQWakO, node 258:6349
+   Black-background two-column: cream-blob image left, ingredient list right.
+   ========================================================================== */
+
+.key-ingredients {
+  width: 100%;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.key-ingredients__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 48px 48px 96px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+/* ------- Left column: cream-blob image ------- */
+
+.key-ingredients__media {
+  padding: 0 80px 0 40px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-ingredients__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ------- Right column: copy + ingredient list ------- */
+
+.key-ingredients__content {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 539px;
+}
+
+.key-ingredients__head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.key-ingredients__headline {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.25;
+  color: var(--color-white);
+}
+
+.key-ingredients__description {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-white);
+}
+
+.key-ingredients__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.key-ingredients__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--color-white);
+}
+
+.key-ingredients__item:first-child { padding-top: 0; }
+
+.key-ingredients__item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.key-ingredients__item-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  color: var(--color-white);
+}
+
+.key-ingredients__item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+.key-ingredients__item-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.key-ingredients__item-description {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: var(--color-white);
+}
+
+.key-ingredients__link {
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-white);
+  align-self: flex-start;
+  text-decoration: none;
+}
