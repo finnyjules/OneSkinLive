@@ -1,7 +1,8 @@
 // Before/after carousel for the clinical section. All pairs share the
-// same grid cell and slide horizontally — the previous pair slides out
-// to the left while the next slides in from the right. Within each pair,
-// the after photo lags the before photo by a small delay (set in CSS).
+// same grid cell. JS sets each photo's inline transform: the active pair
+// sits at translateX(0), pairs to the left slide off to translateX(-100%),
+// pairs to the right wait at translateX(100%). The after photo carries
+// a transition-delay so it lags the before photo for a nice cascade.
 
 (function () {
   const carousel = document.querySelector('[data-clinical-carousel]');
@@ -14,12 +15,20 @@
   let index = pairs.findIndex((p) => p.classList.contains('clinical__pair--active'));
   if (index < 0) index = 0;
 
+  // Apply per-photo transition-delay once so the after photo lags the
+  // before by 90ms in either direction.
+  pairs.forEach((p) => {
+    const photos = p.querySelectorAll('.clinical__photo');
+    if (photos[1]) photos[1].style.transitionDelay = '90ms';
+  });
+
   function render() {
     pairs.forEach((p, i) => {
-      p.classList.remove('clinical__pair--active', 'clinical__pair--prev');
-      if (i < index) p.classList.add('clinical__pair--prev');
-      else if (i === index) p.classList.add('clinical__pair--active');
-      // else: default state (translated to right, off-stage)
+      const offset = i < index ? '-100%' : i === index ? '0' : '100%';
+      p.classList.toggle('clinical__pair--active', i === index);
+      p.querySelectorAll('.clinical__photo').forEach((photo) => {
+        photo.style.transform = `translateX(${offset})`;
+      });
     });
     if (indicator) indicator.textContent = `${index + 1} / ${pairs.length}`;
     prev.disabled = index === 0;
