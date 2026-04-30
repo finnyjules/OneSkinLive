@@ -21,13 +21,19 @@
   pointer-events: none;
 }
 
+/* Oversized backdrop: image is 130% of the section height with a -15% top
+   offset, leaving headroom for parallax movement of ±10% to never reveal
+   the image edges. The transform itself is driven by the parallax script
+   in assets/body/parallax.js. */
 .hero-benefits__bg-image {
   position: absolute;
-  inset: 0;
+  top: -15%;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 130%;
   object-fit: cover;
   display: block;
+  will-change: transform;
 }
 
 /* ------- Inner content ------- */
@@ -64,7 +70,7 @@
 .hero-benefits__list {
   list-style: none;
   margin: 0;
-  padding: 16px;
+  padding: 32px;
   width: 559px;
   max-width: 100%;
   display: flex;
