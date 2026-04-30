@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
 }
 
 .timeline__copy {
@@ -32,6 +32,10 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #000;
+  /* Pinned while the user scrolls through the tall timeline column on the
+     left. Releases when the section's grid row ends. */
+  position: sticky;
+  top: 80px;
 }
 
 .timeline__video {
@@ -57,7 +61,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 240px;
   width: 100%;
   max-width: 720px;
   position: relative;
