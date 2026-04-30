@@ -200,43 +200,43 @@
 }
 
 .upsell__carousel {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  align-items: stretch;
   width: 100%;
-  overflow: hidden;
   padding-top: 8px;
 }
 
-/* Card layout matches Figma: 164px image + 156px info column. */
+/* Vertical card: image on top, info below. Cleaner layout for the
+   narrow right-column container. */
 .upsell__card {
   display: flex;
-  align-items: stretch;
-  gap: 16px;
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
 }
 
 .upsell__card-image {
-  width: 164px;
-  height: 164px;
-  flex-shrink: 0;
-  background: #d9d9d9;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-off-white);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upsell__card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
 .upsell__card-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  width: 156px;
-  justify-content: space-between;
+  gap: 6px;
 }
 
 .upsell__card-badge {
