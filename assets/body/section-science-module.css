@@ -37,7 +37,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 80px 40px;
-  gap: 60px;
+  gap: 24px;
   max-width: 526px;
 }
 
@@ -73,7 +73,24 @@
   color: var(--color-black);
 }
 
+.science-module__list {
+  margin: 0;
+  padding: 0 0 0 24px;
+  list-style: square;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+}
+
+.science-module__list li + li {
+  margin-top: 8px;
+}
+
 .science-module__link {
+  margin-top: 8px;
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 16px;
