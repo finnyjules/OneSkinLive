@@ -21,32 +21,13 @@
   pointer-events: none;
 }
 
-.hero-benefits__bg-image,
-.hero-benefits__bg-cream {
+.hero-benefits__bg-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.hero-benefits__bg-cream {
-  /* Mirrors Figma: imgImage71 sized 1019x1533, anchored at left 446 / top -288.
-     We approximate with a right-anchored cover so the cream blob stays at the
-     right of any container width. */
-  left: auto;
-  right: 0;
-  width: 70%;
-  height: 200%;
-  top: -40%;
-  object-position: left center;
-}
-
-.hero-benefits__bg-tint {
-  position: absolute;
-  inset: 0;
-  background: rgba(211, 211, 214, 0.18);
 }
 
 /* ------- Inner content ------- */
