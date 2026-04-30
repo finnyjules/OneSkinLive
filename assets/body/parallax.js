@@ -1,36 +1,46 @@
-// Parallax for the hero-benefits section background.
-// Translates the bg image between -10% and +10% of its height as the
-// section progresses through the viewport. Uses requestAnimationFrame
-// so we only update once per repaint instead of every scroll event.
+// Scroll-driven parallax. Translates configured images vertically based on
+// their parent section's progress through the viewport. Uses
+// requestAnimationFrame so we only update once per repaint, not per scroll
+// event.
 
 (function () {
-  const section = document.querySelector('.hero-benefits');
-  const image = section?.querySelector('.hero-benefits__bg-image');
-  if (!section || !image) return;
+  // Each entry: section selector, image selector inside that section,
+  // and a `range` (% of image height) — positive numbers reverse the
+  // direction so the image moves down as the section scrolls up.
+  const TARGETS = [
+    { section: '.hero-benefits',  image: '.hero-benefits__bg-image',  range: 20 },
+    { section: '.key-ingredients', image: '.key-ingredients__media img', range: -16 },
+  ];
 
-  const RANGE = 20; // total travel in % of image height (-10 to +10)
+  const items = TARGETS
+    .map((t) => {
+      const section = document.querySelector(t.section);
+      const image = section?.querySelector(t.image);
+      return section && image ? { section, image, range: t.range } : null;
+    })
+    .filter(Boolean);
+
+  if (!items.length) return;
 
   let ticking = false;
 
   function update() {
-    const rect = section.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
+    items.forEach((item) => {
+      const rect = item.section.getBoundingClientRect();
 
-    // Skip work when the section is well outside the viewport.
-    if (rect.bottom < -200 || rect.top > vh + 200) {
-      ticking = false;
-      return;
-    }
+      if (rect.bottom < -200 || rect.top > vh + 200) return;
 
-    // Progress: 0 when section's top is at viewport bottom (just entering),
-    // 1 when section's bottom is at viewport top (just leaving).
-    const total = vh + rect.height;
-    const traveled = vh - rect.top;
-    const progress = Math.min(1, Math.max(0, traveled / total));
+      // Progress: 0 when section's top is at viewport bottom (just
+      // entering), 1 when section's bottom is at viewport top (just
+      // leaving).
+      const total = vh + rect.height;
+      const traveled = vh - rect.top;
+      const progress = Math.min(1, Math.max(0, traveled / total));
 
-    const translate = RANGE / 2 - progress * RANGE;
-    image.style.transform = `translate3d(0, ${translate.toFixed(2)}%, 0)`;
-
+      const translate = item.range / 2 - progress * item.range;
+      item.image.style.transform = `translate3d(0, ${translate.toFixed(2)}%, 0)`;
+    });
     ticking = false;
   }
 
