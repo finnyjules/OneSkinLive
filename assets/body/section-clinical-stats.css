@@ -90,24 +90,27 @@
   align-items: flex-end;
 }
 
-/* Carousel container: all pairs share a single grid cell and slide in/out
-   horizontally. overflow: hidden clips the off-stage pairs. */
+/* Carousel container: holds the active pair in flow (so the carousel
+   takes its natural height), with subsequent pairs absolutely overlaid
+   on top. JS sets per-photo transforms to slide them in/out. */
 .clinical__carousel {
   position: relative;
   width: 88%;
   max-width: 520px;
-  display: grid;
-  grid-template-areas: "stack";
   overflow: hidden;
 }
 
 .clinical__pair {
-  grid-area: stack;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
   pointer-events: none;
+}
+
+.clinical__carousel .clinical__pair + .clinical__pair {
+  position: absolute;
+  inset: 0;
 }
 
 .clinical__pair--active { pointer-events: auto; }
