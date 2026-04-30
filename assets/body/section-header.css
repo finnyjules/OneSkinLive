@@ -48,6 +48,13 @@
   opacity: 0.6;
 }
 
+.header__nav-link:focus-visible,
+.header__cart:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .header__logo {
   position: absolute;
   left: 50%;
@@ -84,7 +91,7 @@
 
 .header__cart-icon {
   width: 24px;
-  height: 21.6px;
+  height: 22px;
   display: block;
   flex-shrink: 0;
 }
