@@ -124,11 +124,6 @@
   outline-offset: 2px;
 }
 
-/* Toggle minus (open) / plus (closed) icon. */
-.key-ingredients__icon--plus { display: none; }
-.key-ingredients__details:not([open]) .key-ingredients__icon--minus { display: none; }
-.key-ingredients__details:not([open]) .key-ingredients__icon--plus  { display: block; }
-
 .key-ingredients__item-title {
   margin: 0;
   font-family: var(--font-sans);
@@ -154,6 +149,12 @@
   height: 20px;
   display: block;
 }
+
+/* Toggle minus (open) / plus (closed) icon. Placed after the base
+   .key-ingredients__icon rule so display:none wins the cascade. */
+.key-ingredients__icon--plus { display: none; }
+.key-ingredients__details:not([open]) .key-ingredients__icon--minus { display: none; }
+.key-ingredients__details:not([open]) .key-ingredients__icon--plus  { display: block; }
 
 .key-ingredients__item-description {
   margin: 0;
