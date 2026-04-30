@@ -27,8 +27,12 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  /* Stick at vertical center of viewport. translateY pulls the element up
+     by half its own height so its center lines up with the viewport's
+     center while pinned. */
   position: sticky;
-  top: 80px;
+  top: 50%;
+  transform: translateY(-50%);
   align-self: flex-start;
 }
 
