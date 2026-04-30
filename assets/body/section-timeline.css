@@ -57,7 +57,7 @@
 
 .timeline__steps {
   margin: 0;
-  padding: 12px 0 12px 33px;
+  padding: 12px 0 320px 33px;
   list-style: none;
   display: flex;
   flex-direction: column;
