@@ -35,7 +35,11 @@
 
     if (from === to && !opts.force) return;
 
-    photo.animate(
+    // Cancel any in-flight or finished animations so a new one becomes
+    // the sole source of truth for transform.
+    photo.getAnimations().forEach((a) => a.cancel());
+
+    const anim = photo.animate(
       [
         { transform: `translateX(${offsetFor(from)})` },
         { transform: `translateX(${offsetFor(to)})` },
@@ -47,6 +51,13 @@
         fill: 'forwards',
       }
     );
+
+    // Once finished, commit the result to inline style and remove the
+    // WAAPI animation entirely so it doesn't pollute future renders.
+    anim.onfinish = () => {
+      photo.style.transform = `translateX(${offsetFor(to)})`;
+      anim.cancel();
+    };
   }
 
   function render() {
