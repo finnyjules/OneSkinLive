@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Section: Header (sticky top nav for OS-01 BODY MOISTURIZER PDP)
+   Figma: file ttnXSyu0hen75971OQWakO, node 253:4556
+   ========================================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  padding: 0 var(--container-padding);
+}
+
+.header__inner {
+  position: relative;
+  max-width: var(--container-max);
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.header__nav-link {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-black);
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.header__nav-link:hover {
+  opacity: 0.6;
+}
+
+.header__logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-black);
+}
+
+.header__wordmark {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.header__cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  color: var(--color-black);
+}
+
+.header__cart-icon {
+  width: 24px;
+  height: 21.6px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.header__cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--color-viridian-light);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-black);
+}
