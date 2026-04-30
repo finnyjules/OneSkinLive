@@ -9,10 +9,15 @@
   if (!bar || !trigger) return;
 
   // ---- Show/hide on scroll (IntersectionObserver) ----
+  // Only show the bar when the CTA has scrolled ABOVE the viewport top —
+  // we don't want to show it on initial load while the CTA is still below
+  // the fold (not yet visible).
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
+        const scrolledPast =
+          !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        if (scrolledPast) {
           bar.classList.add('sticky-bar--visible');
         } else {
           bar.classList.remove('sticky-bar--visible');
