@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 56.9412 10.5882" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 360">
+<path id="star_rate" d="M1.98008 10.5882L3.2208 6.52311L0 4.22355H4.01053L5.29412 0L6.57771 4.22355H10.5882L7.36743 6.52311L8.60816 10.5882L5.29412 8.08926L1.98008 10.5882Z" fill="var(--fill-0, black)"/>
+<path id="star_rate_2" d="M13.5683 10.5882L14.809 6.52311L11.5882 4.22355H15.5988L16.8824 0L18.1659 4.22355H22.1765L18.9557 6.52311L20.1964 10.5882L16.8824 8.08926L13.5683 10.5882Z" fill="var(--fill-0, black)"/>
+<path id="star_rate_3" d="M25.1565 10.5882L26.3973 6.52311L23.1765 4.22355H27.187L28.4706 0L29.7542 4.22355H33.7647L30.5439 6.52311L31.7846 10.5882L28.4706 8.08926L25.1565 10.5882Z" fill="var(--fill-0, black)"/>
+<path id="star_rate_4" d="M36.7448 10.5882L37.9855 6.52311L34.7647 4.22355H38.7752L40.0588 0L41.3424 4.22355H45.3529L42.1321 6.52311L43.3729 10.5882L40.0588 8.08926L36.7448 10.5882Z" fill="var(--fill-0, black)"/>
+<g id="star_rate_5">
+<path d="M48.333 10.5882L49.5737 6.52311L46.3529 4.22355H50.3635L51.6471 0L52.9306 4.22355H56.9412L53.7204 6.52311L54.9611 10.5882L51.6471 8.08926L48.333 10.5882Z" fill="var(--fill-0, #D3D3D3)"/>
+<path d="M48.333 10.5882L49.5737 6.52311L46.3529 4.22355H50.3635L51.6471 0L52.9306 4.22355H56.9412L53.7204 6.52311L54.9611 10.5882L51.6471 8.08926L48.333 10.5882Z" fill="url(#paint0_linear_0_35)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_35" x1="56.9412" y1="5.29412" x2="46.3529" y2="5.29412" gradientUnits="userSpaceOnUse">
+<stop offset="0.413462" stop-color="white" stop-opacity="0"/>
+<stop offset="0.413562"/>
+</linearGradient>
+</defs>
+</svg>

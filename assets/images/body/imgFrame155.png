@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 102 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 155">
+<path id="Star 1" d="M9 0L11.0206 6.21885H17.5595L12.2694 10.0623L14.2901 16.2812L9 12.4377L3.70993 16.2812L5.73056 10.0623L0.440492 6.21885H6.97937L9 0Z" fill="var(--fill-0, black)"/>
+<path id="Star 2" d="M30 0L32.0206 6.21885H38.5595L33.2694 10.0623L35.2901 16.2812L30 12.4377L24.7099 16.2812L26.7306 10.0623L21.4405 6.21885H27.9794L30 0Z" fill="var(--fill-0, black)"/>
+<path id="Star 3" d="M51 0L53.0206 6.21885H59.5595L54.2694 10.0623L56.2901 16.2812L51 12.4377L45.7099 16.2812L47.7306 10.0623L42.4405 6.21885H48.9794L51 0Z" fill="var(--fill-0, black)"/>
+<path id="Star 4" d="M72 0L74.0206 6.21885H80.5595L75.2694 10.0623L77.2901 16.2812L72 12.4377L66.7099 16.2812L68.7306 10.0623L63.4405 6.21885H69.9794L72 0Z" fill="var(--fill-0, black)"/>
+<path id="Star 5" d="M94.7832 6.2959L94.8389 6.46875H100.79L96.1221 9.86035L95.9756 9.9668L96.0312 10.1396L97.8145 15.626L93.1465 12.2354L93 12.1289L92.8535 12.2354L88.1846 15.626L89.9688 10.1396L90.0244 9.9668L89.8779 9.86035L85.21 6.46875H91.1611L91.2168 6.2959L93 0.806641L94.7832 6.2959Z" fill="url(#paint0_linear_0_47)" stroke="var(--stroke-0, black)" stroke-width="0.5"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_47" x1="102" y1="9" x2="84" y2="9" gradientUnits="userSpaceOnUse">
+<stop offset="0.29" stop-color="white"/>
+<stop offset="0.3"/>
+</linearGradient>
+</defs>
+</svg>
