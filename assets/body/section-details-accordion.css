@@ -1,0 +1,310 @@
+/* ==========================================================================
+   Section: Details Accordion + Upsell (Section C) — OS-01 BODY MOISTURIZER
+   Figma: file ttnXSyu0hen75971OQWakO, node 254:5900
+   Lives inside the right column of the product hero (.product-hero__info).
+   ========================================================================== */
+
+.details-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding-top: 8px;
+}
+
+/* ------- Collapsible items ------- */
+
+.details-accordion__group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.details-accordion__item {
+  border-bottom: 0.5px solid var(--color-black);
+  padding: 0 0 16px;
+}
+
+.details-accordion__item + .details-accordion__item {
+  padding-top: 16px;
+}
+
+/* Hide native disclosure marker. */
+.details-accordion__summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 24px;
+}
+
+.details-accordion__summary::-webkit-details-marker { display: none; }
+.details-accordion__summary::marker { content: ""; }
+
+.details-accordion__title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.details-accordion__line {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 1px;
+  background: var(--color-black);
+  opacity: 1;
+}
+
+.details-accordion__indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-orange);
+}
+
+.details-accordion__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Toggle: minus shown when open, plus shown when closed. */
+.details-accordion__icon--plus { display: none; }
+.details-accordion__item:not([open]) .details-accordion__icon--minus { display: none; }
+.details-accordion__item:not([open]) .details-accordion__icon--plus  { display: block; }
+
+.details-accordion__summary:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+.details-accordion__content {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.56px;
+  color: var(--color-black);
+  max-width: 526px;
+}
+
+.details-accordion__content p {
+  margin: 0;
+}
+
+.details-accordion__subhead {
+  font-weight: 500;
+}
+
+.details-accordion__link {
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+  text-decoration: underline;
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   Upsell carousel — "COMPLETE THE PROTOCOL"
+   ========================================================================== */
+
+.upsell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.upsell__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.upsell__heading {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.upsell__line {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 1px;
+  background: var(--color-black);
+}
+
+.upsell__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.upsell__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.upsell__chevron--bare {
+  border: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.upsell__chevron svg {
+  width: 24px;
+  height: 24px;
+}
+
+.upsell__chevron:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+.upsell__carousel {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 8px;
+}
+
+/* Card layout matches Figma: 164px image + 156px info column. */
+.upsell__card {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.upsell__card-image {
+  width: 164px;
+  height: 164px;
+  flex-shrink: 0;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+
+.upsell__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.upsell__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 156px;
+  justify-content: space-between;
+}
+
+.upsell__card-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 9px;
+  border-radius: 100px;
+  background: var(--color-viridian-light);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.upsell__card-name {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.32px;
+  color: var(--color-black);
+}
+
+.upsell__card-desc {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--color-black);
+}
+
+.upsell__card-rating {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.upsell__card-stars {
+  width: 57px;
+  height: 11px;
+  display: block;
+}
+
+.upsell__card-rating span {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.28px;
+  color: var(--color-black);
+}
+
+.upsell__card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 8px;
+  border: 0.75px solid var(--color-black);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  text-align: center;
+  white-space: nowrap;
+}

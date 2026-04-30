@@ -3,6 +3,7 @@
   --color-black: #000000;
   --color-viridian-light: #dce5df;
   --color-off-white: #f4f4f2;
+  --color-orange: #ef3e23;
 
   /* TODO: PP Neue Montreal + OTT Neuf not yet loaded — DM Sans / Playfair Display render as fallback. */
   --font-sans: 'PP Neue Montreal', 'DM Sans', system-ui, sans-serif;
