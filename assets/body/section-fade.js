@@ -5,7 +5,8 @@
 
 (function () {
   const section = document.querySelector('.science-module');
-  if (!section) return;
+  const target = section?.querySelector('.science-module__copy');
+  if (!section || !target) return;
 
   const FROM = [255, 255, 255]; // #FFFFFF
   const TO   = [244, 244, 242]; // #F4F4F2
@@ -33,7 +34,7 @@
     const r = Math.round(FROM[0] + (TO[0] - FROM[0]) * t);
     const g = Math.round(FROM[1] + (TO[1] - FROM[1]) * t);
     const b = Math.round(FROM[2] + (TO[2] - FROM[2]) * t);
-    section.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
     ticking = false;
   }
