@@ -106,7 +106,7 @@
 
 .product-hero__peptide-logo {
   width: 44px;
-  height: 10px;
+  height: auto;
   display: block;
 }
 
