@@ -75,7 +75,7 @@
 .key-ingredients__list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 24px 0;
   display: flex;
   flex-direction: column;
 }
@@ -160,9 +160,9 @@
   padding-top: 4px;
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.5;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.28px;
   color: var(--color-white);
 }
 
