@@ -86,15 +86,18 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  align-items: flex-end;
 }
 
 /* Carousel container: holds all pairs absolutely-positioned so only the
    active one is visible. The container uses the natural height of the
-   first pair as its layout reference. */
+   first pair as its layout reference. Slightly narrower than the column
+   so the imagery feels more contained. */
 .clinical__carousel {
   position: relative;
-  width: 100%;
+  width: 88%;
+  max-width: 520px;
 }
 
 /* The first pair occupies natural flow so the carousel has a height; the
