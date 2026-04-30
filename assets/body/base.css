@@ -57,6 +57,22 @@
 
 @font-face {
   font-family: 'Test Martina Plantijn';
+  src: url('../TestMartinaPlantijn-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Test Martina Plantijn';
+  src: url('../TestMartinaPlantijn-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Test Martina Plantijn';
   src: url('../TestMartinaPlantijn-LightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
