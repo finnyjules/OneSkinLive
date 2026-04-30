@@ -18,6 +18,8 @@
 }
 
 /* ------- Copy column (left) ------- */
+/* Sticky so the headline + stats stay pinned while the user scrolls
+   through the multiple B/A pairs in the right column. */
 
 .clinical__copy {
   flex: 1 1 0;
@@ -25,6 +27,9 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  position: sticky;
+  top: 80px;
+  align-self: flex-start;
 }
 
 .clinical__headline {
@@ -77,16 +82,23 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  gap: 32px;
+}
+
+/* Each before/after pair lives in its own group with a tighter gap;
+   wider gap (above) separates pairs from each other. */
+.clinical__pair {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  height: 606px;
 }
 
 .clinical__photo {
   margin: 0;
-  flex: 1 1 0;
   position: relative;
   overflow: hidden;
   background: #9bbea9;
+  aspect-ratio: 586 / 298;
 }
 
 .clinical__photo img {
