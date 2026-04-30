@@ -22,12 +22,14 @@
   <link rel="stylesheet" href="assets/body/section-protocol.css">
   <link rel="stylesheet" href="assets/body/section-faqs.css">
   <link rel="stylesheet" href="assets/body/section-lifestyle-footer.css">
+  <link rel="stylesheet" href="assets/body/section-sticky-bar.css">
 
   <script src="assets/body/parallax.js" defer></script>
   <script src="assets/body/fade-in.js" defer></script>
   <script src="assets/body/timeline.js" defer></script>
   <script src="assets/body/clinical-counter.js" defer></script>
   <script src="assets/body/section-fade.js" defer></script>
+  <script src="assets/body/sticky-bar.js" defer></script>
 </head>
 <body>
   <!-- Shared rating-star symbol (used by product hero + upsell cards). -->
@@ -88,6 +90,32 @@
       </div>
     </div>
   </header>
+
+  <!-- ========== STICKY QUICKBUY BAR ========== -->
+  <!-- Hidden by default; reveals once the main purchase-widget CTA scrolls
+       out of view. Two-way synced with the radio group below. -->
+  <div class="sticky-bar" data-sticky-bar>
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__info">
+        <p class="sticky-bar__title">OS-01 BODY MOISTURIZER</p>
+        <p class="sticky-bar__desc">Addresses dry, crepey skin at the cellular level.</p>
+      </div>
+      <div class="sticky-bar__actions">
+        <div class="sticky-bar__frequency" data-sticky-dropdown>
+          <span data-sticky-dropdown-label>2-month delivery</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="sticky-bar__dropdown-menu" data-sticky-dropdown-menu>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="monthly" type="button">Monthly delivery</button>
+            <button class="sticky-bar__dropdown-option sticky-bar__dropdown-option--active" data-sticky-option="bimonthly" type="button">2-month delivery</button>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="onetime" type="button">One-time purchase</button>
+          </div>
+        </div>
+        <button class="sticky-bar__cta" type="button">
+          ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$105</s>&nbsp;&nbsp;<strong>$90</strong>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ========== PRODUCT HERO (Section A) ========== -->
   <!--
