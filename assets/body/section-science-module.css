@@ -41,9 +41,6 @@
   padding: 80px 40px;
   gap: 24px;
   max-width: 526px;
-  /* Off-white background lives only behind the copy column — set by
-     section-fade.js so it can fade in on scroll. */
-  background-color: rgb(255, 255, 255);
 }
 
 .science-module__headline {

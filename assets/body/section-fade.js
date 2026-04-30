@@ -5,8 +5,8 @@
 
 (function () {
   const section = document.querySelector('.science-module');
-  const target = section?.querySelector('.science-module__copy');
-  if (!section || !target) return;
+  if (!section) return;
+  const target = section;
 
   const FROM = [255, 255, 255]; // #FFFFFF
   const TO   = [244, 244, 242]; // #F4F4F2
