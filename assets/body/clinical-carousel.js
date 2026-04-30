@@ -1,6 +1,7 @@
-// Before/after carousel for the clinical section. One pair shown at a
-// time; arrow buttons cycle the active pair. Buttons disable at the ends
-// (no wrap-around).
+// Before/after carousel for the clinical section. All pairs share the
+// same grid cell and slide horizontally — the previous pair slides out
+// to the left while the next slides in from the right. Within each pair,
+// the after photo lags the before photo by a small delay (set in CSS).
 
 (function () {
   const carousel = document.querySelector('[data-clinical-carousel]');
@@ -15,7 +16,10 @@
 
   function render() {
     pairs.forEach((p, i) => {
-      p.classList.toggle('clinical__pair--active', i === index);
+      p.classList.remove('clinical__pair--active', 'clinical__pair--prev');
+      if (i < index) p.classList.add('clinical__pair--prev');
+      else if (i === index) p.classList.add('clinical__pair--active');
+      // else: default state (translated to right, off-stage)
     });
     if (indicator) indicator.textContent = `${index + 1} / ${pairs.length}`;
     prev.disabled = index === 0;
