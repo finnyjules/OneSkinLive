@@ -11,7 +11,6 @@
     '.timeline__step',
     '.clinical__headline',
     '.clinical__stat',
-    '.clinical__photo',
     '.science-module__media',
     '.science-module__headline',
     '.science-module__body',
