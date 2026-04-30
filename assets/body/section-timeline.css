@@ -14,10 +14,31 @@
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 48px 48px 96px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.timeline__copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 60px;
+}
+
+.timeline__media {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #000;
+}
+
+.timeline__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .timeline__headline {
