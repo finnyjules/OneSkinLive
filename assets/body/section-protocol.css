@@ -94,6 +94,9 @@
   line-height: 1.4;
   letter-spacing: 0.28px;
   color: var(--color-black);
+  /* Reserve room for two lines so single-line names stay vertically aligned
+     with multi-line ones across all cards. */
+  min-height: 2.8em;
 }
 
 .protocol__card-price {
