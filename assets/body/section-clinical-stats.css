@@ -115,12 +115,9 @@
 
 .clinical__pair--active { pointer-events: auto; }
 
-/* Each photo slides individually. JS sets the transform inline so the
-   transition fires reliably; CSS only declares the transition timing.
-   Stagger between before/after comes from JS-applied delay. */
-.clinical__photo {
-  transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Photo transforms are driven by clinical-carousel.js via the Web
+   Animations API — no CSS transition declared here so the animations
+   take exclusive control. */
 
 /* Nav row */
 
