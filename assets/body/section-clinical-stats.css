@@ -86,15 +86,92 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
-/* Each before/after pair lives in its own group with a tighter gap;
-   wider gap (above) separates pairs from each other. */
+/* Carousel container: holds all pairs absolutely-positioned so only the
+   active one is visible. The container uses the natural height of the
+   first pair as its layout reference. */
+.clinical__carousel {
+  position: relative;
+  width: 100%;
+}
+
+/* The first pair occupies natural flow so the carousel has a height; the
+   rest are positioned absolutely on top. */
 .clinical__pair {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+.clinical__carousel .clinical__pair + .clinical__pair {
+  position: absolute;
+  inset: 0;
+}
+
+.clinical__pair--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Nav row */
+
+.clinical__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.clinical__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.clinical__nav-btn:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.clinical__nav-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.clinical__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.clinical__nav-btn:disabled:hover {
+  background: transparent;
+  color: var(--color-black);
+}
+
+.clinical__nav-indicator {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.28px;
+  color: var(--color-black);
+  min-width: 48px;
+  text-align: center;
 }
 
 .clinical__photo {
