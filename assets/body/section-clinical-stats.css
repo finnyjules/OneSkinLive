@@ -54,7 +54,7 @@
 
 .clinical__stat-number {
   margin: 0;
-  font-family: var(--font-serif);
+  font-family: var(--font-display-italic);
   font-weight: 300;
   font-size: 64px;
   line-height: 1.15;
