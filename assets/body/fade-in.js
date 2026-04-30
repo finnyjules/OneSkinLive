@@ -20,6 +20,8 @@
     '.faqs__item',
     '.upsell__header',
     '.upsell__card',
+    '.protocol__headline',
+    '.protocol__card',
     '.lifestyle__card',
     '.lifestyle__stat'
   ];
@@ -34,7 +36,7 @@
     el.classList.add('fade-in');
     const parent = el.parentElement;
     const idx = groupCount.get(parent) || 0;
-    if (idx > 0 && idx <= 6) {
+    if (idx > 0 && idx <= 10) {
       el.style.transitionDelay = `${idx * 70}ms`;
     }
     groupCount.set(parent, idx + 1);
