@@ -46,6 +46,21 @@
 .faqs__item {
   border-bottom: 0.5px solid var(--color-black);
   padding: 0 0 16px;
+  interpolate-size: allow-keywords;
+}
+
+/* Animate the answer reveal — see section-details-accordion.css for the
+   ::details-content explanation. */
+.faqs__item::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    content-visibility 320ms allow-discrete;
+}
+
+.faqs__item[open]::details-content {
+  block-size: auto;
 }
 
 .faqs__summary {
