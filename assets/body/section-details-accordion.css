@@ -257,6 +257,12 @@
   white-space: nowrap;
 }
 
+/* Reserves the badge row's vertical space on cards without a badge so
+   sibling content (name, desc, etc.) aligns across cards. */
+.upsell__card-badge--placeholder {
+  visibility: hidden;
+}
+
 .upsell__card-name {
   margin: 0;
   font-family: var(--font-sans);
