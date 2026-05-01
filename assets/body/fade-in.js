@@ -9,6 +9,7 @@
     '.hero-benefits__list',
     '.timeline__headline',
     '.timeline__step',
+    '.timeline__step-list li',
     '.clinical__headline',
     '.clinical__stat',
     '.science-module__media',
