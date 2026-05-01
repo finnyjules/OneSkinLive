@@ -265,6 +265,9 @@
   line-height: 1.2;
   letter-spacing: 0.32px;
   color: var(--color-black);
+  /* Reserve room for two lines so single-line names line up with
+     multi-line ones across cards. */
+  min-height: 2.4em;
 }
 
 .upsell__card-desc {
