@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Module 01 — Welcome + Status
+   ========================================================================== */
+
+.welcome {
+  padding: 8px 0 0;
+}
+
+.welcome__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.welcome__name {
+  font-family: var(--font-display-italic);
+  font-weight: 400;
+  font-size: clamp(28px, 5.6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.welcome__meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-ink-3);
+  margin-top: 4px;
+}
+
+.welcome__sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-ink-3);
+  display: inline-block;
+}
+
+/* State visibility is handled in state-toggle.js via inline display so it
+   doesn't fight with each module's own display rules (flex/grid). Modules
+   only need to mark the conditional element with [data-state-target]. */

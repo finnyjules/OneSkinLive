@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Order History page
+   ========================================================================== */
+
+.account-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.account-orders__filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0;
+}
+
+.account-orders__filter {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-ink-2);
+  border-radius: 0;
+  position: relative;
+  top: 1px;
+  transition: color 0.18s ease;
+}
+
+.account-orders__filter:hover { color: var(--color-ink); }
+
+.account-orders__filter[aria-pressed="true"] {
+  color: var(--color-ink);
+  font-weight: 500;
+  border-bottom-color: var(--color-ink);
+}
+
+.account-orders__filter-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  background: var(--color-cream);
+  color: var(--color-ink-3);
+  font-weight: 500;
+}
+
+.account-orders__filter[aria-pressed="true"] .account-orders__filter-count {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+/* --- List + row --- */
+.account-orders__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.account-orders__row {
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px 22px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+}
+
+@media (max-width: 1023px) {
+  .account-orders__row { padding: 18px; }
+}
+
+.account-orders__row.is-hidden { display: none; }
+
+.account-orders__row-header {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+.account-orders__row-meta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-ink-2);
+}
+
+.account-orders__row-meta strong {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.account-orders__row-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-ink-3);
+  display: inline-block;
+}
+
+.account-orders__row-total {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* --- Items inside the row --- */
+.account-orders__row-body {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 14px;
+}
+
+.account-orders__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.account-orders__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 1 auto;
+}
+
+.account-orders__item-thumb {
+  width: 56px;
+  height: 56px;
+  background: var(--color-cream);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.account-orders__item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.account-orders__item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.account-orders__item-name {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.account-orders__item-detail { color: var(--color-ink-3); font-size: 12px; }
+
+/* --- Status pill --- */
+.account-orders__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-cream);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.account-orders__status--delivered { background: var(--color-viridian-soft); color: var(--color-viridian); }
+.account-orders__status--transit { background: #fff4e8; color: #b85c14; }
+.account-orders__status--processing { background: #f4f1ff; color: #5b3aa9; }
+.account-orders__status--cancelled { background: #fdecec; color: #b32424; }
+
+.account-orders__status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+
+/* --- Skio "convert to subscription" inline action (OTP only). --- */
+.account-orders__skio-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-viridian-soft);
+  font-size: 13px;
+  color: var(--color-viridian);
+}
+
+.account-orders__skio-action svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.account-orders__skio-action a {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .account-orders__skio-action {
+    flex-wrap: wrap;
+  }
+  .account-orders__skio-action a { margin-left: 0; }
+}
+
+/* --- Row footer (actions). --- */
+.account-orders__row-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.account-orders__row-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-line);
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.account-orders__row-link:hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+/* --- Empty state --- */
+.account-orders__empty {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--color-ink-2);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-lg);
+  display: none;
+}
+
+.account-orders__empty.is-shown { display: block; }

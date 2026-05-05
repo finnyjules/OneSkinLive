@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Module 03 — New Drop hero
+   Content-managed slot. The inner .drop__content block is the A/B swap
+   point — keep its outer layout stable when iterating creative.
+   ========================================================================== */
+
+.drop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 0;
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  align-items: stretch;
+}
+
+@media (max-width: 1023px) {
+  .drop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.drop__media {
+  background: var(--color-cream);
+  overflow: hidden;
+  position: relative;
+  min-height: 480px;
+}
+
+.drop__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.drop__media-tag {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-white);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.drop__media-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-orange);
+}
+
+@media (max-width: 1023px) {
+  .drop__media { min-height: 360px; }
+}
+
+.drop__content {
+  background: var(--color-white);
+  padding: 48px 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .drop__content { padding: 40px 32px 40px; }
+}
+
+@media (max-width: 600px) {
+  .drop__content { padding: 32px 24px 36px; }
+}
+
+.drop__eyebrow {
+  font-family: var(--font-display-italic);
+  font-size: 14px;
+  color: var(--color-viridian);
+}
+
+.drop__title {
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.drop__tagline {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-ink-2);
+  max-width: 42ch;
+  margin-bottom: 4px;
+}
+
+.drop__cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.drop__cta-block .btn { align-self: flex-start; }
+
+.drop__divider {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--color-ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 8px 0 4px;
+}
+
+.drop__divider::before,
+.drop__divider::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background: var(--color-line);
+  width: 24px;
+}
+
+.drop__sms { display: flex; flex-direction: column; gap: 10px; }
+
+.drop__sms-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.drop__sms-input-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.drop__sms-input {
+  flex: 1 1 200px;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-ink);
+  background: var(--color-white);
+  transition: border-color 0.18s ease;
+}
+
+.drop__sms-input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+}
+
+.drop__sms-input.is-error {
+  border-color: var(--color-orange);
+}
+
+.drop__sms-fineprint {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-ink-3);
+  max-width: 48ch;
+}
+
+.drop__sms.is-success {
+  background: var(--color-viridian-soft);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  align-items: flex-start;
+}
+
+.drop__sms.is-success .drop__sms-input-row,
+.drop__sms.is-success .drop__sms-label,
+.drop__sms.is-success .drop__sms-fineprint {
+  display: none;
+}
+
+.drop__sms-success {
+  display: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-viridian);
+  align-items: center;
+  gap: 8px;
+}
+
+.drop__sms.is-success .drop__sms-success { display: inline-flex; }

@@ -1,0 +1,144 @@
+/* --- Font faces ---
+   Files live in /assets (sibling to /assets/account), so paths are relative.
+   Mirrors /assets/body/base.css so the Account experience inherits the same
+   typographic feel as the body PDP without re-declaring file names elsewhere. */
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('../PPNeueMontreal-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('../PPNeueMontreal-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('../PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('../PPNeueMontreal-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OTT Neuf';
+  src: url('../OTT_Neuf-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OTT Neuf';
+  src: url('../OTT_Neuf-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-ink: #161614;
+  --color-ink-2: #5b5a55;
+  --color-ink-3: #8b8a85;
+  --color-line: #e6e4dc;
+  --color-line-soft: #efece4;
+  --color-cream: #f4f4f2;
+  --color-cream-2: #faf9f5;
+  --color-viridian: #246048;
+  --color-viridian-light: #dce5df;
+  --color-viridian-soft: #ecf2ee;
+  --color-mint: #cfede1;
+  --color-orange: #ef3e23;
+
+  --font-sans: 'PP Neue Montreal', 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'OTT Neuf', Georgia, 'Times New Roman', serif;
+  /* Display accent — PP Neue Montreal for now. Was Test Martina Plantijn;
+     swap back when a replacement display face is chosen. */
+  --font-display-italic: var(--font-sans);
+
+  --container-max: 1440px;
+  --container-padding: 48px;
+  --container-padding-mobile: 20px;
+
+  --header-height: 60px;
+  --account-nav-width: 240px;
+  --account-nav-mobile-height: 56px;
+  --account-content-max: 880px;
+  --module-gap: 96px;
+  --module-gap-mobile: 64px;
+
+  /* Account experience runs square — no rounded corners. The variables
+     stay so existing references keep resolving; the values are all 0. */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-white);
+  line-height: 1.35;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; cursor: pointer; border: none; background: none; padding: 0; }
+ul, ol { list-style: none; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Fade-in on scroll (mirrors /assets/body/base.css convention). --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 700ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Account experience — shell, header, sticky nav, footer
+   ========================================================================== */
+
+/* Header styles come from /assets/body/section-header.css (imported on each
+   account page) so the global navbar matches the rest of the storefront.
+   Below: mobile-only fixes for the account surface — the storefront header
+   isn't responsive on its own and the wordmark + nav links collide under
+   ~600px without these. */
+@media (max-width: 600px) {
+  .header { padding: 0 var(--container-padding-mobile); }
+  /* Drop the secondary nav links so the centered wordmark has breathing room
+     without the Mission/Learn links pushing into it. Shop + Account stay. */
+  .header__nav .header__nav-link:nth-child(2),
+  .header__nav .header__nav-link:nth-child(3) { display: none; }
+  .header__actions { gap: 14px; }
+}
+
+/* Below ~440px, even Shop and the Account link crowd the centered wordmark.
+   Hide the text labels and let the cart icon carry the right side; the
+   account-nav rail below is the primary entry to logged-in pages. */
+@media (max-width: 440px) {
+  .header__nav .header__nav-link:nth-child(1) { display: none; }
+  .header__actions .header__nav-link { display: none; }
+}
+
+/* --- Account shell — two-column on desktop, stacked on mobile. --- */
+.account-shell {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: var(--account-nav-width) 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 1023px) {
+  .account-shell {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 var(--container-padding-mobile);
+  }
+}
+
+/* --- Account left rail / mobile sticky bar --- */
+.account-nav {
+  position: sticky;
+  top: var(--header-height);
+  align-self: start;
+  padding: 40px 0 64px;
+}
+
+.account-nav__mobile-trigger {
+  display: none;
+}
+
+.account-nav__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.account-nav__heading {
+  font-family: var(--font-display-italic);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-2);
+  text-transform: uppercase;
+}
+
+.account-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.account-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 10px 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-ink-2);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.account-nav__item:hover { color: var(--color-ink); }
+
+.account-nav__item.is-active {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+/* Active marker: a small dot to the left of the active item. */
+.account-nav__item.is-active::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-viridian);
+}
+
+.account-nav__external-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.account-nav__signout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-ink-3);
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.account-nav__signout:hover { color: var(--color-ink); }
+
+@media (max-width: 1023px) {
+  .account-nav {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 90;
+    padding: 0;
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    margin-left: calc(var(--container-padding-mobile) * -1);
+    margin-right: calc(var(--container-padding-mobile) * -1);
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
+
+  .account-nav__mobile-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: var(--account-nav-mobile-height);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-ink);
+    background: none;
+    border: none;
+    text-align: left;
+  }
+
+  .account-nav__mobile-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .account-nav__mobile-chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.25s ease;
+    color: var(--color-ink-2);
+  }
+
+  .account-nav.is-open .account-nav__mobile-chevron { transform: rotate(180deg); }
+
+  .account-nav__panel {
+    display: none;
+    padding: 8px 0 24px;
+    gap: 16px;
+  }
+
+  .account-nav.is-open .account-nav__panel { display: flex; }
+
+  .account-nav__heading { display: none; }
+
+  .account-nav__item {
+    padding: 12px 0;
+    font-size: 16px;
+  }
+
+  .account-nav__item.is-active::before {
+    left: -12px;
+  }
+
+  .account-nav__signout { padding: 12px 0 0; }
+}
+
+/* --- Account main content --- */
+.account-main {
+  padding: 56px 0 120px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--module-gap);
+  min-width: 0; /* allows children with overflow (e.g. horizontal rails) to size */
+}
+
+@media (max-width: 1023px) {
+  .account-main {
+    padding: 32px 0 96px;
+    gap: var(--module-gap-mobile);
+  }
+}
+
+/* --- Page header (e.g. "Order history", "Refer a friend") --- */
+.account-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-page-header__eyebrow {
+  font-family: var(--font-display-italic);
+  font-size: 14px;
+  color: var(--color-ink-2);
+}
+
+.account-page-header__title {
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.account-page-header__subtitle {
+  font-size: 16px;
+  color: var(--color-ink-2);
+  max-width: 56ch;
+}
+
+@media (max-width: 1023px) {
+  .account-page-header__title { font-size: 34px; }
+}
+
+/* --- Reusable button styles for the account experience. --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.btn--primary:hover { opacity: 0.86; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.btn--ghost:hover { background: var(--color-ink); color: var(--color-white); }
+
+.btn--small { height: 40px; padding: 0 16px; font-size: 13px; }
+
+.btn--block { width: 100%; }
+
+/* --- Helpers --- */
+.account-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.account-pill--active {
+  background: var(--color-viridian-soft);
+  color: var(--color-viridian);
+}
+
+.account-pill--active::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-viridian);
+}
+
+/* --- Dev state switcher (review-only). --- */
+.state-switcher {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 8px 14px;
+  background: var(--color-ink);
+  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  z-index: 150;
+  box-shadow: var(--shadow-card);
+}
+
+.state-switcher__label {
+  font-family: var(--font-display-italic);
+  opacity: 0.7;
+}
+
+.state-switcher__options {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px;
+  border-radius: var(--radius-pill);
+}
+
+.state-switcher__option {
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  color: rgba(255, 255, 255, 0.75);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.state-switcher__option:hover { color: var(--color-white); }
+
+.state-switcher__option.is-active {
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+
+@media (max-width: 600px) {
+  .state-switcher { left: 12px; right: 12px; bottom: 12px; justify-content: center; }
+}
+
+/* --- Toast (used by Module 05 + Referral page after copy). --- */
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 16px);
+  background: var(--color-ink);
+  color: var(--color-white);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

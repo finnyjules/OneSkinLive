@@ -82,11 +82,24 @@
 }
 
 .header__cart {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: inherit;
   color: var(--color-black);
+}
+
+/* Small orange indicator inside the bag interior — signals items present. */
+.header__cart::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 9px;
+  width: 6px;
+  height: 6px;
+  background: #ef3e23;
+  pointer-events: none;
 }
 
 .header__cart-icon {

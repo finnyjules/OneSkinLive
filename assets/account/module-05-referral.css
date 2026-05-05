@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Module 05 — Referral preview
+   ========================================================================== */
+
+.referral-preview {
+  background:
+    radial-gradient(circle at 100% 0%, var(--color-viridian-soft) 0%, transparent 60%),
+    var(--color-cream-2);
+  border-radius: var(--radius-lg);
+  padding: 40px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .referral-preview {
+    grid-template-columns: 1fr;
+    padding: 32px 28px;
+    gap: 24px;
+  }
+}
+
+.referral-preview__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.referral-preview__eyebrow {
+  font-family: var(--font-display-italic);
+  font-size: 14px;
+  color: var(--color-viridian);
+}
+
+.referral-preview__title {
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.referral-preview__title em {
+  font-family: var(--font-display-italic);
+  color: var(--color-viridian);
+}
+
+@media (max-width: 1023px) {
+  .referral-preview__title { font-size: 26px; }
+}
+
+.referral-preview__body {
+  font-size: 14px;
+  color: var(--color-ink-2);
+  max-width: 44ch;
+  line-height: 1.55;
+}
+
+.referral-preview__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  align-self: flex-start;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  margin-top: 8px;
+  transition: opacity 0.18s ease;
+}
+
+.referral-preview__link:hover { opacity: 0.7; }
+
+/* --- Code chip card --- */
+.referral-preview__code {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 18px 18px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-card);
+}
+
+.referral-preview__code-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+.referral-preview__code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.referral-preview__code-value {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+}
+
+.referral-preview__copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-white);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.referral-preview__copy-btn:hover { background: var(--color-ink); color: var(--color-white); }
+
+.referral-preview__copy-btn svg { width: 12px; height: 12px; }
+
+.referral-preview__copy-btn.is-copied {
+  background: var(--color-viridian);
+  border-color: var(--color-viridian);
+  color: var(--color-white);
+}

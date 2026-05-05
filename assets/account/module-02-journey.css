@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Module 02 — 12-week journey grid
+   A 4×3 grid of weekly cells. Past + future weeks render as empty placeholders;
+   the current week (Week 3 here) holds the Upload photo action.
+   ========================================================================== */
+
+.journey { display: flex; flex-direction: column; gap: 32px; }
+
+.journey__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 56ch;
+}
+
+.journey__eyebrow {
+  font-family: var(--font-display-italic);
+  font-size: 14px;
+  color: var(--color-viridian);
+  letter-spacing: 0.01em;
+}
+
+.journey__title {
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
+.journey__subtitle {
+  font-size: 15px;
+  color: var(--color-ink-2);
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+@media (max-width: 1023px) {
+  .journey__title { font-size: 26px; }
+}
+
+/* --- Grid --- */
+.journey__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 700px) {
+  .journey__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+}
+
+@media (max-width: 440px) {
+  .journey__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --- Cell --- */
+.journey__cell {
+  aspect-ratio: 1 / 1;
+  background: var(--color-cream);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  transition: background 0.18s ease;
+}
+
+.journey__cell-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+/* Past weeks: empty placeholder, slightly subdued. */
+.journey__cell--past .journey__cell-label { color: var(--color-ink-2); }
+
+/* Future weeks: dimmed to read as not-yet-active. */
+.journey__cell--future {
+  background: var(--color-cream-2);
+  opacity: 0.55;
+}
+
+/* Current week: viridian accent + visible upload action. */
+.journey__cell--current {
+  background: var(--color-viridian-soft);
+  outline: 1px solid var(--color-viridian);
+  outline-offset: -1px;
+}
+
+.journey__cell--current .journey__cell-label { color: var(--color-viridian); }
+
+/* --- Upload action (lives only inside the current cell) --- */
+.journey__upload {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-viridian);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.18s ease;
+}
+
+.journey__upload:hover { color: var(--color-ink); }
+
+.journey__upload-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.journey__upload:hover .journey__upload-icon {
+  background: var(--color-viridian);
+  color: var(--color-white);
+  border-color: var(--color-viridian);
+}
+
+.journey__upload-icon svg { width: 14px; height: 14px; }
+
+/* Reward callout pinned to the bottom of the active week cell. */
+.journey__cell-reward {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-viridian);
+}
+
+/* When a cell has an uploaded photo, the photo fills the cell behind the
+   label. Wired up as needed; JS toggles `.journey__cell--filled` and sets
+   the background-image. */
+.journey__cell--filled {
+  background-size: cover;
+  background-position: center;
+}
+
+.journey__cell--filled .journey__cell-label {
+  color: var(--color-white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,269 @@
+/* ==========================================================================
+   Subscription status section
+   - Subscriber (body / hair): "Active subscriptions" heading + a list of
+     compact cards, each showing frequency, price, next ship date, and
+     inline actions (Get now / Skip / View details).
+   - OTP: full-bleed upgrade hero with benefit bullets and primary CTA.
+   ========================================================================== */
+
+.subscription__heading {
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--color-ink);
+}
+
+@media (max-width: 1023px) {
+  .subscription__heading { font-size: 22px; }
+}
+
+.subscription__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ============= Active subscription card ============= */
+.subscription__card {
+  background: var(--color-viridian-soft);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .subscription__card { padding: 22px 20px 20px; }
+}
+
+.subscription__card-thumb {
+  width: 116px;
+  height: 116px;
+  background: var(--color-cream);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.subscription__card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.subscription__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subscription__card-frequency {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+@media (max-width: 600px) {
+  .subscription__card-frequency { font-size: 24px; }
+}
+
+.subscription__card-meta {
+  font-size: 15px;
+  color: var(--color-ink-2);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.subscription__card-meta strong {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.subscription__card-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-ink-3);
+  display: inline-block;
+}
+
+.subscription__card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.subscription__card-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Pill action buttons — compact, on-card. */
+.subscription__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+  white-space: nowrap;
+}
+
+.subscription__btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.subscription__btn--primary {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.subscription__btn--primary:hover { opacity: 0.86; }
+
+.subscription__btn--soft {
+  background: var(--color-mint);
+  color: var(--color-viridian);
+}
+
+.subscription__btn--soft:hover { background: var(--color-viridian); color: var(--color-white); }
+
+.subscription__card-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-viridian);
+  transition: gap 0.18s ease;
+}
+
+.subscription__card-details:hover { gap: 12px; }
+
+.subscription__card-details svg { width: 14px; height: 14px; transition: transform 0.18s ease; }
+
+@media (max-width: 600px) {
+  .subscription__card-actions { gap: 12px; }
+  .subscription__card-details { width: 100%; justify-content: flex-end; }
+}
+
+/* ============= OTP upgrade ============= */
+.subscription__upgrade {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  background: var(--color-cream-2);
+  align-items: stretch;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .subscription__upgrade { grid-template-columns: 1fr; }
+}
+
+.subscription__upgrade-media {
+  background: var(--color-cream);
+  overflow: hidden;
+  position: relative;
+  min-height: 360px;
+}
+
+.subscription__upgrade-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .subscription__upgrade-media { min-height: 280px; }
+}
+
+.subscription__upgrade-content {
+  padding: 48px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .subscription__upgrade-content { padding: 36px 28px 40px; }
+}
+
+.subscription__upgrade-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display-italic);
+  font-size: 14px;
+  color: var(--color-viridian);
+}
+
+.subscription__upgrade-title {
+  font-size: 38px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+@media (max-width: 1023px) {
+  .subscription__upgrade-title { font-size: 30px; }
+}
+
+.subscription__upgrade-body {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-ink-2);
+  max-width: 44ch;
+}
+
+.subscription__upgrade-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 6px;
+}
+
+.subscription__upgrade-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-ink);
+}
+
+.subscription__upgrade-list svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--color-viridian);
+}
+
+.subscription__upgrade-content .btn { align-self: flex-start; margin-top: 4px; }
+
+.subscription__upgrade-fineprint {
+  font-size: 12px;
+  color: var(--color-ink-3);
+  margin-top: 4px;
+}
