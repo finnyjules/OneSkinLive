@@ -18,12 +18,25 @@
   gap: 16px;
   width: 100%;
   padding-bottom: 32px;
-  --cta-price: 90;
+  /* Prices are overridable per page via inline style on .purchase-widget.
+     --cta-price-sub / --cta-price-onetime are the two-tier defaults (used by
+     body, face, lipmask). Pages that need per-option prices (hair: 1-month,
+     3-month, 6-month) can also override --cta-price-monthly /
+     --cta-price-bimonthly directly. */
+  --cta-price-sub: 90;
+  --cta-price-onetime: 105;
+  --cta-price-monthly: var(--cta-price-sub);
+  --cta-price-bimonthly: var(--cta-price-sub);
+  --cta-price: var(--cta-price-monthly);
   transition: --cta-price 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.purchase-widget:has(.purchase-widget__radio[value="bimonthly"]:checked) {
+  --cta-price: var(--cta-price-bimonthly);
+}
+
 .purchase-widget:has(.purchase-widget__radio[value="onetime"]:checked) {
-  --cta-price: 105;
+  --cta-price: var(--cta-price-onetime);
 }
 
 /* Visually-hidden helper (used for the fieldset legend). */

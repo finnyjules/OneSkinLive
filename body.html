@@ -31,6 +31,58 @@
   <script src="assets/body/clinical-carousel.js" defer></script>
   <script src="assets/body/section-fade.js" defer></script>
   <script src="assets/body/sticky-bar.js" defer></script>
+
+  <style>
+    /* Body PDP: bordered STARTER SET label between adjective pills and benefits
+       bullets. Body has no refill variant, so this is a single static label
+       (not a toggle like face/lipmask). */
+    .product-hero__variant {
+      display: flex;
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+    .product-hero__variant-option {
+      display: flex;
+      flex-direction: column;
+      padding: 5px 8px;
+      border-style: solid;
+      border-color: var(--color-black, #000);
+      border-width: 0.75px;
+    }
+    .product-hero__variant-label {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.28px;
+      color: var(--color-black, #000);
+    }
+    .product-hero__variant-sub {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0.24px;
+      color: var(--color-black, #000);
+    }
+
+    /* Body PDP: "Clinically validated" pill on the Week 12 timeline step. */
+    .timeline__step-pill {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+      padding: 2px 12px;
+      border: 0.5px solid #ef3e23;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 1.25;
+      letter-spacing: 0.2px;
+      color: #ef3e23;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body>
   <!-- Shared rating-star symbol (used by product hero + upsell cards). -->
@@ -95,7 +147,7 @@
   <!-- ========== STICKY QUICKBUY BAR ========== -->
   <!-- Hidden by default; reveals once the main purchase-widget CTA scrolls
        out of view. Two-way synced with the radio group below. -->
-  <div class="sticky-bar" data-sticky-bar>
+  <div class="sticky-bar" data-sticky-bar data-price-sub="89" data-price-onetime="105">
     <div class="sticky-bar__inner">
       <div class="sticky-bar__info">
         <p class="sticky-bar__title">OS-01 BODY MOISTURIZER</p>
@@ -112,7 +164,7 @@
           </div>
         </div>
         <button class="sticky-bar__cta" type="button">
-          ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$105</s>&nbsp;&nbsp;<strong>$90</strong>
+          ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$105</s>&nbsp;&nbsp;<strong>$89</strong>
         </button>
       </div>
     </div>
@@ -131,21 +183,32 @@
       <!-- Sticky: pins below the 60px header until the right column scrolls past. -->
       <div class="product-hero__gallery">
         <figure class="product-hero__image-main">
-          <!-- Foreground product image; Figma also layers a blurred imgImage.png behind it. -->
-          <img src="assets/images/body/imgImage1.png" alt="OS-01 BODY MOISTURIZER product bottle" loading="eager" width="613" height="613">
+          <img src="assets/body/body_1.png" alt="OS-01 BODY MOISTURIZER product bottle" loading="eager" width="613" height="613">
         </figure>
         <div class="product-hero__thumbs">
           <figure class="product-hero__thumb">
-            <img src="assets/images/body/imgImage63.png" alt="Product detail 1" loading="lazy" width="304" height="304">
+            <img src="assets/body/body_2.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
           </figure>
           <figure class="product-hero__thumb">
-            <img src="assets/images/body/imgImage64.png" alt="Product detail 2" loading="lazy" width="304" height="304">
+            <img src="assets/body/body_3.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
           </figure>
           <figure class="product-hero__thumb">
-            <img src="assets/images/body/imgImage65.png" alt="Product detail 3" loading="lazy" width="304" height="304">
+            <img src="assets/body/body_4.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
           </figure>
           <figure class="product-hero__thumb">
-            <img src="assets/images/body/imgImage66.png" alt="Product detail 4" loading="lazy" width="304" height="304">
+            <img src="assets/body/body_5.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_6.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_7.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_8.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_9.png" alt="OS-01 BODY MOISTURIZER product detail" loading="lazy" width="304" height="304">
           </figure>
         </div>
         <!-- Best Seller badge — Figma node 253:5673. Lives inside the gallery so
@@ -180,7 +243,7 @@
           <div class="product-hero__sub-row">
             <!-- A2 — One-line description (50 chars max). -->
             <p class="product-hero__description">Addresses dry, crepey skin at the cellular level.</p>
-            <p class="product-hero__review-count">4,110 reviews</p>
+            <p class="product-hero__review-count">3,383 reviews</p>
           </div>
         </div>
 
@@ -191,7 +254,12 @@
           <li class="product-hero__adjective">Fragrance-free</li>
         </ul>
 
-        <p class="product-hero__volume">250 mL / 70 uses per bottle</p>
+        <div class="product-hero__variant" aria-label="Bottle">
+          <span class="product-hero__variant-option">
+            <span class="product-hero__variant-label">STARTER SET</span>
+            <span class="product-hero__variant-sub">250 mL / 70 uses per bottle</span>
+          </span>
+        </div>
 
         <!-- A4 — Benefits one-liners (1 sentence per benefit). -->
         <ul class="product-hero__benefits">
@@ -208,7 +276,7 @@
           (off-white for unselected, viridian for the recommended one) to match
           the Figma frame.
         -->
-        <section class="purchase-widget" data-section-id="purchase-widget" aria-label="Purchase options">
+        <section class="purchase-widget" data-section-id="purchase-widget" aria-label="Purchase options" style="--cta-price-sub: 89;">
           <fieldset class="purchase-widget__options">
             <legend class="purchase-widget__visually-hidden">Subscription frequency</legend>
 
@@ -244,7 +312,7 @@
               </span>
               <span class="purchase-widget__price">
                 <span class="purchase-widget__price-strike">$105</span>
-                <span class="purchase-widget__price-final">$90</span>
+                <span class="purchase-widget__price-final">$89</span>
               </span>
             </label>
 
@@ -284,7 +352,7 @@
               </span>
               <span class="purchase-widget__price">
                 <span class="purchase-widget__price-strike">$105</span>
-                <span class="purchase-widget__price-final">$90</span>
+                <span class="purchase-widget__price-final">$89</span>
               </span>
             </label>
 
@@ -425,12 +493,12 @@
 
               <article class="upsell__card">
                 <div class="upsell__card-image">
-                  <img src="assets/body/prod_facespf.png" alt="OS-01 FACE SPF" loading="lazy">
+                  <img src="assets/body/prod_prep.png" alt="PREP Cleanser" loading="lazy">
                 </div>
                 <div class="upsell__card-info">
                   <span class="upsell__card-badge upsell__card-badge--placeholder" aria-hidden="true">&nbsp;</span>
-                  <h3 class="upsell__card-name">OS-01 FACE SPF</h3>
-                  <p class="upsell__card-desc">Daily SPF designed to protect and repair aging skin.</p>
+                  <h3 class="upsell__card-name">PREP Cleanser</h3>
+                  <p class="upsell__card-desc">Gently cleanse and prime for the rest of your routine.</p>
                   <div class="upsell__card-rating">
                     <svg class="upsell__card-stars" viewBox="0 0 57 11" width="57" height="11" role="img" aria-label="4.7 out of 5 stars">
                       <use href="#rating-star" x="0" width="11" height="11"/>
@@ -534,7 +602,7 @@
           </ul>
         </li>
         <li class="timeline__step">
-          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 12:</span><br>Stronger skin, stronger body</h3>
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 12:</span><br>Stronger skin, stronger body <span class="timeline__step-pill">Clinically validated</span></h3>
           <ul class="timeline__step-list">
             <li>Up to +41% increase in barrier strength&sup1;</li>
             <li>Reduced systemic inflammation marker (IL-8)&sup3;</li>
@@ -993,10 +1061,10 @@
     </div>
   </section>
 
-  <!-- ========== REVIEWS — "What BODY users report" ========== -->
+  <!-- ========== REVIEWS — "From our community" ========== -->
   <section class="reviews" data-section-id="reviews" aria-label="Customer reviews">
     <div class="reviews__inner">
-      <h2 class="reviews__headline">What BODY users report</h2>
+      <h2 class="reviews__headline">From our community</h2>
 
       <!-- Photo gallery with the center photo elevated. -->
       <div class="reviews__gallery" aria-hidden="true">
@@ -1026,7 +1094,7 @@
               <polygon points="6,0 7.4,3.8 11.4,3.8 8.2,6.4 9.4,10.5 6,8 2.6,10.5 3.8,6.4 0.6,3.8 4.6,3.8" fill="currentColor"/>
             </svg>
           </div>
-          <p class="reviews__stat-label">Based on 4,110 reviews</p>
+          <p class="reviews__stat-label">Based on 3,383 reviews</p>
         </div>
         <div class="reviews__stat">
           <span class="reviews__stat-number">96%</span>

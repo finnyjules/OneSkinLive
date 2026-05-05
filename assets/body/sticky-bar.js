@@ -48,6 +48,11 @@
   });
 
   // ---- Label + price helpers ----
+  // Two-tier price fallback (used by body / face / lipmask): one sub price
+  // for monthly+bimonthly, one onetime price.
+  const priceSub = bar.dataset.priceSub || '90';
+  const priceOnetime = bar.dataset.priceOnetime || '105';
+  // Default labels when an option button has no text (legacy fallback).
   const TYPE_LABEL = {
     monthly: 'Monthly delivery',
     bimonthly: '2-month delivery',
@@ -56,10 +61,25 @@
 
   function setCtaPrice(type) {
     if (!cta) return;
+    // If the option button declares its own price, use that directly. Lets
+    // pages with three tiers (e.g. hair: 1/3/6-month supply) drive the CTA
+    // without sticking to the sub/onetime two-tier model.
+    const optionButton = bar.querySelector(`[data-sticky-option="${type}"]`);
+    const optionPrice = optionButton?.getAttribute('data-option-price');
+    const optionStrike = optionButton?.getAttribute('data-option-strike');
+    if (optionPrice) {
+      if (optionStrike) {
+        cta.innerHTML = `ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$${optionStrike}</s>&nbsp;&nbsp;<strong>$${optionPrice}</strong>`;
+      } else {
+        cta.innerHTML = `ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<strong>$${optionPrice}</strong>`;
+      }
+      return;
+    }
+    // Two-tier fallback.
     if (type === 'onetime') {
-      cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<strong>$105</strong>';
+      cta.innerHTML = `ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<strong>$${priceOnetime}</strong>`;
     } else {
-      cta.innerHTML = 'ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$105</s>&nbsp;&nbsp;<strong>$90</strong>';
+      cta.innerHTML = `ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$${priceOnetime}</s>&nbsp;&nbsp;<strong>$${priceSub}</strong>`;
     }
   }
 
@@ -70,7 +90,13 @@
         o.getAttribute('data-sticky-option') === type
       );
     });
-    if (label) label.textContent = TYPE_LABEL[type] || type;
+    if (label) {
+      // Prefer the active dropdown option's actual text — lets each page
+      // declare its own labels in HTML (e.g. "1-month supply") without
+      // touching this script.
+      const activeBtn = bar.querySelector(`[data-sticky-option="${type}"]`);
+      label.textContent = activeBtn?.textContent.trim() || TYPE_LABEL[type] || type;
+    }
     setCtaPrice(type);
   }
 

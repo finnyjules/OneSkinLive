@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneSkin — Best Sellers Set</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/body/base.css">
+  <link rel="stylesheet" href="assets/body/section-header.css">
+  <link rel="stylesheet" href="assets/body/section-product-hero.css">
+  <link rel="stylesheet" href="assets/body/section-purchase-widget.css">
+  <link rel="stylesheet" href="assets/body/section-details-accordion.css">
+  <link rel="stylesheet" href="assets/body/section-bento-benefits.css">
+  <link rel="stylesheet" href="assets/body/section-timeline.css">
+  <link rel="stylesheet" href="assets/body/section-clinical-stats.css">
+  <link rel="stylesheet" href="assets/body/section-science-module.css">
+  <link rel="stylesheet" href="assets/body/section-key-ingredients.css">
+  <link rel="stylesheet" href="assets/body/section-protocol.css">
+  <link rel="stylesheet" href="assets/body/section-reviews.css">
+  <link rel="stylesheet" href="assets/body/section-faqs.css">
+  <link rel="stylesheet" href="assets/body/section-sticky-bar.css">
+
+  <script src="assets/body/parallax.js" defer></script>
+  <script src="assets/body/fade-in.js" defer></script>
+  <script src="assets/body/timeline.js" defer></script>
+  <script src="assets/body/clinical-counter.js" defer></script>
+  <script src="assets/body/clinical-carousel.js" defer></script>
+  <script src="assets/body/section-fade.js" defer></script>
+  <script src="assets/body/sticky-bar.js" defer></script>
+
+  <style>
+    /* Bundle PDP: product selector pills (FACE / EYE). Sit above the clinical
+       B/A grid so users can pick which product's results to view. */
+    .bundle-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0 0;
+    }
+    .bundle-tabs__tab {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0.24px;
+      padding: 6px 14px;
+      border: 0.5px solid var(--color-black, #000);
+      border-radius: 0;
+      background: transparent;
+      color: var(--color-black, #000);
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 150ms ease, border-width 150ms ease;
+    }
+    .bundle-tabs__tab--active {
+      opacity: 1;
+      border-width: 0.75px;
+    }
+    /* Key Ingredients section has a black background — invert the tabs there. */
+    .key-ingredients .bundle-tabs__tab {
+      border-color: var(--color-white, #fff);
+      color: var(--color-white, #fff);
+    }
+    /* `hidden` HTML attribute defaults to display:none but is overridden by
+       any explicit display rule (e.g. .clinical__stats { display: grid }).
+       Force it back. */
+    [data-bundle-product][hidden] {
+      display: none !important;
+    }
+    /* Bundle stats labels run longer than single-product PDPs ("of participants
+       reported improved texture and tone"). Tighten the gap and balance line
+       breaks so each label fits on two lines without changing the font. */
+    [data-bundle-product] {
+      gap: 16px;
+      padding: 0;
+    }
+    [data-bundle-product] .clinical__stat-label {
+      text-wrap: balance;
+    }
+
+    /* Bundle PDP: "Clinically validated" pill on the Week 12 timeline step
+       (carried over from body since the timeline copy is shared). */
+    .timeline__step-pill {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+      padding: 2px 12px;
+      border: 0.5px solid #ef3e23;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 1.25;
+      letter-spacing: 0.2px;
+      color: #ef3e23;
+      white-space: nowrap;
+    }
+
+    /* Bundle PDP: "THIS SET CONTAINS" — protocol-style cards for the products
+       inside the bundle. Lives where the regular PDP's upsell carousel lives. */
+    .set-contents {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 24px;
+      width: 100%;
+    }
+    .set-contents__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .set-contents__heading {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: 0.4px;
+      color: var(--color-black, #000);
+      white-space: nowrap;
+    }
+    .set-contents__rule {
+      flex: 1;
+      margin: 0;
+      border: 0;
+      border-top: 0.5px solid #d9d9d9;
+    }
+    .set-contents__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .set-contents__card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .set-contents__image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f4f4f2;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .set-contents__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .set-contents__body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .set-contents__step {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      color: #ef3e23;
+      text-transform: uppercase;
+    }
+    .set-contents__name {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.28px;
+      color: var(--color-black, #000);
+    }
+    .set-contents__desc {
+      margin: 0 0 4px;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      color: var(--color-black, #000);
+    }
+    .set-contents__divider {
+      margin: 4px 0;
+      border: 0;
+      border-top: 0.5px solid #d9d9d9;
+    }
+    .set-contents__row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .set-contents__row-label {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      color: var(--color-black, #000);
+    }
+    .set-contents__row-value {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      color: var(--color-black, #000);
+    }
+  </style>
+</head>
+<body>
+  <!-- Shared rating-star symbol (used by product hero + upsell cards). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="rating-star" viewBox="0 0 18 18">
+      <polygon fill="currentColor" points="9,1 11,6.7 17.5,7 12.5,10.7 14.4,17 9,13.5 3.6,17 5.5,10.7 0.5,7 7,6.7"/>
+    </symbol>
+  </svg>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" data-section-id="header">
+    <div class="header__inner">
+      <nav class="header__nav" aria-label="Primary">
+        <a href="#" class="header__nav-link">Shop</a>
+        <a href="#" class="header__nav-link">Mission</a>
+        <a href="#" class="header__nav-link">Learn</a>
+      </nav>
+      <a href="/" class="header__logo" aria-label="OneSkin home">
+        <svg class="header__wordmark" viewBox="0 0 500 64.02" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <!-- O -->
+          <g transform="translate(0,0) scale(4.1672,4.2680)">
+            <path d="M14.1072 2.20009C12.6024 0.780225 10.5024 0 8.1912 0C5.88 0 3.7776 0.780225 2.2728 2.20009C0.8064 3.5895 0 5.47563 0 7.51874C0 9.56186 0.8064 11.4199 2.2728 12.8046C3.7776 14.2221 5.8776 15.0023 8.1888 15.0023C10.5 15.0023 12.6 14.2221 14.1048 12.8046C15.5712 11.4246 16.3776 9.5478 16.3776 7.51874C16.3776 5.48969 15.5712 3.58716 14.1048 2.20478V2.20009H14.1072ZM13.116 7.51874C13.116 8.78866 12.6024 9.94611 11.6688 10.7709C10.7568 11.5815 9.5184 12.0244 8.1912 12.0244C6.864 12.0244 5.628 11.5792 4.7136 10.7709C3.7824 9.94611 3.2664 8.78632 3.2664 7.51874C3.2664 6.25117 3.78 5.07263 4.7136 4.23852C5.6256 3.42549 6.8592 2.97329 8.1912 2.97329C9.5232 2.97329 10.7544 3.42081 11.6688 4.23852C12.6048 5.07029 13.116 6.23711 13.116 7.51874Z"/>
+          </g>
+          <!-- N -->
+          <g transform="translate(85.45,1.107) scale(4.1660,4.2680)">
+            <path d="M11.148 9.5478L3.96 0H0V14.4822H3.108V3.93861L11.028 14.4822H14.2344V0H11.1504V9.5478H11.148Z"/>
+          </g>
+          <!-- E -->
+          <g transform="translate(164.95,1.107) scale(4.1690,4.2680)">
+            <path d="M3.108 8.60122H11.0376V5.66307H3.108V2.9358H12.2976V0H0V14.4822H12.7128V11.5464H3.108V8.60122Z"/>
+          </g>
+          <!-- S -->
+          <g transform="translate(260.60,0) scale(4.1645,4.2680)">
+            <path d="M12.6144 7.31022C11.796 6.6284 10.5864 6.18088 8.9184 5.94424L6.5136 5.59278C4.2696 5.27413 4.0896 4.78913 4.0896 4.23383C4.0896 3.61528 4.8288 2.9522 6.8952 2.9522C8.5968 2.9522 9.76801 3.48875 10.9488 4.80319L11.2848 5.17338L13.5744 2.99672L13.2696 2.65933C12.4848 1.78538 11.5464 1.11528 10.4784 0.672446C9.4032 0.227273 8.2008 0 6.8928 0C5.1216 0 3.6264 0.400656 2.58 1.15745C1.4856 1.94939 0.904805 3.09044 0.904805 4.45876C0.904805 5.64199 1.3392 6.54874 2.2296 7.21884C3.0552 7.83974 4.30321 8.26617 6.05761 8.52156L8.2608 8.83552C10.7208 9.17292 10.7208 9.96017 10.7208 10.3421C10.7208 11.4035 9.48 12.0642 7.4808 12.0642C5.4816 12.0642 3.9936 11.4082 2.6472 10L2.3112 9.64855L0 11.8463L0.357605 12.186C2.30641 14.0253 4.79521 14.9977 7.55761 14.9977C11.472 14.9977 13.9032 13.1701 13.9032 10.2273C13.9032 9.00188 13.4736 8.01781 12.6216 7.30787H12.6168L12.6144 7.31022Z"/>
+          </g>
+          <!-- K -->
+          <g transform="translate(333.60,1.107) scale(4.1680,4.2680)">
+            <path d="M14.1864 0H9.8688L3.1032 6.43861V0H0V14.4822H3.1032V10.5225L5.5992 8.14902L10.6752 14.4822H14.6832L7.872 5.9911L14.184 0H14.1864Z"/>
+          </g>
+          <!-- I -->
+          <g transform="translate(407.90,1.101) scale(4.1666,4.2680)">
+            <path d="M3.108 0H0V14.4845H3.108V0Z"/>
+          </g>
+          <!-- N -->
+          <g transform="translate(440.70,1.107) scale(4.1666,4.2680)">
+            <path d="M11.1432 0V9.5478L3.9552 0H0V14.4822H3.1032V3.93861L11.0256 14.4822H14.232V0H11.1432Z"/>
+          </g>
+        </svg>
+      </a>
+      <div class="header__actions">
+        <a href="#" class="header__nav-link">Account</a>
+        <button class="header__cart" aria-label="Cart" type="button">
+          <svg class="header__cart-icon" viewBox="0 0 24.0007 21.5996" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M12.0008 0C14.944 0.000166009 17.3664 2.22258 17.6834 5.08105H22.0956C23.1877 5.08121 24.0563 5.99884 23.9979 7.08984L23.3817 18.5928C23.2911 20.2783 21.8977 21.5996 20.2098 21.5996H3.79086C2.10191 21.5996 0.709519 20.2783 0.61899 18.5928L0.0027787 7.08984C-0.0555844 5.99878 0.812888 5.08112 1.90512 5.08105H6.31723C6.63427 2.22252 9.05763 0 12.0008 0ZM1.90512 6.35254C1.54216 6.35277 1.25232 6.65851 1.27231 7.02148L1.88754 18.5254C1.93566 19.4101 2.58119 20.1266 3.42075 20.292C3.54058 20.3156 3.66429 20.3281 3.79086 20.3281H20.2098C21.2234 20.3281 22.0591 19.5365 22.1141 18.5254L22.7293 7.02148C22.7493 6.65838 22.4587 6.35254 22.0956 6.35254H1.90512ZM12.0008 1.26953C9.76024 1.26953 7.9061 2.92722 7.59751 5.08203H16.4012C16.0939 2.92733 14.2414 1.26969 12.0008 1.26953Z" fill="currentColor"/>
+          </svg>
+          <span class="header__cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== STICKY QUICKBUY BAR ========== -->
+  <!-- Hidden by default; reveals once the main purchase-widget CTA scrolls
+       out of view. Two-way synced with the radio group below. -->
+  <div class="sticky-bar" data-sticky-bar data-price-sub="173" data-price-onetime="203">
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__info">
+        <p class="sticky-bar__title">BEST SELLERS SET</p>
+        <p class="sticky-bar__desc">Face and eye care clinically shown to firm and smooth.</p>
+      </div>
+      <div class="sticky-bar__actions">
+        <div class="sticky-bar__frequency" data-sticky-dropdown>
+          <span data-sticky-dropdown-label>2-month delivery</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="sticky-bar__dropdown-menu" data-sticky-dropdown-menu>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="monthly" type="button">Monthly delivery</button>
+            <button class="sticky-bar__dropdown-option sticky-bar__dropdown-option--active" data-sticky-option="bimonthly" type="button">2-month delivery</button>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="onetime" type="button">One-time purchase</button>
+          </div>
+        </div>
+        <button class="sticky-bar__cta" type="button">
+          ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$229</s>&nbsp;&nbsp;<strong>$173</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRODUCT HERO (Section A) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6055
+    Layout: 613px gallery (main image + 4-thumb 304px wrap-grid) + flex-1 info column.
+    Best Seller badge is absolutely positioned over the top-right corner of the gallery.
+    NOTE: copy below mirrors the Figma source — confirm before launch.
+  -->
+  <section class="product-hero" data-section-id="product-hero">
+    <div class="product-hero__layout">
+      <!-- ------- Gallery (left) ------- -->
+      <!-- Sticky: pins below the 60px header until the right column scrolls past. -->
+      <div class="product-hero__gallery">
+        <figure class="product-hero__image-main">
+          <img src="assets/body/body_1.png" alt="OS-01 Best Sellers Set" loading="eager" width="613" height="613">
+        </figure>
+        <div class="product-hero__thumbs">
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_2.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_3.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_4.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_5.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_6.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_7.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_8.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/body/body_9.png" alt="Best Sellers Set product detail" loading="lazy" width="304" height="304">
+          </figure>
+        </div>
+        <!-- Best Seller badge — Figma node 253:5673. Lives inside the gallery so
+             it stays glued to the imagery while the gallery is sticky. -->
+        <div class="product-hero__badge" aria-label="Best Seller">Best Seller</div>
+      </div>
+
+      <!-- ------- Info (right) ------- -->
+      <div class="product-hero__info">
+        <div class="product-hero__head">
+          <div class="product-hero__header-row">
+            <div class="product-hero__name-block">
+              <div class="product-hero__peptide-logo-wrap">
+                <img class="product-hero__peptide-logo"
+                     src="assets/body/os01_logo.png"
+                     alt="OS-01" width="56" height="24">
+              </div>
+              <!-- A1 — Product Name (32 chars max). OTT Neuf falls back to Playfair Display. -->
+              <h1 class="product-hero__name">BEST SELLERS SET</h1>
+            </div>
+            <div class="product-hero__rating">
+              <svg class="product-hero__rating-stars" viewBox="0 0 102 18" width="102" height="18" role="img" aria-label="4.8 out of 5 stars">
+                <use href="#rating-star" x="0" width="18" height="18"/>
+                <use href="#rating-star" x="21" width="18" height="18"/>
+                <use href="#rating-star" x="42" width="18" height="18"/>
+                <use href="#rating-star" x="63" width="18" height="18"/>
+                <use href="#rating-star" x="84" width="18" height="18"/>
+              </svg>
+              <span class="product-hero__rating-score">4.8</span>
+            </div>
+          </div>
+          <div class="product-hero__sub-row">
+            <!-- A2 — One-line description (50 chars max). -->
+            <p class="product-hero__description">Face and eye care clinically shown to firm and smooth.</p>
+            <p class="product-hero__review-count">4,975 reviews</p>
+          </div>
+        </div>
+
+        <!-- A3 — Adjectives (pill row, 1 word per pill). -->
+        <ul class="product-hero__adjectives" aria-label="Product attributes">
+          <li class="product-hero__adjective">Hydrating</li>
+          <li class="product-hero__adjective">Firming</li>
+          <li class="product-hero__adjective">Fragrance-free</li>
+        </ul>
+
+        <!-- A4 — Benefits one-liners (1 sentence per benefit). Bundles use 5
+             bullets (one per included product + general claims). -->
+        <ul class="product-hero__benefits">
+          <li>Powered by the proprietary OS-01 Peptide&trade;, works where aging begins for skin that looks and feels younger and healthier over time.</li>
+          <li>OS-01 FACE MOISTURIZER builds a resilient cellular foundation for your whole face.</li>
+          <li>OS-01 EYE CREAM delivers a concentrated dose of the OS-01 Peptide&trade; where skin ages fastest.</li>
+          <li>Clinically shown to support smoother, firmer, more resilient skin in 12 weeks.</li>
+          <li>Instantly hydrating, fast-absorbing, and compatible with any routine or skin type.</li>
+        </ul>
+
+        <!-- ========== PURCHASE SUBSCRIPTION WIDGET (Section B) ========== -->
+        <!--
+          Figma: file ttnXSyu0hen75971OQWakO, node 254:5815
+          Lives in the right info column (sibling of A's text). 2-month delivery
+          is the default-selected option; row backgrounds are baked per-variant
+          (off-white for unselected, viridian for the recommended one) to match
+          the Figma frame.
+        -->
+        <section class="purchase-widget" data-section-id="purchase-widget" aria-label="Purchase options" style="--cta-price-sub: 173; --cta-price-onetime: 203;">
+          <fieldset class="purchase-widget__options">
+            <legend class="purchase-widget__visually-hidden">Subscription frequency</legend>
+
+            <!-- Option 1: Monthly delivery -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="monthly" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">Monthly delivery</span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$229</span>
+                <span class="purchase-widget__price-final">$173</span>
+              </span>
+            </label>
+
+            <!-- Option 2: 2-month delivery — recommended, default selected -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="bimonthly" class="purchase-widget__radio" checked>
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-header">
+                  <span class="purchase-widget__option-title">2-month delivery</span>
+                  <span class="purchase-widget__pill">Recommended</span>
+                </span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <!-- B1 — Reasons to subscribe (1 sentence each). -->
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$229</span>
+                <span class="purchase-widget__price-final">$173</span>
+              </span>
+            </label>
+
+            <!-- Option 3: One-time purchase -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="onetime" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">One-time purchase</span>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-final">$203</span>
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="purchase-widget__cta-group">
+            <button class="purchase-widget__cta" type="button">
+              <span class="purchase-widget__cta-label">ADD TO CART</span>
+              <!-- Strike collapses + counter animates between 90 (sub) and 105
+                   (one-time) via @property-registered --cta-price. -->
+              <span class="purchase-widget__cta-price">
+                <span class="purchase-widget__price-strike">$229</span>
+                <span class="purchase-widget__price-final purchase-widget__cta-counter" aria-hidden="true"></span>
+              </span>
+            </button>
+            <!-- B2 — Extra benefit (6 words max). -->
+            <p class="purchase-widget__shipping">
+              <svg class="purchase-widget__shipping-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M2 5l6-3 6 3v6l-6 3-6-3V5z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+                <path d="M2 5l6 3 6-3M8 8v6" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+              </svg>
+              Free shipping on orders $79+
+            </p>
+          </div>
+        </section>
+
+        <!-- ========== DETAILS ACCORDION + UPSELL (Section C) ========== -->
+        <!--
+          Figma: file ttnXSyu0hen75971OQWakO, node 254:5900
+          Three native <details> for the collapsible info, then a static upsell
+          carousel ("COMPLETE THE PROTOCOL") with two product cards. Cards
+          overflow horizontally past the column width to match the Figma
+          frame's intentional clipping (carousel chevrons hint at scroll).
+        -->
+        <section class="details-accordion" data-section-id="details-accordion" aria-label="Product details">
+          <div class="details-accordion__group">
+            <details class="details-accordion__item" open>
+              <summary class="details-accordion__summary">
+                <!-- K2 — Q/A Question (50 chars max). -->
+                <span class="details-accordion__title">CLINICAL RESULTS</span>
+                <span class="details-accordion__indicator" aria-hidden="true">
+                  <svg class="details-accordion__icon details-accordion__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="details-accordion__icon details-accordion__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="details-accordion__content">
+                <!-- K3 — Q/A Answer (80 words max). -->
+                <p>OS-01 FACE MOISTURIZER is clinically shown to help skin look smoother, firmer, more even-toned, and resilient within 12 weeks.&sup1;</p>
+                <p>OS-01 EYE CREAM is clinically shown to boost elasticity, barrier strength, and hydration within 12 weeks.&sup2;</p>
+                <a href="#" class="details-accordion__link">Explore the clinical studies &rarr;</a>
+              </div>
+            </details>
+
+            <details class="details-accordion__item">
+              <summary class="details-accordion__summary">
+                <span class="details-accordion__title">INGREDIENTS</span>
+                <span class="details-accordion__indicator" aria-hidden="true">
+                  <svg class="details-accordion__icon details-accordion__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="details-accordion__icon details-accordion__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="details-accordion__content">
+                <p class="details-accordion__subhead">Formulated without</p>
+                <p>Our products are formulated without fragrance, parabens, sulfates, lanolin, MCI/MI, DEA, heavy metals, talc, petrolatum/paraffin/mineral oil, gluten, phthalates, and PFAs. We also avoid unnecessary emulsifiers, preservatives, and solvents.</p>
+                <p class="details-accordion__subhead">OS-01 FACE MOISTURIZER Ingredients</p>
+                <p>Water (Aqua), Glycerin, Calycophyllum Spruceanum Bark Oleic Extract (Pau Mulato), Sorbitan Olivate, Cetearyl Olivate, Squalane, Carapa Guianensis Seed (Andiroba) Oil, Vitis Vinifera (Grape) Seed Oil, Pentaclethra Macroloba (Pracaxi) Oil, Rosa Canina (Rose hips) Fruit Oil, Prunus Domestica (Plum) Seed Oil, Caprylhydroxamic Acid, Glyceryl Caprylate, Decapeptide-52*, Hyaluronic Acid, Sodium Hyaluronate, Sodium Hyaluronate Crosspolymer, Niacinamide, Allantoin, Bentonite, Tocopheryl Acetate, Tocopherol, Cellulose, Cetyl Palmitate, Sorbitan Palmitate, Xanthan Gum, Potassium Sorbate, Phenoxyethanol, Sorbic Acid, Caprylyl Glycol, Tetrasodium Glutamate Diacetate.</p>
+                <p>*OS-01 Peptide.</p>
+                <p class="details-accordion__subhead">OS-01 EYE CREAM Ingredients</p>
+                <p>Water, Glycerin, Sorbitan Olivate, Squalane, Cetearyl Olivate, Butyrospermum Parkii (Shea) Butter, Simmondsia Chinensis (Jojoba) Seed Oil, Cystoseira Humilis Extract, d-Panthenol, Bentonite, Cetyl Palmitate, Sodium Hyaluronate Crosspolymer, Caprylhydroxamic Acid, Sorbitan Palmitate, Cellulose, Coffea Arabica (Coffee) Seedcake Extract, Allantoin, Fucus Vesiculosus Extract, Gluconolactone, Niacinamide, sh-Polypeptide-121, Sisymbrium Irio Seed Oil, Tocopheryl Acetate, Sorbic Acid, Caprylic/Capric Triglyceride, Ubiquinone, Lecithin, Decapeptide-52*, Sodium Chloride, Maltodextrin, Acetyl Hexapeptide-8, Moringa Oleifera Seed Extract, Glyceryl Caprylate, Caprylyl Glycol, Tetrasodium Glutamate Diacetate, Alcohol, Sodium Benzoate, Phenoxyethanol, Xanthan Gum.</p>
+                <p>*OS-01 Peptide.</p>
+              </div>
+            </details>
+
+          </div>
+
+          <!-- "THIS SET CONTAINS" — protocol-style cards for the products in
+               the bundle. No ADD TO CART (already in the bundle), but each
+               card carries its own STEP / FREQUENCY / HOW TO USE. -->
+          <div class="set-contents">
+            <div class="set-contents__header">
+              <p class="set-contents__heading">THIS SET CONTAINS</p>
+            </div>
+            <ul class="set-contents__list">
+              <li class="set-contents__card">
+                <div class="set-contents__image">
+                  <img src="assets/body/prod_eye.png" alt="OS-01 EYE Cream" loading="lazy">
+                </div>
+                <div class="set-contents__body">
+                  <span class="set-contents__step">STEP 1: PREP</span>
+                  <h3 class="set-contents__name">OS-01 EYE CREAM</h3>
+                  <p class="set-contents__desc">Targeted daily treatment for eye skin that ages faster.</p>
+                  <hr class="set-contents__divider">
+                  <div class="set-contents__row">
+                    <span class="set-contents__row-label">FREQUENCY</span>
+                    <span class="set-contents__row-value">AM + PM</span>
+                  </div>
+                  <hr class="set-contents__divider">
+                  <div class="set-contents__row">
+                    <span class="set-contents__row-label">HOW TO USE</span>
+                    <span class="set-contents__row-value">Gently tap 1/2 a pump around each eye.</span>
+                  </div>
+                </div>
+              </li>
+              <li class="set-contents__card">
+                <div class="set-contents__image">
+                  <img src="assets/body/prod_face.png" alt="OS-01 FACE Moisturizer" loading="lazy">
+                </div>
+                <div class="set-contents__body">
+                  <span class="set-contents__step">STEP 2: TREAT</span>
+                  <h3 class="set-contents__name">OS-01 FACE MOISTURIZER</h3>
+                  <p class="set-contents__desc">Lightweight hydration, clinically shown to firm and smooth skin.</p>
+                  <hr class="set-contents__divider">
+                  <div class="set-contents__row">
+                    <span class="set-contents__row-label">FREQUENCY</span>
+                    <span class="set-contents__row-value">AM + PM</span>
+                  </div>
+                  <hr class="set-contents__divider">
+                  <div class="set-contents__row">
+                    <span class="set-contents__row-label">HOW TO USE</span>
+                    <span class="set-contents__row-value">Gently massage 1&ndash;2 pumps into the face, neck, and chest.</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO BENEFITS (Section E) intentionally omitted on bundle pages. -->
+
+  <!-- ========== TIMELINE (Section F1) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6158
+    "Results that build over time" — three milestones (Immediate / Week 4 /
+    Week 12) stacked along a vertical timeline.
+  -->
+  <section class="timeline" data-section-id="timeline" aria-label="Results timeline">
+    <div class="timeline__inner">
+      <div class="timeline__copy">
+        <h2 class="timeline__headline">Results that build over time</h2>
+        <ol class="timeline__steps">
+        <span class="timeline__track" aria-hidden="true">
+          <span class="timeline__track-fill"></span>
+        </span>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Immediate:</span><br>Softness you can feel</h3>
+          <ul class="timeline__step-list">
+            <li>Lightweight, fast-absorbing texture</li>
+            <li>Instant softness and hydration</li>
+            <li>OS-01 Peptide&trade; begins working on contact</li>
+          </ul>
+        </li>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 4:</span><br>Noticeably smoother, more hydrated skin</h3>
+          <ul class="timeline__step-list">
+            <li>71% reported better hydration&sup1;</li>
+            <li>68% reported improved texture&sup1;</li>
+            <li>Skin feels more even and comforted</li>
+          </ul>
+        </li>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 12:</span><br>Stronger skin, stronger body <span class="timeline__step-pill">Clinically validated</span></h3>
+          <ul class="timeline__step-list">
+            <li>Up to +41% increase in barrier strength&sup1;</li>
+            <li>Reduced systemic inflammation marker (IL-8)&sup3;</li>
+            <li>Your largest organ, fortified for healthy aging</li>
+          </ul>
+        </li>
+        </ol>
+      </div>
+      <div class="timeline__media" aria-hidden="true">
+        <video class="timeline__video" autoplay muted loop playsinline preload="metadata">
+          <source src="assets/face/face_video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLINICAL B/A (Section G2) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 361:1303
+    "What consistency looks like" — three clinical stat columns on the left and
+    two before/after landscape photos on the right with frosted-glass labels.
+  -->
+  <section class="clinical" data-section-id="clinical" aria-label="Clinical results">
+    <div class="clinical__inner">
+      <div class="clinical__copy">
+        <h2 class="clinical__headline">What consistency looks like</h2>
+        <!-- Product selector: bundle pages let users toggle between products' B&A views. -->
+        <div class="bundle-tabs" role="tablist" aria-label="Choose product" data-bundle-tabs>
+          <button class="bundle-tabs__tab bundle-tabs__tab--active" type="button" role="tab" aria-selected="true" data-bundle-target="face">OS-01 FACE MOISTURIZER</button>
+          <button class="bundle-tabs__tab" type="button" role="tab" aria-selected="false" data-bundle-target="eye">OS-01 EYE CREAM</button>
+        </div>
+        <div class="clinical__stats" data-bundle-product="face">
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">93%</p>
+            <p class="clinical__stat-label">reported improved hydration<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">+41%</p>
+            <p class="clinical__stat-label">stronger skin barrier<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">&minus;23%</p>
+            <p class="clinical__stat-label">reduction in IL-8 inflammation<sup>3</sup></p>
+          </div>
+        </div>
+        <div class="clinical__stats" data-bundle-product="eye" hidden>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">96%</p>
+            <p class="clinical__stat-label">of participants reported improved texture and tone<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">91%</p>
+            <p class="clinical__stat-label">of participants reported improved radiance<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">88%</p>
+            <p class="clinical__stat-label">of participants showed improved hydration<sup>1</sup></p>
+          </div>
+        </div>
+      </div>
+      <div class="clinical__photos" data-bundle-product="face">
+        <div class="clinical__nav">
+          <button class="clinical__nav-btn" type="button" data-clinical-prev aria-label="Previous before/after pair">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polyline points="14,6 8,12 14,18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="clinical__nav-indicator" data-clinical-indicator>1 / 3</span>
+          <button class="clinical__nav-btn" type="button" data-clinical-next aria-label="Next before/after pair">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polyline points="10,6 16,12 10,18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="clinical__carousel" data-clinical-carousel>
+          <div class="clinical__pair clinical__pair--active">
+            <figure class="clinical__photo">
+              <img src="assets/face/face_before_1.png" alt="Skin before treatment, set 1" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/face/face_after_1.png" alt="Skin after 12 weeks of treatment, set 1" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+          <div class="clinical__pair">
+            <figure class="clinical__photo">
+              <img src="assets/face/face_before_2.png" alt="Skin before treatment, set 2" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/face/face_after_2.png" alt="Skin after 12 weeks of treatment, set 2" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+          <div class="clinical__pair">
+            <figure class="clinical__photo">
+              <img src="assets/face/face_before_3.png" alt="Skin before treatment, set 3" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/face/face_after_3.png" alt="Skin after 12 weeks of treatment, set 3" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <!-- EYE B/A panel — single pair, no nav (only 1 pair available). -->
+      <div class="clinical__photos" data-bundle-product="eye" hidden>
+        <div class="clinical__carousel">
+          <div class="clinical__pair clinical__pair--active">
+            <figure class="clinical__photo">
+              <img src="assets/eye/eye_before_1.png" alt="Eye area before treatment" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/eye/eye_after_1.png" alt="Eye area after 12 weeks of treatment" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE MODULE intentionally omitted on bundle pages. -->
+
+  <!-- ========== KEY INGREDIENTS ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6349
+    Black-background section: cream-blob imagery on the left, headline +
+    5-item ingredient list with descriptions on the right.
+  -->
+  <section class="key-ingredients" data-section-id="key-ingredients" aria-label="Key ingredients">
+    <div class="key-ingredients__inner">
+      <div class="key-ingredients__media" aria-hidden="true">
+        <img data-bundle-product="face" src="assets/images/body/imgImage70.png" alt="" loading="lazy">
+        <img data-bundle-product="eye" src="assets/eye/eye_ingredients.png" alt="" loading="lazy" hidden>
+      </div>
+      <div class="key-ingredients__content">
+        <div class="key-ingredients__head">
+          <h2 class="key-ingredients__headline">Key Ingredients</h2>
+          <p class="key-ingredients__description">A longevity-first formula that pairs the OS-01 Peptide&trade; with clinically proven actives. Every ingredient earns its place in supporting long-term skin health.</p>
+        </div>
+        <!-- Product selector: scopes the ingredient list below to the active product. -->
+        <div class="bundle-tabs bundle-tabs--ingredients" role="tablist" aria-label="Choose product" data-bundle-tabs>
+          <button class="bundle-tabs__tab bundle-tabs__tab--active" type="button" role="tab" aria-selected="true" data-bundle-target="face">OS-01 FACE MOISTURIZER</button>
+          <button class="bundle-tabs__tab" type="button" role="tab" aria-selected="false" data-bundle-target="eye">OS-01 EYE CREAM</button>
+        </div>
+        <ul class="key-ingredients__list" data-bundle-product="face">
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face" open>
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">PRACAXI OIL</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">Known for its moisturizing, anti-inflammatory, anti-oxidant, anti-bacterial, and anti-fungal properties.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">NIACINAMIDE</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A barrier-supporting form of vitamin B3 that visibly improves skin texture and tone.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">ALLANTOIN</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A soothing skin conditioner that calms, smooths, and supports moisture retention.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">ANDIROBA OIL</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A lightweight nourishing oil rich in fatty acids that supports natural collagen and soothes skin.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">OLEIC PAU MULATO EXTRACT</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">An Amazonian bark extract that helps skin look firmer and more youthful over time.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-face">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">HYALURONIC ACID</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A triple-weight complex designed to hydrate each layer of the skin and lock in moisture.</p>
+            </details>
+          </li>
+        </ul>
+        <ul class="key-ingredients__list" data-bundle-product="eye" hidden>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-eye" open>
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">OS-01 PEPTIDE&trade;</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A proprietary peptide that supports hydration, skin barrier health, and overall skin resilience.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-eye">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">MORINGA OLEIFERA SEED</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">Extracted from the seeds of the Moringa tree, this extract protects skin cells against environmental pollutants that can trigger skin aging.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-eye">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">FUCUS VESICULOSUS ALGAE</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">This algae-derived extract helps reduce the appearance of dark circles and crow&rsquo;s feet while enhancing overall skin luminosity.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients-eye">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">BIOMIMETIC VEGAN COLLAGEN</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">This biodesigned vegan collagen peptide is the first human mimetic and boosts elastin, laminin, collagen and fibronectin while most topical collagen fails to penetrate the skin barrier.</p>
+            </details>
+          </li>
+        </ul>
+        <a href="#" class="key-ingredients__link">See all ingredients &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== REVIEWS — "From our community" ========== -->
+  <section class="reviews" data-section-id="reviews" aria-label="Customer reviews">
+    <div class="reviews__inner">
+      <h2 class="reviews__headline">From our community</h2>
+
+      <!-- Photo gallery with the center photo elevated. -->
+      <div class="reviews__gallery" aria-hidden="true">
+        <figure class="reviews__photo reviews__photo--small">
+          <img src="assets/images/body/imgImage55.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--medium">
+          <img src="assets/images/body/imgImage56.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--feature">
+          <img src="assets/images/body/imgImage57.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--medium">
+          <img src="assets/images/body/imgImage58.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--small">
+          <img src="assets/images/body/imgImage53.png" alt="" loading="lazy">
+        </figure>
+      </div>
+
+      <!-- Aggregate stats -->
+      <div class="reviews__stats" aria-label="Aggregate ratings">
+        <div class="reviews__stat">
+          <div class="reviews__stat-row">
+            <span class="reviews__stat-number">4.8<span class="reviews__stat-fraction">/5</span></span>
+            <svg class="reviews__stat-star" viewBox="0 0 12 11" aria-hidden="true" focusable="false">
+              <polygon points="6,0 7.4,3.8 11.4,3.8 8.2,6.4 9.4,10.5 6,8 2.6,10.5 3.8,6.4 0.6,3.8 4.6,3.8" fill="currentColor"/>
+            </svg>
+          </div>
+          <p class="reviews__stat-label">Based on 4,975 reviews</p>
+        </div>
+        <div class="reviews__stat">
+          <span class="reviews__stat-number">96%</span>
+          <p class="reviews__stat-label">Would recommend this product</p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="reviews__tabs" role="tablist">
+        <button class="reviews__tab reviews__tab--active" role="tab" aria-selected="true" type="button">Reviews <span class="reviews__tab-count">(939)</span></button>
+        <button class="reviews__tab" role="tab" aria-selected="false" type="button">Questions <span class="reviews__tab-count">(49)</span></button>
+      </div>
+
+      <!-- Filter + write-review actions -->
+      <div class="reviews__actions">
+        <button class="reviews__pill" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="10" y1="17" x2="14" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          FILTERS
+        </button>
+        <button class="reviews__pill" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M16 4l4 4-12 12H4v-4L16 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          WRITE A REVIEW
+        </button>
+      </div>
+
+      <!-- Meta row: count + sort -->
+      <div class="reviews__meta">
+        <span class="reviews__count">939 reviews</span>
+        <div class="reviews__sort">
+          <span class="reviews__sort-label">Sort</span>
+          <span class="reviews__sort-value">Most Recent</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="6,9 12,15 18,9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- Sample review card -->
+      <article class="review-card">
+        <div class="review-card__user">
+          <div class="review-card__avatar" aria-hidden="true">MW</div>
+          <div class="review-card__user-info">
+            <p class="review-card__name">Margaret W.</p>
+            <p class="review-card__verified">
+              <svg viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Verified Buyer
+            </p>
+          </div>
+          <div class="review-card__product">
+            <img src="assets/body/prod_facespf.png" alt="" loading="lazy">
+            <div>
+              <p class="review-card__product-label">Reviewing</p>
+              <p class="review-card__product-name">OS-01 FACE SPF 30+ &mdash; Light/Medium</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card__content">
+          <div class="review-card__rating" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+          </div>
+          <p class="review-card__text">I love the way this applies on my skin. It&rsquo;s a great light coverage tint, and feels so nourishing on my face.</p>
+          <p class="review-card__date">Yesterday</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    // Bundle product selector — toggles which `[data-bundle-product]` block
+    // is visible based on the active tab inside `[data-bundle-tabs]`.
+    (function () {
+      document.querySelectorAll('[data-bundle-tabs]').forEach(function (tabs) {
+        var section = tabs.closest('.clinical, .key-ingredients, .details-accordion') || tabs.parentElement;
+        function activate(target) {
+          tabs.querySelectorAll('[data-bundle-target]').forEach(function (btn) {
+            var match = btn.getAttribute('data-bundle-target') === target;
+            btn.classList.toggle('bundle-tabs__tab--active', match);
+            btn.setAttribute('aria-selected', match ? 'true' : 'false');
+          });
+          section.querySelectorAll('[data-bundle-product]').forEach(function (panel) {
+            panel.hidden = panel.getAttribute('data-bundle-product') !== target;
+          });
+        }
+        tabs.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-bundle-target]');
+          if (!btn) return;
+          activate(btn.getAttribute('data-bundle-target'));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

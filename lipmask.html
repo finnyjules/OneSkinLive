@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneSkin — OS-01 LIP MASK</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/body/base.css">
+  <link rel="stylesheet" href="assets/body/section-header.css">
+  <link rel="stylesheet" href="assets/body/section-product-hero.css">
+  <link rel="stylesheet" href="assets/body/section-purchase-widget.css">
+  <link rel="stylesheet" href="assets/body/section-details-accordion.css">
+  <link rel="stylesheet" href="assets/body/section-bento-benefits.css">
+  <link rel="stylesheet" href="assets/body/section-timeline.css">
+  <link rel="stylesheet" href="assets/body/section-clinical-stats.css">
+  <link rel="stylesheet" href="assets/body/section-science-module.css">
+  <link rel="stylesheet" href="assets/body/section-key-ingredients.css">
+  <link rel="stylesheet" href="assets/body/section-protocol.css">
+  <link rel="stylesheet" href="assets/body/section-reviews.css">
+  <link rel="stylesheet" href="assets/body/section-faqs.css">
+  <link rel="stylesheet" href="assets/body/section-sticky-bar.css">
+
+  <script src="assets/body/parallax.js" defer></script>
+  <script src="assets/body/fade-in.js" defer></script>
+  <script src="assets/body/timeline.js" defer></script>
+  <script src="assets/body/clinical-counter.js" defer></script>
+  <script src="assets/body/clinical-carousel.js" defer></script>
+  <script src="assets/body/section-fade.js" defer></script>
+  <script src="assets/body/sticky-bar.js" defer></script>
+
+  <style>
+    /* Lipmask PDP: STARTER SET / REFILL variant toggle (Figma 9:660) — sits
+       in the right column between the adjective pills and the benefits list,
+       where the simpler one-line volume label used to live. */
+    .product-hero__variant {
+      display: flex;
+      gap: 10px;
+      margin: 0 0 16px;
+      padding: 0;
+      border: 0;
+    }
+    .product-hero__variant-legend {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .product-hero__variant-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .product-hero__variant-option {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      padding: 5px 8px;
+      border-style: solid;
+      border-color: var(--color-black, #000);
+      border-width: 0.5px;
+      opacity: 0.5;
+      transition: opacity 150ms ease, border-width 150ms ease;
+    }
+    .product-hero__variant-option:has(.product-hero__variant-input:checked) {
+      opacity: 1;
+      border-width: 0.75px;
+    }
+    .product-hero__variant-label {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.28px;
+      color: var(--color-black, #000);
+    }
+    .product-hero__variant-sub {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0.24px;
+      color: var(--color-black, #000);
+    }
+  </style>
+</head>
+<body>
+  <!-- Shared rating-star symbol (used by product hero + upsell cards). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="rating-star" viewBox="0 0 18 18">
+      <polygon fill="currentColor" points="9,1 11,6.7 17.5,7 12.5,10.7 14.4,17 9,13.5 3.6,17 5.5,10.7 0.5,7 7,6.7"/>
+    </symbol>
+  </svg>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" data-section-id="header">
+    <div class="header__inner">
+      <nav class="header__nav" aria-label="Primary">
+        <a href="#" class="header__nav-link">Shop</a>
+        <a href="#" class="header__nav-link">Mission</a>
+        <a href="#" class="header__nav-link">Learn</a>
+      </nav>
+      <a href="/" class="header__logo" aria-label="OneSkin home">
+        <svg class="header__wordmark" viewBox="0 0 500 64.02" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <!-- O -->
+          <g transform="translate(0,0) scale(4.1672,4.2680)">
+            <path d="M14.1072 2.20009C12.6024 0.780225 10.5024 0 8.1912 0C5.88 0 3.7776 0.780225 2.2728 2.20009C0.8064 3.5895 0 5.47563 0 7.51874C0 9.56186 0.8064 11.4199 2.2728 12.8046C3.7776 14.2221 5.8776 15.0023 8.1888 15.0023C10.5 15.0023 12.6 14.2221 14.1048 12.8046C15.5712 11.4246 16.3776 9.5478 16.3776 7.51874C16.3776 5.48969 15.5712 3.58716 14.1048 2.20478V2.20009H14.1072ZM13.116 7.51874C13.116 8.78866 12.6024 9.94611 11.6688 10.7709C10.7568 11.5815 9.5184 12.0244 8.1912 12.0244C6.864 12.0244 5.628 11.5792 4.7136 10.7709C3.7824 9.94611 3.2664 8.78632 3.2664 7.51874C3.2664 6.25117 3.78 5.07263 4.7136 4.23852C5.6256 3.42549 6.8592 2.97329 8.1912 2.97329C9.5232 2.97329 10.7544 3.42081 11.6688 4.23852C12.6048 5.07029 13.116 6.23711 13.116 7.51874Z"/>
+          </g>
+          <!-- N -->
+          <g transform="translate(85.45,1.107) scale(4.1660,4.2680)">
+            <path d="M11.148 9.5478L3.96 0H0V14.4822H3.108V3.93861L11.028 14.4822H14.2344V0H11.1504V9.5478H11.148Z"/>
+          </g>
+          <!-- E -->
+          <g transform="translate(164.95,1.107) scale(4.1690,4.2680)">
+            <path d="M3.108 8.60122H11.0376V5.66307H3.108V2.9358H12.2976V0H0V14.4822H12.7128V11.5464H3.108V8.60122Z"/>
+          </g>
+          <!-- S -->
+          <g transform="translate(260.60,0) scale(4.1645,4.2680)">
+            <path d="M12.6144 7.31022C11.796 6.6284 10.5864 6.18088 8.9184 5.94424L6.5136 5.59278C4.2696 5.27413 4.0896 4.78913 4.0896 4.23383C4.0896 3.61528 4.8288 2.9522 6.8952 2.9522C8.5968 2.9522 9.76801 3.48875 10.9488 4.80319L11.2848 5.17338L13.5744 2.99672L13.2696 2.65933C12.4848 1.78538 11.5464 1.11528 10.4784 0.672446C9.4032 0.227273 8.2008 0 6.8928 0C5.1216 0 3.6264 0.400656 2.58 1.15745C1.4856 1.94939 0.904805 3.09044 0.904805 4.45876C0.904805 5.64199 1.3392 6.54874 2.2296 7.21884C3.0552 7.83974 4.30321 8.26617 6.05761 8.52156L8.2608 8.83552C10.7208 9.17292 10.7208 9.96017 10.7208 10.3421C10.7208 11.4035 9.48 12.0642 7.4808 12.0642C5.4816 12.0642 3.9936 11.4082 2.6472 10L2.3112 9.64855L0 11.8463L0.357605 12.186C2.30641 14.0253 4.79521 14.9977 7.55761 14.9977C11.472 14.9977 13.9032 13.1701 13.9032 10.2273C13.9032 9.00188 13.4736 8.01781 12.6216 7.30787H12.6168L12.6144 7.31022Z"/>
+          </g>
+          <!-- K -->
+          <g transform="translate(333.60,1.107) scale(4.1680,4.2680)">
+            <path d="M14.1864 0H9.8688L3.1032 6.43861V0H0V14.4822H3.1032V10.5225L5.5992 8.14902L10.6752 14.4822H14.6832L7.872 5.9911L14.184 0H14.1864Z"/>
+          </g>
+          <!-- I -->
+          <g transform="translate(407.90,1.101) scale(4.1666,4.2680)">
+            <path d="M3.108 0H0V14.4845H3.108V0Z"/>
+          </g>
+          <!-- N -->
+          <g transform="translate(440.70,1.107) scale(4.1666,4.2680)">
+            <path d="M11.1432 0V9.5478L3.9552 0H0V14.4822H3.1032V3.93861L11.0256 14.4822H14.232V0H11.1432Z"/>
+          </g>
+        </svg>
+      </a>
+      <div class="header__actions">
+        <a href="#" class="header__nav-link">Account</a>
+        <button class="header__cart" aria-label="Cart" type="button">
+          <svg class="header__cart-icon" viewBox="0 0 24.0007 21.5996" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M12.0008 0C14.944 0.000166009 17.3664 2.22258 17.6834 5.08105H22.0956C23.1877 5.08121 24.0563 5.99884 23.9979 7.08984L23.3817 18.5928C23.2911 20.2783 21.8977 21.5996 20.2098 21.5996H3.79086C2.10191 21.5996 0.709519 20.2783 0.61899 18.5928L0.0027787 7.08984C-0.0555844 5.99878 0.812888 5.08112 1.90512 5.08105H6.31723C6.63427 2.22252 9.05763 0 12.0008 0ZM1.90512 6.35254C1.54216 6.35277 1.25232 6.65851 1.27231 7.02148L1.88754 18.5254C1.93566 19.4101 2.58119 20.1266 3.42075 20.292C3.54058 20.3156 3.66429 20.3281 3.79086 20.3281H20.2098C21.2234 20.3281 22.0591 19.5365 22.1141 18.5254L22.7293 7.02148C22.7493 6.65838 22.4587 6.35254 22.0956 6.35254H1.90512ZM12.0008 1.26953C9.76024 1.26953 7.9061 2.92722 7.59751 5.08203H16.4012C16.0939 2.92733 14.2414 1.26969 12.0008 1.26953Z" fill="currentColor"/>
+          </svg>
+          <span class="header__cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== STICKY QUICKBUY BAR ========== -->
+  <!-- Hidden by default; reveals once the main purchase-widget CTA scrolls
+       out of view. Two-way synced with the radio group below. -->
+  <div class="sticky-bar" data-sticky-bar data-price-sub="36" data-price-onetime="42">
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__info">
+        <p class="sticky-bar__title">OS-01 LIP MASK</p>
+        <p class="sticky-bar__desc">An overnight lip mask for visibly smoother, fuller lips over time.</p>
+      </div>
+      <div class="sticky-bar__actions">
+        <div class="sticky-bar__frequency" data-sticky-dropdown>
+          <span data-sticky-dropdown-label>2-month delivery</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="sticky-bar__dropdown-menu" data-sticky-dropdown-menu>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="monthly" type="button">Monthly delivery</button>
+            <button class="sticky-bar__dropdown-option sticky-bar__dropdown-option--active" data-sticky-option="bimonthly" type="button">2-month delivery</button>
+            <button class="sticky-bar__dropdown-option" data-sticky-option="onetime" type="button">One-time purchase</button>
+          </div>
+        </div>
+        <button class="sticky-bar__cta" type="button">
+          ADD TO CART&nbsp;&nbsp;&nbsp;&nbsp;<s>$42</s>&nbsp;&nbsp;<strong>$36</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRODUCT HERO (Section A) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6055
+    Layout: 613px gallery (main image + 4-thumb 304px wrap-grid) + flex-1 info column.
+    Best Seller badge is absolutely positioned over the top-right corner of the gallery.
+    NOTE: copy below mirrors the Figma source — confirm before launch.
+  -->
+  <section class="product-hero" data-section-id="product-hero">
+    <div class="product-hero__layout">
+      <!-- ------- Gallery (left) ------- -->
+      <!-- Sticky: pins below the 60px header until the right column scrolls past. -->
+      <div class="product-hero__gallery">
+        <figure class="product-hero__image-main">
+          <img src="assets/lipmask/lipmask_1.png" alt="OS-01 LIP MASK product bottle" loading="eager" width="613" height="613">
+        </figure>
+        <div class="product-hero__thumbs">
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_2.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_3.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_4.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_5.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_6.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_7.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_8.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+          <figure class="product-hero__thumb">
+            <img src="assets/lipmask/lipmask_9.png" alt="OS-01 LIP MASK product detail" loading="lazy" width="304" height="304">
+          </figure>
+        </div>
+        <!-- Best Seller badge — Figma node 253:5673. Lives inside the gallery so
+             it stays glued to the imagery while the gallery is sticky. -->
+        <div class="product-hero__badge" aria-label="Best Seller">Best Seller</div>
+      </div>
+
+      <!-- ------- Info (right) ------- -->
+      <div class="product-hero__info">
+        <div class="product-hero__head">
+          <div class="product-hero__header-row">
+            <div class="product-hero__name-block">
+              <div class="product-hero__peptide-logo-wrap">
+                <img class="product-hero__peptide-logo"
+                     src="assets/body/os01_logo.png"
+                     alt="OS-01" width="56" height="24">
+              </div>
+              <!-- A1 — Product Name (32 chars max). OTT Neuf falls back to Playfair Display. -->
+              <h1 class="product-hero__name">LIP MASK</h1>
+            </div>
+            <div class="product-hero__rating">
+              <svg class="product-hero__rating-stars" viewBox="0 0 102 18" width="102" height="18" role="img" aria-label="4.4 out of 5 stars">
+                <use href="#rating-star" x="0" width="18" height="18"/>
+                <use href="#rating-star" x="21" width="18" height="18"/>
+                <use href="#rating-star" x="42" width="18" height="18"/>
+                <use href="#rating-star" x="63" width="18" height="18"/>
+                <use href="#rating-star" x="84" width="18" height="18"/>
+              </svg>
+              <span class="product-hero__rating-score">4.4</span>
+            </div>
+          </div>
+          <div class="product-hero__sub-row">
+            <!-- A2 — One-line description (50 chars max). -->
+            <p class="product-hero__description">An overnight lip mask for visibly smoother, fuller lips over time.</p>
+            <p class="product-hero__review-count">288 reviews</p>
+          </div>
+        </div>
+
+        <!-- A3 — Adjectives (pill row, 1 word per pill). -->
+        <ul class="product-hero__adjectives" aria-label="Product attributes">
+          <li class="product-hero__adjective">Collagen-boosting</li>
+          <li class="product-hero__adjective">Overnight repair</li>
+          <li class="product-hero__adjective">Fragrance-free</li>
+        </ul>
+
+        <fieldset class="product-hero__variant" aria-label="Choose variant">
+          <legend class="product-hero__variant-legend">Variant</legend>
+          <label class="product-hero__variant-option">
+            <input type="radio" name="lipmask-variant" value="starter" class="product-hero__variant-input" checked>
+            <span class="product-hero__variant-label">STARTER SET</span>
+            <span class="product-hero__variant-sub">7 mL / 60 uses per set</span>
+          </label>
+          <label class="product-hero__variant-option">
+            <input type="radio" name="lipmask-variant" value="refill" class="product-hero__variant-input">
+            <span class="product-hero__variant-label">REFILL</span>
+            <span class="product-hero__variant-sub">7 mL / 60 uses per pod</span>
+          </label>
+        </fieldset>
+
+        <!-- A4 — Benefits one-liners (1 sentence per benefit). -->
+        <ul class="product-hero__benefits">
+          <li>Powered by the proprietary OS-01 Peptide&trade;, works where lip aging begins for lips that look and feel smoother, fuller, and healthier over time.</li>
+          <li>Rich, non-sticky, and fragrance-free — an overnight formula that melts into lips and works while you sleep.</li>
+          <li>Clinically shown to deliver visibly smoother, fuller lips with improved collagen and elastin production in 4 weeks.&sup1;</li>
+          <li>Outperforms leading peptide lip treatments and an award-winning lip mask on collagen and elastin biomarkers.&sup2;</li>
+        </ul>
+
+        <!-- ========== PURCHASE SUBSCRIPTION WIDGET (Section B) ========== -->
+        <!--
+          Figma: file ttnXSyu0hen75971OQWakO, node 254:5815
+          Lives in the right info column (sibling of A's text). 2-month delivery
+          is the default-selected option; row backgrounds are baked per-variant
+          (off-white for unselected, viridian for the recommended one) to match
+          the Figma frame.
+        -->
+        <section class="purchase-widget" data-section-id="purchase-widget" aria-label="Purchase options" style="--cta-price-sub: 36; --cta-price-onetime: 42;">
+          <fieldset class="purchase-widget__options">
+            <legend class="purchase-widget__visually-hidden">Subscription frequency</legend>
+
+            <!-- Option 1: Monthly delivery -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="monthly" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">Monthly delivery</span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$42</span>
+                <span class="purchase-widget__price-final">$36</span>
+              </span>
+            </label>
+
+            <!-- Option 2: 2-month delivery — recommended, default selected -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="bimonthly" class="purchase-widget__radio" checked>
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-header">
+                  <span class="purchase-widget__option-title">2-month delivery</span>
+                  <span class="purchase-widget__pill">Recommended</span>
+                </span>
+                <span class="purchase-widget__option-sub">Get 15% off + a FREE gift</span>
+                <!-- B1 — Reasons to subscribe (1 sentence each). -->
+                <div class="purchase-widget__reasons-wrap">
+                  <ul class="purchase-widget__reasons">
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Exclusive early access to new products
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Earn 2x points on all recurring orders
+                    </li>
+                    <li>
+                      <svg class="purchase-widget__check" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                        <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Easily change, skip or cancel anytime
+                    </li>
+                  </ul>
+                </div>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-strike">$42</span>
+                <span class="purchase-widget__price-final">$36</span>
+              </span>
+            </label>
+
+            <!-- Option 3: One-time purchase -->
+            <label class="purchase-widget__option">
+              <input type="radio" name="subscription" value="onetime" class="purchase-widget__radio">
+              <span class="purchase-widget__radio-marker" aria-hidden="true"></span>
+              <span class="purchase-widget__option-body">
+                <span class="purchase-widget__option-title">One-time purchase</span>
+              </span>
+              <span class="purchase-widget__price">
+                <span class="purchase-widget__price-final">$42</span>
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="purchase-widget__cta-group">
+            <button class="purchase-widget__cta" type="button">
+              <span class="purchase-widget__cta-label">ADD TO CART</span>
+              <!-- Strike collapses + counter animates between 90 (sub) and 105
+                   (one-time) via @property-registered --cta-price. -->
+              <span class="purchase-widget__cta-price">
+                <span class="purchase-widget__price-strike">$42</span>
+                <span class="purchase-widget__price-final purchase-widget__cta-counter" aria-hidden="true"></span>
+              </span>
+            </button>
+            <!-- B2 — Extra benefit (6 words max). -->
+            <p class="purchase-widget__shipping">
+              <svg class="purchase-widget__shipping-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M2 5l6-3 6 3v6l-6 3-6-3V5z" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+                <path d="M2 5l6 3 6-3M8 8v6" fill="none" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+              </svg>
+              Free shipping on orders $79+
+            </p>
+          </div>
+        </section>
+
+        <!-- ========== DETAILS ACCORDION + UPSELL (Section C) ========== -->
+        <!--
+          Figma: file ttnXSyu0hen75971OQWakO, node 254:5900
+          Three native <details> for the collapsible info, then a static upsell
+          carousel ("COMPLETE THE PROTOCOL") with two product cards. Cards
+          overflow horizontally past the column width to match the Figma
+          frame's intentional clipping (carousel chevrons hint at scroll).
+        -->
+        <section class="details-accordion" data-section-id="details-accordion" aria-label="Product details">
+          <div class="details-accordion__group">
+            <details class="details-accordion__item" open>
+              <summary class="details-accordion__summary">
+                <!-- K2 — Q/A Question (50 chars max). -->
+                <span class="details-accordion__title">SCIENCE</span>
+                <span class="details-accordion__indicator" aria-hidden="true">
+                  <svg class="details-accordion__icon details-accordion__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="details-accordion__icon details-accordion__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="details-accordion__content">
+                <!-- K3 — Q/A Answer (80 words max). -->
+                <p>OS-01 LIP RESTORE MASK pairs the proprietary OS-01 Peptide&trade; with ceramides, squalane, and microalgae actives. In lab studies, it increased collagen (+138%), elastin (+133%), and hyaluronic acid biomarkers (+51%) — outperforming leading peptide, award-winning, and drugstore lip masks.&sup1;</p>
+                <a href="#" class="details-accordion__link">Explore the data &rarr;</a>
+              </div>
+            </details>
+
+            <details class="details-accordion__item">
+              <summary class="details-accordion__summary">
+                <span class="details-accordion__title">INGREDIENTS</span>
+                <span class="details-accordion__indicator" aria-hidden="true">
+                  <svg class="details-accordion__icon details-accordion__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="details-accordion__icon details-accordion__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="details-accordion__content">
+                <p class="details-accordion__subhead">Formulated without</p>
+                <p>Our products are formulated without fragrance, parabens, sulfates, lanolin, MCI/MI, DEA, heavy metals, talc, petrolatum/paraffin/mineral oil, gluten, phthalates, and PFAs. We also avoid unnecessary emulsifiers, preservatives, and solvents.</p>
+                <p class="details-accordion__subhead">Ingredients</p>
+                <p>Ricinus Communis (Castor) Seed Oil, Hydrogenated Vegetable Oil, Octyldodecanol, Diisostearyl Malate, Squalane, Caprylic/Capric Triglyceride, Butyrospermum Parkii (Shea) Butter, Euphorbia Cerifera (Candelilla) Wax, Cera Alba (Beeswax), Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Sodium Lauroyl Lactylate, Haematococcus Pluvialis Extract (Astaxanthin), Phaeodactylum Tricornutum Extract, Tocopherol, Palmitoyl Hexapeptide-12, Decapeptide-52*, Rosa Canina (Rosehip) Fruit Oil, Prunus Domestica (Plum) Seed Oil, Bisabolol, Allantoin, Silica, Tocopheryl Acetate, Caprylhydroxamic Acid, Caprylyl Glycol.</p>
+                <p>*OS-01 Peptide</p>
+              </div>
+            </details>
+
+            <details class="details-accordion__item">
+              <summary class="details-accordion__summary">
+                <span class="details-accordion__title">HOW TO USE</span>
+                <span class="details-accordion__indicator" aria-hidden="true">
+                  <svg class="details-accordion__icon details-accordion__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="details-accordion__icon details-accordion__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <div class="details-accordion__content">
+                <p>Apply a generous layer to clean lips and the lip border each night before bed. For the fine-line benefit, extend application just beyond the natural lip line. Use nightly, or any time lips need extra hydration, alongside <a href="#" class="details-accordion__link details-accordion__link--inline">OS-01 Lip SPF</a> for daytime protection.</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Upsell carousel ("COMPLETE THE PROTOCOL") -->
+          <div class="upsell">
+            <div class="upsell__header">
+              <p class="upsell__heading">COMPLETE THE PROTOCOL</p>
+            </div>
+
+            <div class="upsell__carousel">
+              <article class="upsell__card">
+                <div class="upsell__card-image">
+                  <img src="assets/body/prod_face.png" alt="OS-01 FACE MOISTURIZER" loading="lazy">
+                </div>
+                <div class="upsell__card-info">
+                  <span class="upsell__card-badge">Best-seller</span>
+                  <h3 class="upsell__card-name">OS-01 FACE MOISTURIZER</h3>
+                  <p class="upsell__card-desc">Your daily investment in firmer, smoother, more resilient skin.</p>
+                  <div class="upsell__card-rating">
+                    <svg class="upsell__card-stars" viewBox="0 0 57 11" width="57" height="11" role="img" aria-label="4.8 out of 5 stars">
+                      <use href="#rating-star" x="0" width="11" height="11"/>
+                      <use href="#rating-star" x="11.5" width="11" height="11"/>
+                      <use href="#rating-star" x="23" width="11" height="11"/>
+                      <use href="#rating-star" x="34.5" width="11" height="11"/>
+                      <use href="#rating-star" x="46" width="11" height="11"/>
+                    </svg>
+                    <span>4.8</span>
+                  </div>
+                  <a href="#" class="upsell__card-cta">ADD TO CART</a>
+                </div>
+              </article>
+
+              <article class="upsell__card">
+                <div class="upsell__card-image">
+                  <img src="assets/body/prod_prep.png" alt="PREP Cleanser" loading="lazy">
+                </div>
+                <div class="upsell__card-info">
+                  <span class="upsell__card-badge upsell__card-badge--placeholder" aria-hidden="true">&nbsp;</span>
+                  <h3 class="upsell__card-name">PREP Cleanser</h3>
+                  <p class="upsell__card-desc">Gently cleanse and prime for the rest of your routine.</p>
+                  <div class="upsell__card-rating">
+                    <svg class="upsell__card-stars" viewBox="0 0 57 11" width="57" height="11" role="img" aria-label="4.7 out of 5 stars">
+                      <use href="#rating-star" x="0" width="11" height="11"/>
+                      <use href="#rating-star" x="11.5" width="11" height="11"/>
+                      <use href="#rating-star" x="23" width="11" height="11"/>
+                      <use href="#rating-star" x="34.5" width="11" height="11"/>
+                      <use href="#rating-star" x="46" width="11" height="11"/>
+                    </svg>
+                    <span>4.7</span>
+                  </div>
+                  <a href="#" class="upsell__card-cta">ADD TO CART</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HERO BENEFITS (Section E1) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6056
+    Full-width hero with a cream-texture background, headline at the upper-left,
+    and a frosted-glass benefit list (4 items) below it. The cream blob image
+    bleeds in from the right.
+  -->
+  <section class="hero-benefits" data-section-id="hero-benefits" aria-label="Product benefits">
+    <div class="hero-benefits__bg" aria-hidden="true">
+      <img class="hero-benefits__bg-image" src="assets/lipmask/lipmask_benefits_bg.png" alt="">
+    </div>
+
+    <div class="hero-benefits__inner">
+      <!-- E1 — Product Benefits Section headline. -->
+      <h2 class="hero-benefits__headline">Key benefits</h2>
+
+      <ul class="hero-benefits__list">
+        <li class="hero-benefits__item">
+          <svg class="hero-benefits__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M10 2 L17 5 v6 c0 4-3 6-7 7-4-1-7-3-7-7 V5 z" fill="none" stroke="currentColor" stroke-width="1"/>
+            <path d="M7 10 l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="hero-benefits__item-title">The first lip mask with the OS-01 Peptide&trade;</h3>
+          <p class="hero-benefits__item-text">Aging happens at the cell. That&rsquo;s where OS-01 LIP works &mdash; while you sleep.</p>
+        </li>
+        <li class="hero-benefits__item">
+          <svg class="hero-benefits__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M2 7 q3 -3 6 0 t6 0 t6 0" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M2 13 q3 -3 6 0 t6 0 t6 0" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+          <h3 class="hero-benefits__item-title">81% saw fewer wrinkles around the lips in 4 weeks&sup1;</h3>
+          <p class="hero-benefits__item-text">Consistent nightly use builds visible improvements that compound over time &mdash; starting in as little as 4 weeks.</p>
+        </li>
+        <li class="hero-benefits__item">
+          <svg class="hero-benefits__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+            <path d="M6 12 c2 -2 6 -2 8 0" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+          <h3 class="hero-benefits__item-title">Outperformed leading peptide and drugstore lip masks</h3>
+          <p class="hero-benefits__item-text">In lab studies, OS-01 Lip Restore Mask increased collagen by +138%, elastin by +133%, and hyaluronic acid by +51%.&sup1;</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== TIMELINE (Section F1) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6158
+    "Results that build over time" — three milestones (Immediate / Week 4 /
+    Week 12) stacked along a vertical timeline.
+  -->
+  <section class="timeline" data-section-id="timeline" aria-label="Results timeline">
+    <div class="timeline__inner">
+      <div class="timeline__copy">
+        <h2 class="timeline__headline">Results that build over time</h2>
+        <ol class="timeline__steps">
+        <span class="timeline__track" aria-hidden="true">
+          <span class="timeline__track-fill"></span>
+        </span>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Immediate:</span><br>Instant hydration you can feel</h3>
+          <ul class="timeline__step-list">
+            <li>Melts into a non-sticky overnight layer</li>
+            <li>98% agreed lips feel instantly hydrated on application&sup1;</li>
+            <li>The OS-01 Peptide&trade; begins working on contact</li>
+          </ul>
+        </li>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 4:</span><br>Smoother lips, fewer fine lines</h3>
+          <ul class="timeline__step-list">
+            <li>95% agreed lips feel smoother&sup1;</li>
+            <li>81% saw fewer fine lines around the lip border&sup1;</li>
+            <li>80% saw fewer fine lines on the lips&sup1;</li>
+          </ul>
+        </li>
+        <li class="timeline__step">
+          <h3 class="timeline__step-title"><span class="timeline__step-when">Week 12:</span><br>Resilient, fuller, healthier lips</h3>
+          <ul class="timeline__step-list">
+            <li>97% agreed lips feel smoother&sup1;</li>
+            <li>87% reported fewer fine lines and wrinkles&sup1;</li>
+            <li>81% reported improved lip fullness&sup1;</li>
+          </ul>
+        </li>
+        </ol>
+      </div>
+      <div class="timeline__media" aria-hidden="true">
+        <video class="timeline__video" autoplay muted loop playsinline preload="metadata">
+          <source src="assets/lipmask/lipmask_video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLINICAL B/A (Section G2) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 361:1303
+    "What consistency looks like" — three clinical stat columns on the left and
+    two before/after landscape photos on the right with frosted-glass labels.
+  -->
+  <section class="clinical" data-section-id="clinical" aria-label="Clinical results">
+    <div class="clinical__inner">
+      <div class="clinical__copy">
+        <h2 class="clinical__headline">What consistency looks like</h2>
+        <div class="clinical__stats">
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">+138%</p>
+            <p class="clinical__stat-label">collagen biomarker increase<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">+133%</p>
+            <p class="clinical__stat-label">elastin biomarker increase<sup>1</sup></p>
+          </div>
+          <div class="clinical__stat">
+            <p class="clinical__stat-number">+51%</p>
+            <p class="clinical__stat-label">hyaluronic acid biomarker increase<sup>1</sup></p>
+          </div>
+        </div>
+      </div>
+      <div class="clinical__photos">
+        <div class="clinical__nav">
+          <button class="clinical__nav-btn" type="button" data-clinical-prev aria-label="Previous before/after pair">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polyline points="14,6 8,12 14,18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="clinical__nav-indicator" data-clinical-indicator>1 / 3</span>
+          <button class="clinical__nav-btn" type="button" data-clinical-next aria-label="Next before/after pair">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polyline points="10,6 16,12 10,18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="clinical__carousel" data-clinical-carousel>
+          <div class="clinical__pair clinical__pair--active">
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_before_1.png" alt="Lips before treatment, set 1" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_after_1.png" alt="Lips after 12 weeks of treatment, set 1" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+          <div class="clinical__pair">
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_before_1.png" alt="Lips before treatment, set 2" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_after_1.png" alt="Lips after 12 weeks of treatment, set 2" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+          <div class="clinical__pair">
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_before_1.png" alt="Lips before treatment, set 3" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--before" aria-hidden="true"></span>
+                before
+              </figcaption>
+            </figure>
+            <figure class="clinical__photo">
+              <img src="assets/lipmask/lipmask_after_1.png" alt="Lips after 12 weeks of treatment, set 3" loading="lazy">
+              <figcaption class="clinical__photo-label">
+                <span class="clinical__photo-square clinical__photo-square--after" aria-hidden="true"></span>
+                after week 12
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SCIENCE MODULE (Section I1-3) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 359:1057
+    Two-column block: imagery on the left, "The OS-01 Peptide™" headline + body
+    + link on the right.
+  -->
+  <section class="science-module" data-section-id="science-module" aria-label="OS-01 Peptide science">
+    <div class="science-module__inner">
+      <div class="science-module__media" aria-hidden="true">
+        <img src="assets/images/body/imgFrame6.png" alt="" loading="lazy">
+      </div>
+      <div class="science-module__copy">
+        <!-- I1 — Module header (32 chars max). -->
+        <h2 class="science-module__headline">
+          <span>The</span>
+          <img class="science-module__logo" src="assets/images/body/imgOs01PeptideLogoBlack1.png" alt="OS-01" width="58" height="9">
+          <span>Peptide&trade;</span>
+        </h2>
+        <!-- I2 — Module content. -->
+        <p class="science-module__body">Born from over a decade of longevity science, the proprietary OS-01 Peptide&trade; addresses a key driver of visible aging &mdash; cellular senescence &mdash; to support meaningful improvements in skin and hair health today and over time.</p>
+        <ul class="science-module__list">
+          <li>Engineered by a team of female longevity scientists with expertise in stem cell biology, bioinformatics, and skin aging</li>
+          <li>Peer-reviewed, published, and patented for its role in skin longevity</li>
+          <li>Delivers progressive, lasting improvements for healthier, younger-looking skin over time</li>
+        </ul>
+        <!-- I3 — Link to OS-01 Science page (24 chars max). -->
+        <a href="#" class="science-module__link">Explore the science &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== KEY INGREDIENTS ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6349
+    Black-background section: cream-blob imagery on the left, headline +
+    5-item ingredient list with descriptions on the right.
+  -->
+  <section class="key-ingredients" data-section-id="key-ingredients" aria-label="Key ingredients">
+    <div class="key-ingredients__inner">
+      <div class="key-ingredients__media" aria-hidden="true">
+        <img src="assets/lipmask/lipmask_ingredients.png" alt="" loading="lazy">
+      </div>
+      <div class="key-ingredients__content">
+        <div class="key-ingredients__head">
+          <h2 class="key-ingredients__headline">Key Ingredients</h2>
+          <p class="key-ingredients__description">A lip longevity formula pairing the OS-01 Peptide&trade; with ceramides, squalane, and microalgae.</p>
+        </div>
+        <ul class="key-ingredients__list">
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients" open>
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">OS-01 Peptide&trade;</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">Born from a decade of longevity science. Clinically shown to support biologically younger lip skin.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">MICROALGAE COMPLEX</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">Phaeodactylum and Haematococcus microalgae. Actives that defend lips from environmental stress.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">CERAMIDES + SQUALANE</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A barrier-replenishing duo that seals in moisture and supports the lips overnight.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">ASTAXANTHIN</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">One of nature&rsquo;s most powerful antioxidants. Helps protect lip skin from oxidative stress.</p>
+            </details>
+          </li>
+          <li class="key-ingredients__item">
+            <details class="key-ingredients__details" name="key-ingredients">
+              <summary class="key-ingredients__summary">
+                <h3 class="key-ingredients__item-title">PALMITOYL HEXAPEPTIDE</h3>
+                <span class="key-ingredients__item-icon" aria-hidden="true">
+                  <svg class="key-ingredients__icon key-ingredients__icon--minus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <svg class="key-ingredients__icon key-ingredients__icon--plus" viewBox="0 0 20 20" focusable="false">
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="key-ingredients__item-description">A supporting peptide that visibly smooths fine lines and strengthens the lip&rsquo;s delicate matrix.</p>
+            </details>
+          </li>
+        </ul>
+        <a href="#" class="key-ingredients__link">See all ingredients &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKIN LONGEVITY PROTOCOL ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 258:6622
+    Horizontal carousel of 8 product cards. Each card: 160px wide image +
+    step label (orange) + name + price + divider + frequency + SHOP NOW CTA.
+  -->
+  <section class="protocol" data-section-id="protocol" aria-label="Skin Longevity Protocol">
+    <div class="protocol__inner">
+      <h2 class="protocol__headline">Skin Longevity Protocol</h2>
+      <ul class="protocol__list">
+        <li class="protocol__card">
+          <div class="protocol__card-image">
+            <img src="assets/body/prod_prep.png" alt="PREP Cleanser" loading="lazy">
+          </div>
+          <div class="protocol__card-body">
+            <div class="protocol__card-info">
+              <span class="protocol__card-step">STEP 1: PREPARE</span>
+              <span class="protocol__card-name">PREP Cleanser</span>
+              <span class="protocol__card-price">$55</span>
+            </div>
+            <hr class="protocol__card-divider">
+            <div class="protocol__card-frequency">
+              <span class="protocol__card-frequency-label">FREQUENCY</span>
+              <span class="protocol__card-frequency-value">AM + PM</span>
+            </div>
+          </div>
+          <a class="protocol__card-cta" href="#">ADD TO CART</a>
+        </li>
+        <li class="protocol__card">
+          <div class="protocol__card-image">
+            <img src="assets/body/prod_eye.png" alt="OS-01 EYE Cream" loading="lazy">
+          </div>
+          <div class="protocol__card-body">
+            <div class="protocol__card-info">
+              <span class="protocol__card-step">STEP 1: PREPARE</span>
+              <span class="protocol__card-name">OS-01 EYE Cream</span>
+              <span class="protocol__card-price">$55</span>
+            </div>
+            <hr class="protocol__card-divider">
+            <div class="protocol__card-frequency">
+              <span class="protocol__card-frequency-label">FREQUENCY</span>
+              <span class="protocol__card-frequency-value">AM + PM</span>
+            </div>
+          </div>
+          <a class="protocol__card-cta" href="#">ADD TO CART</a>
+        </li>
+        <li class="protocol__card">
+          <div class="protocol__card-image">
+            <img src="assets/body/prod_face.png" alt="OS-01 FACE Moisturizer" loading="lazy">
+          </div>
+          <div class="protocol__card-body">
+            <div class="protocol__card-info">
+              <span class="protocol__card-step">STEP 1: PREPARE</span>
+              <span class="protocol__card-name">OS-01 FACE Moisturizer</span>
+              <span class="protocol__card-price">$55</span>
+            </div>
+            <hr class="protocol__card-divider">
+            <div class="protocol__card-frequency">
+              <span class="protocol__card-frequency-label">FREQUENCY</span>
+              <span class="protocol__card-frequency-value">AM + PM</span>
+            </div>
+          </div>
+          <a class="protocol__card-cta" href="#">ADD TO CART</a>
+        </li>
+        <li class="protocol__card">
+          <div class="protocol__card-image">
+            <img src="assets/body/prod_facespf.png" alt="OS-01 FACE SPF" loading="lazy">
+          </div>
+          <div class="protocol__card-body">
+            <div class="protocol__card-info">
+              <span class="protocol__card-step">STEP 1: PREPARE</span>
+              <span class="protocol__card-name">OS-01 FACE SPF</span>
+              <span class="protocol__card-price">$55</span>
+            </div>
+            <hr class="protocol__card-divider">
+            <div class="protocol__card-frequency">
+              <span class="protocol__card-frequency-label">FREQUENCY</span>
+              <span class="protocol__card-frequency-value">AM + PM</span>
+            </div>
+          </div>
+          <a class="protocol__card-cta" href="#">ADD TO CART</a>
+        </li>
+        <li class="protocol__card">
+          <div class="protocol__card-image">
+            <img src="assets/body/prod_body.png" alt="OS-01 BODY" loading="lazy">
+          </div>
+          <div class="protocol__card-body">
+            <div class="protocol__card-info">
+              <span class="protocol__card-step">STEP 1: PREPARE</span>
+              <span class="protocol__card-name">OS-01 BODY</span>
+              <span class="protocol__card-price">$55</span>
+            </div>
+            <hr class="protocol__card-divider">
+            <div class="protocol__card-frequency">
+              <span class="protocol__card-frequency-label">FREQUENCY</span>
+              <span class="protocol__card-frequency-value">AM + PM</span>
+            </div>
+          </div>
+          <a class="protocol__card-cta" href="#">ADD TO CART</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== FAQS (Section K2-K3) ========== -->
+  <!--
+    Figma: file ttnXSyu0hen75971OQWakO, node 260:6746
+    Two-column layout: heading on the left, 5 collapsible Q/A pairs on the right.
+  -->
+  <section class="faqs" data-section-id="faqs" aria-label="Frequently asked questions">
+    <div class="faqs__inner">
+      <div class="faqs__heading-col">
+        <h2 class="faqs__headline">Frequently asked questions</h2>
+      </div>
+      <div class="faqs__items">
+        <details class="faqs__item" open>
+          <summary class="faqs__summary">
+            <!-- K2 — Question (50 chars max). -->
+            <span class="faqs__question">How is OS-01 LIP different from lip balm?</span>
+            <span class="faqs__indicator" aria-hidden="true">
+              <svg class="faqs__icon faqs__icon--minus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="faqs__icon faqs__icon--plus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faqs__answer">
+            <!-- K3 — Answer (80 words max). -->
+            <p>Yes. Dermatologist tested, fragrance-free, NEA-approved. Free of parabens, sulfates, gluten, and known sensitizers.</p>
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__summary">
+            <span class="faqs__question">When will I start seeing results?</span>
+            <span class="faqs__indicator" aria-hidden="true">
+              <svg class="faqs__icon faqs__icon--minus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="faqs__icon faqs__icon--plus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faqs__answer">
+            <p>Most customers notice immediate softness and hydration from the first use. By week 4, clinical study participants reported visibly smoother, more hydrated skin. By week 12, participants showed up to a +41% increase in skin barrier strength along with a measurable reduction in systemic inflammation markers.&sup1;,&sup3;</p>
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__summary">
+            <span class="faqs__question">Can I use it during the day?</span>
+            <span class="faqs__indicator" aria-hidden="true">
+              <svg class="faqs__icon faqs__icon--minus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="faqs__icon faqs__icon--plus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faqs__answer">
+            <p>Yes. OS-01 BODY Moisturizer is non-comedogenic, Dermatologically Tested for Sensitive Skin (n=54), and has been awarded the National Eczema Association Seal of Acceptance&trade;. The formula is suitable for sensitive and reactive skin types.</p>
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__summary">
+            <span class="faqs__question">Is it safe for sensitive skin or filler lips?</span>
+            <span class="faqs__indicator" aria-hidden="true">
+              <svg class="faqs__icon faqs__icon--minus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="faqs__icon faqs__icon--plus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faqs__answer">
+            <p>OS-01 BODY Moisturizer was formulated specifically for body skin, with active ingredients and nourishing oils suited to thicker skin. For facial skin, OS-01 FACE Moisturizer or OS-01 EYE Cream is more suitable. That said, some customers in drier climates or with drier skin have reported using OS-01 BODY Moisturizer on their face as well.</p>
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__summary">
+            <span class="faqs__question">How long will one tube last?</span>
+            <span class="faqs__indicator" aria-hidden="true">
+              <svg class="faqs__icon faqs__icon--minus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="faqs__icon faqs__icon--plus" viewBox="0 0 20 20" focusable="false">
+                <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faqs__answer">
+            <p>Apply OS-01 BODY Moisturizer to your entire body, or focus on specific areas where you want to see visible firming and smoothing. For best results, use daily &mdash; morning or evening.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REVIEWS — "What LIP users report" ========== -->
+  <section class="reviews" data-section-id="reviews" aria-label="Customer reviews">
+    <div class="reviews__inner">
+      <h2 class="reviews__headline">What LIP users report</h2>
+
+      <!-- Photo gallery with the center photo elevated. -->
+      <div class="reviews__gallery" aria-hidden="true">
+        <figure class="reviews__photo reviews__photo--small">
+          <img src="assets/images/body/imgImage55.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--medium">
+          <img src="assets/images/body/imgImage56.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--feature">
+          <img src="assets/images/body/imgImage57.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--medium">
+          <img src="assets/images/body/imgImage58.png" alt="" loading="lazy">
+        </figure>
+        <figure class="reviews__photo reviews__photo--small">
+          <img src="assets/images/body/imgImage53.png" alt="" loading="lazy">
+        </figure>
+      </div>
+
+      <!-- Aggregate stats -->
+      <div class="reviews__stats" aria-label="Aggregate ratings">
+        <div class="reviews__stat">
+          <div class="reviews__stat-row">
+            <span class="reviews__stat-number">4.7<span class="reviews__stat-fraction">/5</span></span>
+            <svg class="reviews__stat-star" viewBox="0 0 12 11" aria-hidden="true" focusable="false">
+              <polygon points="6,0 7.4,3.8 11.4,3.8 8.2,6.4 9.4,10.5 6,8 2.6,10.5 3.8,6.4 0.6,3.8 4.6,3.8" fill="currentColor"/>
+            </svg>
+          </div>
+          <p class="reviews__stat-label">Based on 288 reviews</p>
+        </div>
+        <div class="reviews__stat">
+          <span class="reviews__stat-number">96%</span>
+          <p class="reviews__stat-label">Would recommend this product</p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="reviews__tabs" role="tablist">
+        <button class="reviews__tab reviews__tab--active" role="tab" aria-selected="true" type="button">Reviews <span class="reviews__tab-count">(939)</span></button>
+        <button class="reviews__tab" role="tab" aria-selected="false" type="button">Questions <span class="reviews__tab-count">(49)</span></button>
+      </div>
+
+      <!-- Filter + write-review actions -->
+      <div class="reviews__actions">
+        <button class="reviews__pill" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="10" y1="17" x2="14" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          FILTERS
+        </button>
+        <button class="reviews__pill" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M16 4l4 4-12 12H4v-4L16 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          WRITE A REVIEW
+        </button>
+      </div>
+
+      <!-- Meta row: count + sort -->
+      <div class="reviews__meta">
+        <span class="reviews__count">939 reviews</span>
+        <div class="reviews__sort">
+          <span class="reviews__sort-label">Sort</span>
+          <span class="reviews__sort-value">Most Recent</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="6,9 12,15 18,9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- Sample review card -->
+      <article class="review-card">
+        <div class="review-card__user">
+          <div class="review-card__avatar" aria-hidden="true">MW</div>
+          <div class="review-card__user-info">
+            <p class="review-card__name">Margaret W.</p>
+            <p class="review-card__verified">
+              <svg viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+                <polyline points="2.5,7 6,10.5 11.5,3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Verified Buyer
+            </p>
+          </div>
+          <div class="review-card__product">
+            <img src="assets/body/prod_facespf.png" alt="" loading="lazy">
+            <div>
+              <p class="review-card__product-label">Reviewing</p>
+              <p class="review-card__product-name">OS-01 FACE SPF 30+ &mdash; Light/Medium</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card__content">
+          <div class="review-card__rating" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+            <svg viewBox="0 0 18 18" aria-hidden="true"><use href="#rating-star" width="18" height="18"/></svg>
+          </div>
+          <p class="review-card__text">I love the way this applies on my skin. It&rsquo;s a great light coverage tint, and feels so nourishing on my face.</p>
+          <p class="review-card__date">Yesterday</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</body>
+</html>
