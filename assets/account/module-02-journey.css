@@ -138,6 +138,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-viridian);
+  text-align: center;
 }
 
 /* When a cell has an uploaded photo, the photo fills the cell behind the

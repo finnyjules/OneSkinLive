@@ -111,9 +111,9 @@
       <section class="account-module account-module--welcome" data-account-module="01" aria-labelledby="welcome-name">
         <div class="welcome">
           <div class="welcome__intro">
-            <h1 class="welcome__name" id="welcome-name">Welcome back, Julien.</h1>
+            <h1 class="welcome__name" id="welcome-name">Welcome back, Emma.</h1>
             <p class="welcome__meta">
-              <span>julien@example.com</span>
+              <span>emma@example.com</span>
               <span class="welcome__sep" aria-hidden="true"></span>
               <span>Member since May 2024</span>
             </p>
@@ -213,32 +213,65 @@
         </div>
 
         <!-- OTP -->
-        <div class="subscription__upgrade" data-state-target="otp">
-          <div class="subscription__upgrade-media">
-            <img src="assets/body/prod_body.png" alt="OS-01 BODY MOISTURIZER">
-          </div>
-          <div class="subscription__upgrade-content">
-            <span class="subscription__upgrade-eyebrow">Members save 20%</span>
-            <h2 class="subscription__upgrade-title">Make it a subscription.</h2>
-            <p class="subscription__upgrade-body">Skip the reorder, save on every shipment, and add to any order in one tap. Most members never look back.</p>
+        <div data-state-target="otp">
 
-            <ul class="subscription__upgrade-list">
-              <li>
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
-                20% off every renewal
-              </li>
-              <li>
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
-                Free shipping, every time
-              </li>
-              <li>
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
-                Pause, skip, or cancel anytime
-              </li>
-            </ul>
+          <h2 class="subscription__heading">Arriving soon</h2>
+          <div class="subscription__list">
+            <article class="subscription__card subscription__card--order">
+              <div class="subscription__card-thumb">
+                <img src="assets/body/prod_body.png" alt="OS-01 BODY MOISTURIZER">
+              </div>
+              <div class="subscription__card-body">
+                <h3 class="subscription__card-frequency">Arriving May 6</h3>
+                <p class="subscription__card-meta">
+                  <strong>$90.00</strong>
+                  <span class="subscription__card-meta-sep" aria-hidden="true"></span>
+                  <span>Order #OS-14392</span>
+                  <span class="subscription__card-meta-sep" aria-hidden="true"></span>
+                  <span>Placed May 2</span>
+                </p>
+                <span class="subscription__order-status subscription__order-status--transit">In transit</span>
+              </div>
+              <div class="subscription__card-actions">
+                <div class="subscription__card-buttons">
+                  <button type="button" class="subscription__btn subscription__btn--primary">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M8 1.8c-2.5 0-4.5 2-4.5 4.5 0 3.5 4.5 8 4.5 8s4.5-4.5 4.5-8c0-2.5-2-4.5-4.5-4.5z"/>
+                      <circle cx="8" cy="6.3" r="1.6"/>
+                    </svg>
+                    Track package
+                  </button>
+                </div>
+                <a href="/account-orders.html" class="subscription__card-details">
+                  View order
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 7h8M8 4l3 3-3 3"/>
+                  </svg>
+                </a>
+              </div>
 
-            <a href="#" class="btn btn--primary">Subscribe &amp; save</a>
-            <p class="subscription__upgrade-fineprint">Cancel from your account in one tap. No commitment.</p>
+              <!-- Integrated subscription upsell -->
+              <div class="subscription__card-upsell">
+                <div class="subscription__card-upsell-text">
+                  <h3 class="subscription__card-upsell-title">Make it a subscription and save $13.50 per shipment.</h3>
+                  <ul class="subscription__card-upsell-list">
+                    <li>
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
+                      15% off every shipment
+                    </li>
+                    <li>
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
+                      Free shipping
+                    </li>
+                    <li>
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.5 3.5L13 5"/></svg>
+                      Cancel anytime
+                    </li>
+                  </ul>
+                </div>
+                <a href="#" class="btn btn--primary">Subscribe &amp; save</a>
+              </div>
+            </article>
           </div>
         </div>
 
@@ -313,7 +346,7 @@
             <img src="https://www.oneskin.co/cdn/shop/files/Bare-Blush_Lead_Beige_V3.webp?v=1776786892&amp;width=1800" alt="OS-01 LIP SPF" loading="lazy">
           </div>
           <div class="drop__content">
-            <p class="drop__eyebrow">New in the protocol</p>
+            <p class="drop__eyebrow">New drop</p>
             <h2 class="drop__title" id="drop-title">OS-01 LIP SPF.</h2>
             <p class="drop__tagline">Mineral SPF 30+ for the most overlooked surface of your face. Hydrating, untinted, and made to reapply without thinking.</p>
 
@@ -349,8 +382,7 @@
         <div class="upsell-rail" data-upsell-rail>
           <header class="upsell-rail__header">
             <div class="upsell-rail__title-block">
-              <p class="upsell-rail__eyebrow">Layer your protocol</p>
-              <h2 class="upsell-rail__title" id="upsell-title">Members add these on.</h2>
+              <h2 class="upsell-rail__title" id="upsell-title">Upgrade your OS-01 routine.</h2>
               <p class="upsell-rail__subtitle" data-state-target="face hair">Pricing reflects your subscription savings. One tap to add to your next shipment.</p>
               <p class="upsell-rail__subtitle" data-state-target="otp">The most-loved add-ons across the OS-01 lineup.</p>
             </div>

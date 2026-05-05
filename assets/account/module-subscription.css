@@ -163,6 +163,99 @@
   .subscription__card-details { width: 100%; justify-content: flex-end; }
 }
 
+/* ============= Upcoming-order card (OTP) ============= */
+/* Reuses the .subscription__card layout but switches the surface to cream
+   and folds the subscription upsell in below the order actions. */
+.subscription__card--order {
+  background: var(--color-cream-2);
+  border: 1px solid var(--color-line-soft);
+}
+
+.subscription__order-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin-top: 4px;
+  background: #fff4e8;
+  color: #b85c14;
+}
+
+.subscription__order-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+
+/* Slim, viridian-soft upsell block tucked into the cream order card. */
+.subscription__card-upsell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 22px;
+  margin-top: 8px;
+  background: var(--color-viridian-soft);
+}
+
+.subscription__card-upsell-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.subscription__card-upsell-title {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.subscription__card-upsell-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 4px;
+}
+
+.subscription__card-upsell-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-ink-2);
+}
+
+.subscription__card-upsell-list svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--color-viridian);
+}
+
+.subscription__card-upsell .btn { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .subscription__card-upsell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .subscription__card-upsell-title { font-size: 20px; }
+}
+
 /* ============= OTP upgrade ============= */
 .subscription__upgrade {
   display: grid;
