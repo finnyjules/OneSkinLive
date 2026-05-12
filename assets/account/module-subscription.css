@@ -1,9 +1,9 @@
 /* ==========================================================================
    Subscription status section
-   - Subscriber (body / hair): "Active subscriptions" heading + a list of
-     compact cards, each showing frequency, price, next ship date, and
-     inline actions (Get now / Skip / View details).
-   - OTP: full-bleed upgrade hero with benefit bullets and primary CTA.
+   - Subscriber (face / hair) and OTP both use the unified `subscription__order`
+     card (single warm cream surface, four horizontal zones separated by
+     hairline dividers). Subscriber cards skip the timeline/tracking zone in
+     favor of a Skip / Get-it-now action row.
    ========================================================================== */
 
 .subscription__heading {
@@ -25,67 +25,7 @@
   gap: 14px;
 }
 
-/* ============= Active subscription card ============= */
-.subscription__card {
-  background: var(--color-viridian-soft);
-  border-radius: var(--radius-lg);
-  padding: 28px 32px 24px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-@media (max-width: 600px) {
-  .subscription__card { padding: 22px 20px 20px; }
-}
-
-.subscription__card-thumb {
-  width: 116px;
-  height: 116px;
-  background: var(--color-cream);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.subscription__card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.subscription__card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.subscription__card-frequency {
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  color: var(--color-ink);
-}
-
-@media (max-width: 600px) {
-  .subscription__card-frequency { font-size: 24px; }
-}
-
-.subscription__card-meta {
-  font-size: 15px;
-  color: var(--color-ink-2);
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-
-.subscription__card-meta strong {
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
+/* ============= Shared meta separator dot ============= */
 .subscription__card-meta-sep {
   width: 3px;
   height: 3px;
@@ -94,23 +34,7 @@
   display: inline-block;
 }
 
-.subscription__card-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 4px;
-}
-
-.subscription__card-buttons {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* Pill action buttons — compact, on-card. */
+/* ============= Pill action buttons — compact, on-card. ============= */
 .subscription__btn {
   display: inline-flex;
   align-items: center;
@@ -144,219 +68,498 @@
 
 .subscription__btn--soft:hover { background: var(--color-viridian); color: var(--color-white); }
 
-.subscription__card-details {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--color-viridian);
-  transition: gap 0.18s ease;
+/* Inside the order card, soft buttons use the light-viridian wash so they
+   read as secondary (clearly distinct from the ink primary). */
+.subscription__order .subscription__btn--soft {
+  background: var(--color-viridian-light);
 }
 
-.subscription__card-details:hover { gap: 12px; }
+/* ==========================================================================
+   "Arriving soon" order card (OTP state)
+   Single warm cream card with four zones (moment / items / progress / nudge)
+   separated by hairline dividers. No nested surface colors.
+   ========================================================================== */
 
-.subscription__card-details svg { width: 14px; height: 14px; transition: transform 0.18s ease; }
-
-@media (max-width: 600px) {
-  .subscription__card-actions { gap: 12px; }
-  .subscription__card-details { width: 100%; justify-content: flex-end; }
-}
-
-/* ============= Upcoming-order card (OTP) ============= */
-/* Reuses the .subscription__card layout but switches the surface to cream
-   and folds the subscription upsell in below the order actions. */
-.subscription__card--order {
+.subscription__order {
   background: var(--color-cream-2);
-  border: 1px solid var(--color-line-soft);
-}
-
-.subscription__order-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 22px;
-  padding: 0 10px;
-  border-radius: var(--radius-pill);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  align-self: flex-start;
-  margin-top: 4px;
-  background: #fff4e8;
-  color: #b85c14;
-}
-
-.subscription__order-status::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  display: inline-block;
-}
-
-/* Slim, viridian-soft upsell block tucked into the cream order card. */
-.subscription__card-upsell {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 18px 22px;
-  margin-top: 8px;
-  background: var(--color-viridian-soft);
-}
-
-.subscription__card-upsell-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-}
-
-.subscription__card-upsell-title {
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  color: var(--color-ink);
-}
-
-.subscription__card-upsell-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 14px;
-  margin-top: 4px;
-}
-
-.subscription__card-upsell-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--color-ink-2);
-}
-
-.subscription__card-upsell-list svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: var(--color-viridian);
-}
-
-.subscription__card-upsell .btn { flex-shrink: 0; }
-
-@media (max-width: 600px) {
-  .subscription__card-upsell {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .subscription__card-upsell-title { font-size: 20px; }
-}
-
-/* ============= OTP upgrade ============= */
-.subscription__upgrade {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-  background: var(--color-cream-2);
-  align-items: stretch;
   border: 1px solid var(--color-line-soft);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
-@media (max-width: 1023px) {
-  .subscription__upgrade { grid-template-columns: 1fr; }
+/* Subscriber variant — warm green wash distinguishes recurring shipments
+   from one-time (cream) orders at a glance. */
+.subscription__order--sub {
+  background: var(--color-viridian-soft);
 }
 
-.subscription__upgrade-media {
+.subscription__order > * + * {
+  border-top: 1px solid var(--color-line-soft);
+}
+
+/* Hidden-attribute override (our CSS sets display on some scoped elements
+   which would otherwise win over the [hidden] default of display:none). */
+.subscription__order [hidden] { display: none; }
+
+.subscription__order-moment,
+.subscription__order-items,
+.subscription__order-tracking-zone,
+.subscription__order-actions,
+.subscription__order-nudge {
+  padding: 24px 32px;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-moment,
+  .subscription__order-items,
+  .subscription__order-tracking-zone,
+  .subscription__order-actions,
+  .subscription__order-nudge {
+    padding: 20px 20px;
+  }
+}
+
+/* ============= Zone C — Shipment actions (subscriber card) =============
+   Replaces the OTP card's progress timeline + tracking with a simple
+   row of Skip / Get-it-now pill buttons. */
+
+.subscription__order-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-actions { gap: 10px; }
+  .subscription__order-actions .subscription__btn { flex: 1; }
+}
+
+/* ============= Zone A — Arrival moment ============= */
+
+.subscription__order-eyebrow {
+  font-family: var(--font-display-italic);
+  font-size: 16px;
+  color: var(--color-viridian);
+  margin-bottom: 2px;
+}
+
+.subscription__order-date {
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+@media (max-width: 600px) {
+  .subscription__order-date { font-size: 26px; }
+}
+
+/* Two-column layout only when the moment header carries a timeline (OTP card).
+   The subscription-card variant has no `<ol class="subscription__order-steps">`
+   inside, so it keeps the default block flow with stacked eyebrow/date/meta. */
+.subscription__order-moment:has(.subscription__order-steps) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.subscription__order-moment-text {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.subscription__order-moment .subscription__order-steps {
+  flex: 1 1 auto;
+  max-width: 480px;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-moment:has(.subscription__order-steps) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .subscription__order-moment .subscription__order-steps {
+    max-width: none;
+  }
+}
+
+.subscription__order-meta {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-ink-2);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============= Zone B — Items list (collapsible when 2+) ============= */
+
+.subscription__order-items-summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--color-ink);
+}
+
+.subscription__order-items-thumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.subscription__order-items-thumb {
+  width: 56px;
+  height: 56px;
   background: var(--color-cream);
   overflow: hidden;
-  position: relative;
-  min-height: 360px;
+  display: inline-block;
 }
 
-.subscription__upgrade-media img {
-  position: absolute;
-  inset: 0;
+.subscription__order-items-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-@media (max-width: 1023px) {
-  .subscription__upgrade-media { min-height: 280px; }
+@media (max-width: 600px) {
+  .subscription__order-items-thumb { width: 40px; height: 40px; }
+  .subscription__order-items-thumbs { gap: 6px; }
+  .subscription__order-items-summary { gap: 12px; }
+  /* Drop the "Show / Hide items" text label on small screens; chevron is the
+     affordance (the whole row is still clickable). */
+  .subscription__order-items-toggle-label [data-toggle-show],
+  .subscription__order-items-toggle-label [data-toggle-hide] {
+    display: none;
+  }
 }
 
-.subscription__upgrade-content {
-  padding: 48px 56px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  justify-content: center;
+.subscription__order-items-summary-text {
+  flex: 1;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--color-ink-2);
 }
 
-@media (max-width: 1023px) {
-  .subscription__upgrade-content { padding: 36px 28px 40px; }
-}
-
-.subscription__upgrade-eyebrow {
+.subscription__order-items-toggle-label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-display-italic);
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-viridian);
+  flex-shrink: 0;
 }
 
-.subscription__upgrade-title {
-  font-size: 38px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+.subscription__order-items-chevron {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.22s ease;
 }
 
-@media (max-width: 1023px) {
-  .subscription__upgrade-title { font-size: 30px; }
+.subscription__order-items-summary[aria-expanded="true"] .subscription__order-items-chevron {
+  transform: rotate(180deg);
 }
 
-.subscription__upgrade-body {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--color-ink-2);
-  max-width: 44ch;
-}
-
-.subscription__upgrade-list {
+.subscription__order-items-list {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: 6px 0 6px;
+  gap: 0;
 }
 
-.subscription__upgrade-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
+.subscription__order-items-list[hidden] { display: none; }
+
+.subscription__order-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+}
+
+.subscription__order-item + .subscription__order-item {
+  border-top: 1px solid var(--color-line-soft);
+}
+
+.subscription__order-item-thumb {
+  width: 56px;
+  height: 56px;
+  background: var(--color-cream);
+  overflow: hidden;
+}
+
+.subscription__order-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.subscription__order-item-name {
+  font-size: 15px;
+  font-weight: 500;
   color: var(--color-ink);
 }
 
-.subscription__upgrade-list svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: var(--color-viridian);
+.subscription__order-item-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
 }
 
-.subscription__upgrade-content .btn { align-self: flex-start; margin-top: 4px; }
+/* ============= Zone C — Shipment progress ============= */
 
-.subscription__upgrade-fineprint {
+.subscription__order-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  gap: 0;
+}
+
+.subscription__order-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  position: relative;
+  padding-right: 8px;
+}
+
+.subscription__order-step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-viridian);
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.subscription__order-step[data-state="future"] .subscription__order-step-dot {
+  background: transparent;
+  border: 1.5px solid var(--color-ink-3);
+}
+
+/* Connector line — drawn from the dot of step N to the dot of step N+1.
+   Dots are 12px and left-aligned (flex-start), so their centres sit at 6px
+   from the cell's left edge. Anchor the line between those centres. */
+.subscription__order-step + .subscription__order-step::before {
+  content: '';
+  position: absolute;
+  left: calc(-100% + 6px);
+  right: calc(100% - 6px);
+  top: 5px;
+  height: 2px;
+  background: var(--color-viridian);
+  z-index: 0;
+}
+
+/* Active or future predecessor → dotted ink-3 connector. */
+.subscription__order-step[data-state="future"] + .subscription__order-step::before,
+.subscription__order-step[data-state="active"] + .subscription__order-step::before {
+  background: transparent;
+  border-top: 2px dotted var(--color-ink-3);
+  height: 0;
+}
+
+.subscription__order-step-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: 1.25;
+}
+
+.subscription__order-step-date {
   font-size: 12px;
   color: var(--color-ink-3);
-  margin-top: 4px;
+  line-height: 1.25;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-step-name,
+  .subscription__order-step-date { font-size: 11px; }
+}
+
+/* Active dot pulse */
+.subscription__order-step[data-state="active"] .subscription__order-step-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--color-viridian);
+  opacity: 0.4;
+  animation: subscription-order-pulse 2.4s ease-out infinite;
+}
+
+@keyframes subscription-order-pulse {
+  0%   { transform: scale(1);   opacity: 0.4; }
+  100% { transform: scale(1.8); opacity: 0;   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subscription__order-step[data-state="active"] .subscription__order-step-dot::after {
+    animation: none;
+    opacity: 0.4;
+  }
+}
+
+/* Delayed overlay — active step's dot + pulse turn amber */
+.subscription__order[data-shipment-state="delayed"]
+  .subscription__order-step[data-state="active"] .subscription__order-step-dot {
+  background: #b85c14;
+}
+
+.subscription__order[data-shipment-state="delayed"]
+  .subscription__order-step[data-state="active"] .subscription__order-step-dot::after {
+  border-color: #b85c14;
+}
+
+/* Note line (delay) */
+.subscription__order-progress-note {
+  font-size: 13px;
+  color: #b85c14;
+}
+
+.subscription__order-progress-note:not([hidden]) + .subscription__order-progress-meta {
+  margin-top: 12px;
+}
+
+/* Meta row */
+.subscription__order-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-ink-2);
+}
+
+/* Track package button — light viridian wash to read as secondary to
+   the primary "Subscribe & save" button in the nudge below. */
+.subscription__order-progress-meta .subscription__btn--soft {
+  background: var(--color-viridian-light);
+}
+
+.subscription__order-tracking {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.subscription__order-tracking-pending {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.subscription__order-tracking-number {
+  font-variant-numeric: tabular-nums;
+}
+
+.subscription__order-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--color-viridian);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: background 0.18s ease;
+}
+
+.subscription__order-copy:hover { background: rgba(0,0,0,0.04); }
+
+.subscription__order-copy svg { width: 14px; height: 14px; }
+
+.subscription__order-copy-feedback:not(:empty) {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  white-space: nowrap;
+  color: var(--color-viridian);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-progress-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .subscription__order-progress-meta .subscription__btn { align-self: flex-end; }
+}
+
+/* Pre-ship state: hide tracking number + track link, show pending line. */
+.subscription__order[data-shipment-state="ordered"] [data-tracking],
+.subscription__order[data-shipment-state="ordered"] [data-track-link] {
+  display: none;
+}
+
+.subscription__order[data-shipment-state="ordered"] [data-tracking-pending] {
+  display: inline-flex;
+}
+
+/* Delayed: reveal note. */
+.subscription__order[data-shipment-state="delayed"] [data-shipment-note] {
+  display: block;
+}
+
+/* ============= Zone D — Subscribe nudge ============= */
+
+.subscription__order-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.subscription__order-nudge-text {
+  font-size: 15px;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-nudge {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .subscription__order-nudge .subscription__btn { align-self: flex-end; }
 }
