@@ -475,7 +475,7 @@
 
 .subscription__order-copy-link > span:first-child {
   text-decoration: underline;
-  text-decoration-color: rgba(0,0,0,0.18);
+  text-decoration-color: var(--color-line);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.18s ease;
 }
@@ -495,7 +495,7 @@
   font-size: 13px;
   color: var(--color-ink-3);
   text-decoration: underline;
-  text-decoration-color: rgba(0,0,0,0.12);
+  text-decoration-color: var(--color-line);
   text-underline-offset: 3px;
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
   margin-left: auto;
