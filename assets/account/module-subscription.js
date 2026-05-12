@@ -1,6 +1,5 @@
 // Account "Arriving soon" order card behavior.
 // - Toggle the items list (collapsed by default for 2+ items, no-op for 1).
-// - Copy tracking number to clipboard with inline feedback.
 // - Drive shipment-state demo from ?ship=... and items-count demo from ?items=...
 // In production, the shipment-state and items count come from order data.
 
@@ -67,21 +66,4 @@
     toggle.addEventListener('click', (e) => e.preventDefault());
   }
 
-  // ---- Copy tracking ----
-  const copyBtn = order.querySelector('[data-copy-tracking]');
-  const feedback = order.querySelector('[data-copy-feedback]');
-  if (copyBtn && feedback) {
-    copyBtn.addEventListener('click', async () => {
-      const number = (copyBtn.dataset.trackingNumber || '').trim();
-      if (!number) return;
-      try {
-        await navigator.clipboard.writeText(number);
-        feedback.textContent = 'Copied';
-        clearTimeout(copyBtn.__timer);
-        copyBtn.__timer = setTimeout(() => { feedback.textContent = ''; }, 1400);
-      } catch (_) {
-        feedback.textContent = 'Press ⌘C';
-      }
-    });
-  }
 })();

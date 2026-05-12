@@ -457,39 +457,7 @@
   background: var(--color-viridian-light);
 }
 
-/* Zone C — tracking row text controls */
-
-.subscription__order-copy-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  font-size: 13px;
-  color: var(--color-ink-2);
-  cursor: pointer;
-  position: relative;
-}
-
-.subscription__order-copy-link > span:first-child {
-  text-decoration: underline;
-  text-decoration-color: var(--color-line);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.18s ease;
-}
-
-.subscription__order-copy-link:hover > span:first-child,
-.subscription__order-copy-link:focus-visible > span:first-child {
-  text-decoration-color: currentColor;
-}
-
-.subscription__order-copy-feedback:not(:empty) {
-  color: var(--color-viridian);
-  font-size: 12px;
-  font-weight: 500;
-}
+/* Zone C — order id link (sits opposite the Track package CTA) */
 
 .subscription__order-id {
   font-size: 13px;
@@ -498,20 +466,12 @@
   text-decoration-color: var(--color-line);
   text-underline-offset: 3px;
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
-  margin-left: auto;
 }
 
 .subscription__order-id:hover,
 .subscription__order-id:focus-visible {
   color: var(--color-ink);
   text-decoration-color: currentColor;
-}
-
-@media (max-width: 600px) {
-  .subscription__order-id {
-    margin-left: 0;
-    flex-basis: 100%;
-  }
 }
 
 @media (max-width: 600px) {
@@ -522,9 +482,8 @@
   .subscription__order-progress-meta .subscription__btn { align-self: flex-end; }
 }
 
-/* Pre-ship state: hide track + copy controls, show pending line. */
-.subscription__order[data-shipment-state="ordered"] [data-track-link],
-.subscription__order[data-shipment-state="ordered"] [data-copy-tracking] {
+/* Pre-ship state: hide the track CTA, show the pending line in its place. */
+.subscription__order[data-shipment-state="ordered"] [data-track-link] {
   display: none;
 }
 
