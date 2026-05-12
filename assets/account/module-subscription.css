@@ -522,7 +522,7 @@
   .subscription__order-progress-meta .subscription__btn { align-self: flex-end; }
 }
 
-/* Pre-ship state: hide tracking number + track link, show pending line. */
+/* Pre-ship state: hide track + copy controls, show pending line. */
 .subscription__order[data-shipment-state="ordered"] [data-track-link],
 .subscription__order[data-shipment-state="ordered"] [data-copy-tracking] {
   display: none;
