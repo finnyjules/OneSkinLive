@@ -1,10 +1,14 @@
 /* ==========================================================================
-   Module 02 — 12-week journey grid
-   A 4×3 grid of weekly cells. Past + future weeks render as empty placeholders;
-   the current week (Week 3 here) holds the Upload photo action.
+   Module 02 — 12-week horizontal protocol timeline
+   Each cell pairs two stacked tiles:
+     Row 1 (top) — the example reference photo (always visible).
+     Row 2 (bottom) — the user's own slot. By default it shows the week's
+     description (milestone copy or short hint). When the user uploads a
+     photo for that week, the photo replaces the description inside the
+     same slot.
    ========================================================================== */
 
-.journey { display: flex; flex-direction: column; gap: 32px; }
+.journey { display: flex; flex-direction: column; gap: 40px; }
 
 .journey__header {
   display: flex;
@@ -38,32 +42,129 @@
   .journey__title { font-size: 26px; }
 }
 
-/* --- Grid --- */
-.journey__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+/* --- Track wrap: lets the rail bleed beyond the right gutter so the
+   following cells suggest more content to scroll into. --- */
+.journey__track-wrap {
+  position: relative;
+  margin-right: calc(var(--container-padding) * -1);
 }
 
-@media (max-width: 700px) {
-  .journey__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 1023px) {
+  .journey__track-wrap { margin-right: calc(var(--container-padding-mobile) * -1); }
 }
 
-@media (max-width: 440px) {
-  .journey__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* --- Horizontal scroll track. All cells share the same height now (two
+   1:1 tiles + marker + label), so a default stretch is fine. --- */
+.journey__track {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--container-padding) 8px 0;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-padding-left: 0;
+}
+
+.journey__track::-webkit-scrollbar { display: none; }
+
+@media (max-width: 1023px) {
+  .journey__track { padding-right: var(--container-padding-mobile); }
+}
+
+/* --- Horizontal rail line and animated fill ---
+   The rail sits at the dot row's vertical center. module-02-journey.js
+   sets its left/width to span from the first to the last dot, then
+   transitions the fill's scaleX to (currentWeek - 1) / 11. */
+.journey__rail {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journey__rail-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-viridian);
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+  transition: transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey__rail-fill { transition: none; }
 }
 
 /* --- Cell --- */
 .journey__cell {
-  aspect-ratio: 1 / 1;
-  background: var(--color-cream);
   position: relative;
+  flex: 0 0 220px;
+  width: 220px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  padding: 14px;
-  transition: background 0.18s ease;
+  gap: 12px;
+  padding: 0;
+  scroll-snap-align: start;
+  transition: opacity 0.2s ease;
 }
 
+@media (max-width: 1023px) {
+  .journey__cell { flex-basis: 200px; width: 200px; }
+}
+
+@media (max-width: 600px) {
+  .journey__cell { flex-basis: 180px; width: 180px; gap: 10px; }
+}
+
+/* --- Body holds the two stacked tiles (example + slot). 4px gap so the
+   pieces read as separate surfaces while staying tightly bound. --- */
+.journey__cell-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* --- Marker row: holds the dot at the rail's Y center. --- */
+.journey__cell-marker {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.journey__cell-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journey__cell--past .journey__cell-dot {
+  background: var(--color-viridian);
+  border-color: var(--color-viridian);
+}
+
+.journey__cell--current .journey__cell-dot {
+  background: var(--color-white);
+  border: 2px solid var(--color-viridian);
+  box-shadow: 0 0 0 4px var(--color-viridian-soft);
+}
+
+/* --- Label --- */
 .journey__cell-label {
   font-size: 11px;
   font-weight: 500;
@@ -72,55 +173,185 @@
   color: var(--color-ink-3);
 }
 
-/* Past weeks: empty placeholder, slightly subdued. */
 .journey__cell--past .journey__cell-label { color: var(--color-ink-2); }
+.journey__cell--current .journey__cell-label { color: var(--color-viridian); }
 
-/* Future weeks: dimmed to read as not-yet-active. */
-.journey__cell--future {
-  background: var(--color-cream-2);
-  opacity: 0.55;
+/* ==========================================================================
+   Row 1: Example tile
+   ========================================================================== */
+
+.journey__cell-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-cream);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Current week: viridian accent + visible upload action. */
-.journey__cell--current {
+.journey__cell-photo--example {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  filter: saturate(0.9);
+}
+
+.journey__cell-photo-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink-2);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Row 2: Slot tile — empty (shows description) → filled (shows photo)
+   ========================================================================== */
+
+.journey__cell-slot {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-cream-2);
+  border: 1px dashed rgba(0, 0, 0, 0.14);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px;
+  text-align: left;
+  font-family: inherit;
+  color: var(--color-ink);
+  /* Reset button defaults so .journey__upload picks the same styles. */
+  cursor: default;
+}
+
+/* Filled state: the photo background takes over; description hides. */
+.journey__cell-slot--filled {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+}
+
+.journey__cell-slot--filled .journey__cell-copy,
+.journey__cell-slot--filled .journey__upload-cta {
+  display: none;
+}
+
+/* Current week: viridian outline + clickable upload affordance. */
+.journey__cell--current .journey__cell-slot {
+  background: var(--color-viridian-soft);
+  border: none;
+  outline: 1px solid var(--color-viridian);
+  outline-offset: -1px;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.journey__cell--current .journey__cell-slot:hover {
+  background: var(--color-viridian-light);
+}
+
+/* --- Description content inside the slot --- */
+.journey__cell-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.journey__cell-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+}
+
+.journey__cell-when {
+  color: var(--color-ink-2);
+  font-weight: 400;
+}
+
+.journey__cell-pill {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 6px;
+  border: 0.5px solid var(--color-orange);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  vertical-align: 2px;
+  white-space: nowrap;
+}
+
+.journey__cell-list {
+  margin: 6px 0 0 0;
+  padding-left: 14px;
+  list-style: disc;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-ink-2);
+}
+
+.journey__cell-list li + li { margin-top: 1px; }
+
+.journey__cell-hint {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-2);
+  font-style: italic;
+}
+
+/* Future-week descriptions slightly dimmer so they read as preview, not active. */
+.journey__cell--future .journey__cell-hint,
+.journey__cell--future .journey__cell-list,
+.journey__cell--future .journey__cell-title {
+  color: var(--color-ink-2);
+}
+
+/* --- Upload CTA pinned to the bottom of the current-week slot --- */
+.journey__upload {
+  /* It's a <button> that doubles as the slot — strip browser default look. */
+  border: none;
   background: var(--color-viridian-soft);
   outline: 1px solid var(--color-viridian);
   outline-offset: -1px;
 }
 
-.journey__cell--current .journey__cell-label { color: var(--color-viridian); }
-
-/* --- Upload action (lives only inside the current cell) --- */
-.journey__upload {
-  flex: 1;
+.journey__upload-cta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  gap: 4px;
   color: var(--color-viridian);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
   transition: color 0.18s ease;
 }
 
-.journey__upload:hover { color: var(--color-ink); }
+.journey__upload:hover .journey__upload-cta { color: var(--color-ink); }
 
 .journey__upload-icon {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border: 1px solid currentColor;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.18s ease, color 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .journey__upload:hover .journey__upload-icon {
@@ -129,27 +360,20 @@
   border-color: var(--color-viridian);
 }
 
-.journey__upload-icon svg { width: 14px; height: 14px; }
+.journey__upload-icon svg { width: 12px; height: 12px; }
 
-/* Reward callout pinned to the bottom of the active week cell. */
-.journey__cell-reward {
-  font-size: 11px;
+.journey__upload-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.journey__upload-reward {
+  font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--color-viridian);
-  text-align: center;
-}
-
-/* When a cell has an uploaded photo, the photo fills the cell behind the
-   label. Wired up as needed; JS toggles `.journey__cell--filled` and sets
-   the background-image. */
-.journey__cell--filled {
-  background-size: cover;
-  background-position: center;
-}
-
-.journey__cell--filled .journey__cell-label {
-  color: var(--color-white);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.75;
+  text-transform: uppercase;
 }

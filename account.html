@@ -277,62 +277,249 @@
 
       </section>
 
-      <!-- ========== Module 02 — 12-week journey grid ========== -->
+      <!-- ========== Module 02 — 12-week horizontal protocol timeline ========== -->
+      <!--
+        Each cell pairs an upload slot with what's clinically expected at that
+        point. Weeks 1, 4, and 12 carry the milestone copy (mirrored from the
+        body PDP timeline at body.html:574); in-between weeks carry a short
+        progress hint so the milestones read as the key beats.
+      -->
       <section class="account-module account-module--journey" data-account-module="02" aria-labelledby="journey-title">
         <div class="journey">
           <header class="journey__header">
             <p class="journey__eyebrow">Your protocol</p>
             <h2 class="journey__title" id="journey-title">Results come with consistency (and rewards, too).</h2>
-            <p class="journey__subtitle">Document your progress and get rewarded. Earn points with every upload — toward shipments, perks, and product drops.</p>
+            <p class="journey__subtitle">Document your progress alongside what's clinically expected. Earn points with every upload — toward shipments, perks, and product drops.</p>
           </header>
 
-          <ol class="journey__grid">
-            <li class="journey__cell journey__cell--past journey__cell--filled" data-journey-cell="1" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
-              <span class="journey__cell-label">Week 1</span>
-            </li>
-            <li class="journey__cell journey__cell--past journey__cell--filled" data-journey-cell="2" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
-              <span class="journey__cell-label">Week 2</span>
-            </li>
-            <li class="journey__cell journey__cell--current" data-journey-cell="3">
-              <span class="journey__cell-label">Week 3</span>
-              <button type="button" class="journey__upload" data-journey-upload aria-label="Upload photo for Week 3">
-                <span class="journey__upload-icon">
-                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M7 10V3M4 6l3-3 3 3M2.5 11.5h9"/>
-                  </svg>
-                </span>
-                Upload photo
-              </button>
-              <span class="journey__cell-reward">Earn 50pts</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="4">
-              <span class="journey__cell-label">Week 4</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="5">
-              <span class="journey__cell-label">Week 5</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="6">
-              <span class="journey__cell-label">Week 6</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="7">
-              <span class="journey__cell-label">Week 7</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="8">
-              <span class="journey__cell-label">Week 8</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="9">
-              <span class="journey__cell-label">Week 9</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="10">
-              <span class="journey__cell-label">Week 10</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="11">
-              <span class="journey__cell-label">Week 11</span>
-            </li>
-            <li class="journey__cell journey__cell--future" data-journey-cell="12">
-              <span class="journey__cell-label">Week 12</span>
-            </li>
-          </ol>
+          <div class="journey__track-wrap">
+            <ol class="journey__track" data-journey-track>
+              <span class="journey__rail" data-journey-rail aria-hidden="true">
+                <span class="journey__rail-fill" data-journey-rail-fill></span>
+              </span>
+
+              <!-- Each cell stacks two tiles in column:
+                   Row 1 — the example reference photo (always visible).
+                   Row 2 — the user's slot: shows the description by default;
+                           once a photo is uploaded for that week, the photo
+                           replaces the description inside the same slot. -->
+
+              <!-- Week 1 — past, filled (slot shows the user's uploaded photo) -->
+              <li class="journey__cell journey__cell--past journey__cell--filled journey__cell--milestone" data-journey-cell="1">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 1</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot journey__cell-slot--filled" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <div class="journey__cell-copy">
+                      <h3 class="journey__cell-title"><span class="journey__cell-when">Immediate:</span><br>Softness you can feel</h3>
+                      <ul class="journey__cell-list">
+                        <li>Lightweight, fast-absorbing texture</li>
+                        <li>Instant softness and hydration</li>
+                        <li>OS-01 Peptide&trade; begins working on contact</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 2 — past, filled -->
+              <li class="journey__cell journey__cell--past journey__cell--filled" data-journey-cell="2">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 2</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot journey__cell-slot--filled" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Hydration starts to compound.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 3 — current (slot shows description + upload CTA) -->
+              <li class="journey__cell journey__cell--current" data-journey-cell="3">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 3</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <button type="button" class="journey__cell-slot journey__upload" data-journey-upload aria-label="Upload photo for Week 3">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Texture continues to refine.</p>
+                    </div>
+                    <div class="journey__upload-cta">
+                      <span class="journey__upload-icon">
+                        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M7 10V3M4 6l3-3 3 3M2.5 11.5h9"/>
+                        </svg>
+                      </span>
+                      <span class="journey__upload-label">Upload photo</span>
+                      <span class="journey__upload-reward">Earn 50pts</span>
+                    </div>
+                  </button>
+                </div>
+              </li>
+
+              <!-- Week 4 — future, milestone (slot shows description; replaces on upload) -->
+              <li class="journey__cell journey__cell--future journey__cell--milestone" data-journey-cell="4">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 4</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <h3 class="journey__cell-title"><span class="journey__cell-when">Week 4:</span><br>Noticeably smoother, more hydrated skin</h3>
+                      <ul class="journey__cell-list">
+                        <li>71% reported better hydration&sup1;</li>
+                        <li>68% reported improved texture&sup1;</li>
+                        <li>Skin feels more even and comforted</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 5 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="5">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 5</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Barrier strength building.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 6 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="6">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 6</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Smoothness keeps stacking.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 7 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="7">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 7</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Skin feels increasingly resilient.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 8 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="8">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 8</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Comfort building day over day.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 9 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="9">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 9</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Hydration deepens beneath the surface.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 10 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="10">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 10</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Cumulative gains kicking in.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 11 -->
+              <li class="journey__cell journey__cell--future" data-journey-cell="11">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 11</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_2.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <p class="journey__cell-hint">Approaching the full effect.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- Week 12 — future, milestone -->
+              <li class="journey__cell journey__cell--future journey__cell--milestone" data-journey-cell="12">
+                <span class="journey__cell-marker" aria-hidden="true"><span class="journey__cell-dot"></span></span>
+                <p class="journey__cell-label">Week 12</p>
+                <div class="journey__cell-body">
+                  <div class="journey__cell-photo journey__cell-photo--example" style="background-image: url('assets/account/protocol/protocol_week_1.png');">
+                    <span class="journey__cell-photo-tag">Example</span>
+                  </div>
+                  <div class="journey__cell-slot">
+                    <div class="journey__cell-copy">
+                      <h3 class="journey__cell-title"><span class="journey__cell-when">Week 12:</span><br>Stronger skin, stronger body <span class="journey__cell-pill">Clinically validated</span></h3>
+                      <ul class="journey__cell-list">
+                        <li>Up to +41% increase in barrier strength&sup1;</li>
+                        <li>Reduced systemic inflammation marker (IL-8)&sup3;</li>
+                        <li>Your largest organ, fortified for healthy aging</li>
+                      </ul>
+                    </div>
+                </div>
+              </li>
+            </ol>
+          </div>
         </div>
       </section>
 
