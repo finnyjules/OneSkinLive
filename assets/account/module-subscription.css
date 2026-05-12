@@ -392,15 +392,8 @@
   line-height: 1.25;
 }
 
-.subscription__order-step-date {
-  font-size: 12px;
-  color: var(--color-ink-3);
-  line-height: 1.25;
-}
-
 @media (max-width: 600px) {
-  .subscription__order-step-name,
-  .subscription__order-step-date { font-size: 11px; }
+  .subscription__order-step-name { font-size: 11px; }
 }
 
 /* Active dot pulse */
