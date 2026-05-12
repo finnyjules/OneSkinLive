@@ -457,55 +457,61 @@
   background: var(--color-viridian-light);
 }
 
-.subscription__order-tracking {
+/* Zone C — tracking row text controls */
+
+.subscription__order-copy-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-width: 0;
-}
-
-.subscription__order-tracking-pending {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-
-.subscription__order-tracking-number {
-  font-variant-numeric: tabular-nums;
-}
-
-.subscription__order-copy {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  background: transparent;
+  background: none;
   border: 0;
-  color: var(--color-viridian);
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--color-ink-2);
   cursor: pointer;
-  border-radius: var(--radius-sm);
   position: relative;
-  transition: background 0.18s ease;
 }
 
-.subscription__order-copy:hover { background: rgba(0,0,0,0.04); }
+.subscription__order-copy-link > span:first-child {
+  text-decoration: underline;
+  text-decoration-color: rgba(0,0,0,0.18);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.18s ease;
+}
 
-.subscription__order-copy svg { width: 14px; height: 14px; }
+.subscription__order-copy-link:hover > span:first-child,
+.subscription__order-copy-link:focus-visible > span:first-child {
+  text-decoration-color: currentColor;
+}
 
 .subscription__order-copy-feedback:not(:empty) {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 8px;
-  white-space: nowrap;
   color: var(--color-viridian);
   font-size: 12px;
   font-weight: 500;
+}
+
+.subscription__order-id {
+  font-size: 13px;
+  color: var(--color-ink-3);
+  text-decoration: underline;
+  text-decoration-color: rgba(0,0,0,0.12);
+  text-underline-offset: 3px;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+  margin-left: auto;
+}
+
+.subscription__order-id:hover,
+.subscription__order-id:focus-visible {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-id {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -517,8 +523,8 @@
 }
 
 /* Pre-ship state: hide tracking number + track link, show pending line. */
-.subscription__order[data-shipment-state="ordered"] [data-tracking],
-.subscription__order[data-shipment-state="ordered"] [data-track-link] {
+.subscription__order[data-shipment-state="ordered"] [data-track-link],
+.subscription__order[data-shipment-state="ordered"] [data-copy-tracking] {
   display: none;
 }
 

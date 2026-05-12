@@ -352,26 +352,30 @@
                 </p>
 
                 <div class="subscription__order-progress-meta">
-                  <span class="subscription__order-tracking" data-tracking>
-                    <span class="subscription__order-tracking-carrier">USPS</span>
-                    <span class="subscription__card-meta-sep" aria-hidden="true"></span>
-                    <span class="subscription__order-tracking-number" data-tracking-number>1Z999AA10123456784</span>
-                    <button type="button" class="subscription__order-copy" data-copy-tracking aria-label="Copy tracking number">
-                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <rect x="5" y="5" width="8" height="9" rx="1.5"/>
-                        <path d="M3 11V3.5A1.5 1.5 0 014.5 2H11"/>
-                      </svg>
-                      <span class="subscription__order-copy-feedback" data-copy-feedback aria-live="polite"></span>
-                    </button>
-                  </span>
-                  <span class="subscription__order-tracking-pending" data-tracking-pending hidden>
-                    Tracking available when shipped
-                  </span>
                   <a href="#" class="subscription__btn subscription__btn--soft" data-track-link>
                     Track package
                     <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M3 7h8M8 4l3 3-3 3"/>
                     </svg>
+                  </a>
+
+                  <button
+                    type="button"
+                    class="subscription__order-copy-link"
+                    data-copy-tracking
+                    data-tracking-number="1Z999AA10123456784"
+                    aria-label="Copy tracking number"
+                  >
+                    <span>Copy tracking number</span>
+                    <span class="subscription__order-copy-feedback" data-copy-feedback aria-live="polite"></span>
+                  </button>
+
+                  <span class="subscription__order-tracking-pending" data-tracking-pending hidden>
+                    Tracking available when shipped
+                  </span>
+
+                  <a href="/account-orders.html" class="subscription__order-id">
+                    Order #OS-14392 · Placed May 2
                   </a>
                 </div>
               </section>
