@@ -181,6 +181,10 @@
   margin-top: 4px;
 }
 
+.account-orders__row-actions [data-order-help] {
+  margin-left: auto;
+}
+
 .account-orders__row-link {
   font-size: 13px;
   font-weight: 500;
@@ -192,26 +196,6 @@
 }
 
 .account-orders__row-link:hover {
-  color: var(--color-ink);
-  text-decoration-color: currentColor;
-}
-
-.account-orders__row-help {
-  margin-left: auto;
-  font-size: 13px;
-  color: var(--color-ink-3);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--color-line);
-  transition: color 0.18s ease, text-decoration-color 0.18s ease;
-}
-
-.account-orders__row-help:hover {
   color: var(--color-ink);
   text-decoration-color: currentColor;
 }
