@@ -74,6 +74,18 @@
   background: var(--color-viridian-light);
 }
 
+/* Ghost CTA — pure viridian text + arrow, no fill, no padding. Demotes the
+   action visually so the primary (Subscribe & save) reads as the headline. */
+.subscription__btn--ghost {
+  background: transparent;
+  color: var(--color-viridian);
+  padding: 0;
+  height: auto;
+  font-weight: 500;
+}
+
+.subscription__btn--ghost:hover { color: var(--color-ink); }
+
 /* ==========================================================================
    "Arriving soon" order card (OTP state)
    Single warm cream card with four zones (moment / items / progress / nudge)
@@ -358,6 +370,13 @@
   padding-right: 8px;
 }
 
+/* Pin the final step (Delivered) to the right edge of its grid cell so it
+   sits directly above Track package's right edge. */
+.subscription__order-step:last-child {
+  align-items: flex-end;
+  padding-right: 0;
+}
+
 .subscription__order-step-dot {
   width: 12px;
   height: 12px;
@@ -393,6 +412,11 @@
   background: transparent;
   border-top: 2px dotted var(--color-ink-3);
   height: 0;
+}
+
+/* Last step's connector lands at the right-edge dot, not the cell's left. */
+.subscription__order-step:last-child::before {
+  right: 6px;
 }
 
 .subscription__order-step-name {
@@ -449,6 +473,7 @@
 /* Order id link — sits below the date in the moment header */
 
 .subscription__order-id {
+  margin-top: 12px;
   font-size: 13px;
   color: var(--color-ink-3);
   text-decoration: underline;
