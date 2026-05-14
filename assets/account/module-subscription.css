@@ -337,7 +337,7 @@
   color: var(--color-ink);
 }
 
-/* ============= Zone C — Shipment progress ============= */
+/* ============= Shipment progress timeline + tracking states (right column of Zone A) ============= */
 
 .subscription__order-steps {
   list-style: none;
@@ -446,12 +446,6 @@
   color: #b85c14;
 }
 
-/* Track package button — light viridian wash to read as secondary to
-   the primary "Subscribe & save" button in the nudge below. */
-.subscription__order-moment-progress .subscription__btn--soft {
-  background: var(--color-viridian-light);
-}
-
 /* Order id link — sits below the date in the moment header */
 
 .subscription__order-id {
@@ -491,6 +485,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.subscription__order:not(.subscription__order--sub) .subscription__order-nudge {
   background: var(--color-viridian-light);
   border-top: 0;
 }
