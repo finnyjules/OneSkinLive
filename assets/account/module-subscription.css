@@ -103,7 +103,6 @@
 
 .subscription__order-moment,
 .subscription__order-items,
-.subscription__order-tracking-zone,
 .subscription__order-actions,
 .subscription__order-nudge {
   padding: 24px 32px;
@@ -112,7 +111,6 @@
 @media (max-width: 600px) {
   .subscription__order-moment,
   .subscription__order-items,
-  .subscription__order-tracking-zone,
   .subscription__order-actions,
   .subscription__order-nudge {
     padding: 20px 20px;
@@ -162,7 +160,7 @@
    inside, so it keeps the default block flow with stacked eyebrow/date/meta. */
 .subscription__order-moment:has(.subscription__order-steps) {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
 }
@@ -172,10 +170,22 @@
   min-width: 0;
 }
 
-.subscription__order-moment .subscription__order-steps {
+.subscription__order-moment-progress {
   flex: 1 1 auto;
   max-width: 480px;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.subscription__order-moment .subscription__order-steps {
+  width: 100%;
+}
+
+.subscription__order-moment-progress .subscription__btn {
+  align-self: flex-end;
 }
 
 @media (max-width: 600px) {
@@ -184,7 +194,7 @@
     align-items: stretch;
     gap: 24px;
   }
-  .subscription__order-moment .subscription__order-steps {
+  .subscription__order-moment-progress {
     max-width: none;
   }
 }
@@ -436,28 +446,13 @@
   color: #b85c14;
 }
 
-.subscription__order-progress-note:not([hidden]) + .subscription__order-progress-meta {
-  margin-top: 12px;
-}
-
-/* Meta row */
-.subscription__order-progress-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 13px;
-  color: var(--color-ink-2);
-}
-
 /* Track package button — light viridian wash to read as secondary to
    the primary "Subscribe & save" button in the nudge below. */
-.subscription__order-progress-meta .subscription__btn--soft {
+.subscription__order-moment-progress .subscription__btn--soft {
   background: var(--color-viridian-light);
 }
 
-/* Zone C — order id link (sits opposite the Track package CTA) */
+/* Order id link — sits below the date in the moment header */
 
 .subscription__order-id {
   font-size: 13px;
@@ -472,14 +467,6 @@
 .subscription__order-id:focus-visible {
   color: var(--color-ink);
   text-decoration-color: currentColor;
-}
-
-@media (max-width: 600px) {
-  .subscription__order-progress-meta {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .subscription__order-progress-meta .subscription__btn { align-self: flex-end; }
 }
 
 /* Pre-ship state: hide the track CTA, show the pending line in its place. */
@@ -504,6 +491,8 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
+  background: var(--color-viridian-light);
+  border-top: 0;
 }
 
 .subscription__order-nudge-text {
