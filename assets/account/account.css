@@ -355,8 +355,16 @@
   color: var(--color-ink);
 }
 
+.state-switcher__divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  display: inline-block;
+}
+
 @media (max-width: 600px) {
-  .state-switcher { left: 12px; right: 12px; bottom: 12px; justify-content: center; }
+  .state-switcher { left: 12px; right: 12px; bottom: 12px; justify-content: center; flex-wrap: wrap; gap: 8px; }
+  .state-switcher__divider { display: none; }
 }
 
 /* --- Toast (used by Module 05 + Referral page after copy). --- */

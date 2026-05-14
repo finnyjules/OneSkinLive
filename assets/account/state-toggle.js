@@ -35,6 +35,8 @@
   // setting body[data-account-prod] (left for future use).
   if (document.body.hasAttribute('data-account-prod')) return;
 
+  const shipParam = (params.get('ship') || 'transit').toLowerCase();
+
   const chip = document.createElement('div');
   chip.className = 'state-switcher';
   chip.setAttribute('aria-label', 'Customer state (prototype only)');
@@ -45,14 +47,28 @@
       <a class="state-switcher__option" data-state-link="face" href="?state=face">Face sub</a>
       <a class="state-switcher__option" data-state-link="hair" href="?state=hair">Hair sub</a>
     </div>
+    ${state === 'otp' ? `
+      <span class="state-switcher__divider" aria-hidden="true"></span>
+      <div class="state-switcher__options" role="radiogroup" aria-label="Shipment state">
+        <a class="state-switcher__option" data-ship-link="ordered" href="?state=otp&ship=ordered">Ordered</a>
+        <a class="state-switcher__option" data-ship-link="transit" href="?state=otp&ship=transit">In transit</a>
+        <a class="state-switcher__option" data-ship-link="out-for-delivery" href="?state=otp&ship=out-for-delivery">Out for delivery</a>
+        <a class="state-switcher__option" data-ship-link="delayed" href="?state=otp&ship=delayed">Delayed</a>
+      </div>
+    ` : ''}
   `;
   chip.querySelector(`[data-state-link="${state}"]`).classList.add('is-active');
+  if (state === 'otp') {
+    const shipEl = chip.querySelector(`[data-ship-link="${shipParam}"]`);
+    if (shipEl) shipEl.classList.add('is-active');
+  }
 
   // Preserve the rest of the URL when state-switching across pages.
   chip.querySelectorAll('[data-state-link]').forEach((link) => {
     const next = link.getAttribute('data-state-link');
     const url = new URL(window.location.href);
     url.searchParams.set('state', next);
+    if (next !== 'otp') url.searchParams.delete('ship');
     link.setAttribute('href', url.pathname + url.search);
   });
 
@@ -73,6 +89,9 @@
     try {
       const url = new URL(href, window.location.origin);
       url.searchParams.set('state', state);
+      if (state === 'otp' && shipParam !== 'transit') {
+        url.searchParams.set('ship', shipParam);
+      }
       link.setAttribute('href', url.pathname + url.search);
     } catch (_) {
       /* ignore unparseable */
