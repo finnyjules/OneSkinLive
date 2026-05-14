@@ -1,0 +1,11 @@
+/* Account-page tweaks for the shared .faqs component.
+   The PDP version uses 48px L/R inner padding to inset the heading + items
+   from the section edges. On the account page the parent .account-shell
+   already provides the page gutter, so the extra 48px on the left pushes
+   the heading out of alignment with every other module header. Strip the
+   L/R padding here — vertical rhythm is unchanged. */
+
+.account-module--faq .faqs__inner {
+  padding-left: 0;
+  padding-right: 0;
+}
