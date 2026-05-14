@@ -270,26 +270,46 @@
                 <div class="subscription__order-moment-text">
                   <p class="subscription__order-eyebrow">Arriving Tuesday</p>
                   <p class="subscription__order-date">May 6</p>
+                  <a href="/account-orders.html" class="subscription__order-id">
+                    Order #OS-14392 · Placed May 2
+                  </a>
                 </div>
 
-                <ol class="subscription__order-steps" aria-label="Shipment progress">
-                  <li class="subscription__order-step" data-state="done">
-                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
-                    <span class="subscription__order-step-name">Ordered</span>
-                  </li>
-                  <li class="subscription__order-step" data-state="active">
-                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
-                    <span class="subscription__order-step-name">Shipped</span>
-                  </li>
-                  <li class="subscription__order-step" data-state="future">
-                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
-                    <span class="subscription__order-step-name">Out for delivery</span>
-                  </li>
-                  <li class="subscription__order-step" data-state="future">
-                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
-                    <span class="subscription__order-step-name">Delivered</span>
-                  </li>
-                </ol>
+                <div class="subscription__order-moment-progress">
+                  <ol class="subscription__order-steps" aria-label="Shipment progress">
+                    <li class="subscription__order-step" data-state="done">
+                      <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                      <span class="subscription__order-step-name">Ordered</span>
+                    </li>
+                    <li class="subscription__order-step" data-state="active">
+                      <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                      <span class="subscription__order-step-name">Shipped</span>
+                    </li>
+                    <li class="subscription__order-step" data-state="future">
+                      <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                      <span class="subscription__order-step-name">Out for delivery</span>
+                    </li>
+                    <li class="subscription__order-step" data-state="future">
+                      <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                      <span class="subscription__order-step-name">Delivered</span>
+                    </li>
+                  </ol>
+
+                  <p class="subscription__order-progress-note" data-shipment-note hidden>
+                    Carrier reported a delay · updated May 4
+                  </p>
+
+                  <span class="subscription__order-tracking-pending" data-tracking-pending hidden>
+                    Tracking available when shipped
+                  </span>
+
+                  <a href="#" class="subscription__btn subscription__btn--soft" data-track-link>
+                    Track package
+                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M3 7h8M8 4l3 3-3 3"/>
+                    </svg>
+                  </a>
+                </div>
               </header>
 
               <!-- ZONE B — Items (collapsible when 2+) -->
@@ -343,30 +363,6 @@
                     <span class="subscription__order-item-price">$50.00</span>
                   </li>
                 </ul>
-              </section>
-
-              <!-- ZONE C — Tracking -->
-              <section class="subscription__order-tracking-zone" aria-label="Tracking">
-                <p class="subscription__order-progress-note" data-shipment-note hidden>
-                  Carrier reported a delay · updated May 4
-                </p>
-
-                <div class="subscription__order-progress-meta">
-                  <a href="/account-orders.html" class="subscription__order-id">
-                    Order #OS-14392 · Placed May 2
-                  </a>
-
-                  <span class="subscription__order-tracking-pending" data-tracking-pending hidden>
-                    Tracking available when shipped
-                  </span>
-
-                  <a href="#" class="subscription__btn subscription__btn--soft" data-track-link>
-                    Track package
-                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M3 7h8M8 4l3 3-3 3"/>
-                    </svg>
-                  </a>
-                </div>
               </section>
 
               <!-- ZONE D — Subscribe nudge -->
