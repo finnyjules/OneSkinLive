@@ -7,9 +7,13 @@
 
 (function () {
   const VALID_STATES = new Set(['face', 'hair', 'otp']);
+  const VALID_VIEWS = new Set(['both', 'history', 'active']);
   const params = new URLSearchParams(window.location.search);
   const requested = (params.get('state') || '').toLowerCase();
   const state = VALID_STATES.has(requested) ? requested : 'otp';
+  const requestedView = (params.get('view') || 'both').toLowerCase();
+  const viewParam = VALID_VIEWS.has(requestedView) ? requestedView : 'both';
+  const onOrdersPage = document.body.dataset.accountPage === 'orders';
 
   document.body.setAttribute('data-state', state);
   document.documentElement.setAttribute('data-state', state);
@@ -29,6 +33,13 @@
     });
   };
   applyVisibility();
+
+  if (onOrdersPage) {
+    const activeSection = document.querySelector('[data-order-active]');
+    const historySection = document.querySelector('.account-orders__history');
+    if (activeSection) activeSection.hidden = (viewParam === 'history');
+    if (historySection) historySection.hidden = (viewParam === 'active');
+  }
 
   // Dev-only state switcher chip — appears in the bottom-left so reviewers
   // can hop between states without retyping URLs. Hidden in production by
@@ -56,11 +67,23 @@
         <a class="state-switcher__option" data-ship-link="delayed" href="?state=otp&ship=delayed">Delayed</a>
       </div>
     ` : ''}
+    ${onOrdersPage ? `
+      <span class="state-switcher__divider" aria-hidden="true"></span>
+      <div class="state-switcher__options" role="radiogroup" aria-label="Orders view">
+        <a class="state-switcher__option" data-view-link="both" href="?view=both">Active + History</a>
+        <a class="state-switcher__option" data-view-link="history" href="?view=history">History only</a>
+        <a class="state-switcher__option" data-view-link="active" href="?view=active">Active only</a>
+      </div>
+    ` : ''}
   `;
   chip.querySelector(`[data-state-link="${state}"]`).classList.add('is-active');
   if (state === 'otp') {
     const shipEl = chip.querySelector(`[data-ship-link="${shipParam}"]`);
     if (shipEl) shipEl.classList.add('is-active');
+  }
+  if (onOrdersPage) {
+    const viewEl = chip.querySelector(`[data-view-link="${viewParam}"]`);
+    if (viewEl) viewEl.classList.add('is-active');
   }
 
   // Preserve the rest of the URL when state-switching across pages.
@@ -69,6 +92,14 @@
     const url = new URL(window.location.href);
     url.searchParams.set('state', next);
     if (next !== 'otp') url.searchParams.delete('ship');
+    if (viewParam !== 'both') url.searchParams.set('view', viewParam);
+    link.setAttribute('href', url.pathname + url.search);
+  });
+
+  chip.querySelectorAll('[data-view-link]').forEach((link) => {
+    const next = link.getAttribute('data-view-link');
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', next);
     link.setAttribute('href', url.pathname + url.search);
   });
 
@@ -92,6 +123,7 @@
       if (state === 'otp' && shipParam !== 'transit') {
         url.searchParams.set('ship', shipParam);
       }
+      if (viewParam !== 'both') url.searchParams.set('view', viewParam);
       link.setAttribute('href', url.pathname + url.search);
     } catch (_) {
       /* ignore unparseable */
