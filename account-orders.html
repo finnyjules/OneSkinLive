@@ -87,60 +87,12 @@
           <p class="account-page-header__subtitle">All your past orders, subscription renewals included. Reorder, download invoices, or convert a one-time order into a subscription.</p>
         </header>
 
-        <div class="account-orders__filters" role="tablist" aria-label="Filter orders">
-          <button type="button" class="account-orders__filter" data-order-filter="all" aria-pressed="true">
-            All <span class="account-orders__filter-count">4</span>
-          </button>
-          <button type="button" class="account-orders__filter" data-order-filter="subscription" aria-pressed="false">
-            Subscription <span class="account-orders__filter-count">2</span>
-          </button>
-          <button type="button" class="account-orders__filter" data-order-filter="onetime" aria-pressed="false">
-            One-time <span class="account-orders__filter-count">2</span>
-          </button>
-        </div>
+        <section class="account-orders__active" data-order-active aria-label="Active shipments">
+          <!-- Hero blocks injected per active order (Task 5) -->
+        </section>
 
-        <ol class="account-orders__list">
-
-          <li class="account-orders__row" data-order-row data-order-type="onetime" data-order-state="transit">
-            <div class="account-orders__row-header">
-              <p class="account-orders__row-meta">
-                <strong>#OS-14392</strong>
-                <span class="account-orders__row-meta-sep" aria-hidden="true"></span>
-                <span>May 2, 2026</span>
-                <span class="account-orders__row-meta-sep" aria-hidden="true"></span>
-                <span class="account-pill">One-time</span>
-              </p>
-              <p class="account-orders__row-total">$90.00</p>
-            </div>
-
-            <div class="account-orders__row-body">
-              <div class="account-orders__items">
-                <div class="account-orders__item">
-                  <div class="account-orders__item-thumb"><img src="assets/body/prod_body.png" alt=""></div>
-                  <div class="account-orders__item-text">
-                    <span class="account-orders__item-name">OS-01 BODY MOISTURIZER</span>
-                    <span class="account-orders__item-detail">Qty 1 · 100 ml</span>
-                  </div>
-                </div>
-              </div>
-
-              <span class="account-orders__status account-orders__status--transit">In transit · Arrives May 6</span>
-
-              <div class="account-orders__skio-action" data-state-target="otp">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M8 1.5v3M8 11.5v3M1.5 8h3M11.5 8h3M3.5 3.5l2 2M10.5 10.5l2 2M3.5 12.5l2-2M10.5 5.5l2-2"/>
-                </svg>
-                <span><strong>Convert to subscription</strong> — save 20% on every renewal of this product.</span>
-                <a href="#">Subscribe</a>
-              </div>
-            </div>
-
-            <div class="account-orders__row-actions">
-              <button type="button" class="btn btn--ghost btn--small" data-order-reorder>Reorder</button>
-              <a href="#" class="account-orders__row-link">View invoice</a>
-              <a href="#" class="account-orders__row-link">Track package</a>
-            </div>
-          </li>
+        <section class="account-orders__history" aria-label="Past orders">
+          <ol class="account-orders__list">
 
           <li class="account-orders__row" data-order-row data-order-type="subscription" data-order-state="delivered">
             <div class="account-orders__row-header">
@@ -276,11 +228,12 @@
             </div>
           </li>
 
-        </ol>
+          </ol>
 
-        <div class="account-orders__empty" data-order-empty>
-          No orders match this filter yet.
-        </div>
+          <div class="account-orders__empty" data-order-empty>
+            No past orders yet.
+          </div>
+        </section>
       </section>
     </main>
   </div>
