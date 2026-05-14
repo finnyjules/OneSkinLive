@@ -476,13 +476,22 @@
 /* Order id link — sits below the date in the moment header */
 
 .subscription__order-id {
-  margin-top: 12px;
+  /* inline-block so the vertical margin actually applies (the `<a>` is inline
+     by default in its parent block-flow container). */
+  display: inline-block;
+  /* Aligns with the Track package CTA on the right (which sits below the
+     timeline). Mobile collapses to a tighter spacing — see media query below. */
+  margin-top: 22px;
   font-size: 13px;
   color: var(--color-ink-3);
   text-decoration: underline;
   text-decoration-color: var(--color-line);
   text-underline-offset: 3px;
   transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+@media (max-width: 600px) {
+  .subscription__order-id { margin-top: 12px; }
 }
 
 .subscription__order-id:hover,
