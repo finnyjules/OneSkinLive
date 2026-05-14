@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="assets/body/section-header.css">
   <link rel="stylesheet" href="assets/account/account.css">
   <link rel="stylesheet" href="assets/account/referral.css">
+  <link rel="stylesheet" href="assets/account/cx-chat.css">
 
   <script src="assets/account/state-toggle.js" defer></script>
   <script src="assets/account/sticky-nav.js" defer></script>
   <script src="assets/account/module-05-referral.js" defer></script>
+  <script src="assets/account/cx-chat.js" defer></script>
 </head>
 <body data-account-page="referral">
   <header class="header" data-section-id="header">
@@ -72,7 +74,7 @@
         </ul>
         <ul class="account-nav__list account-nav__list--support">
           <li><a href="#" class="account-nav__item">Help Center</a></li>
-          <li><a href="#" class="account-nav__item">Contact support</a></li>
+          <li><a href="#" class="account-nav__item" data-cx-chat-trigger>Contact support</a></li>
         </ul>
         <button class="account-nav__signout" type="button">
           <svg viewBox="0 0 16 16" width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -196,5 +198,38 @@
       </section>
     </main>
   </div>
+
+  <aside class="cx-chat" data-cx-chat hidden aria-label="Support chat (demo)">
+    <header class="cx-chat__header">
+      <div class="cx-chat__identity">
+        <span class="cx-chat__avatar" aria-hidden="true">OS</span>
+        <div class="cx-chat__identity-text">
+          <p class="cx-chat__name">OneSkin Support</p>
+          <p class="cx-chat__status"><span class="cx-chat__status-dot" aria-hidden="true"></span>Replies in ~2 min</p>
+        </div>
+      </div>
+      <button type="button" class="cx-chat__close" data-cx-chat-close aria-label="Close chat">
+        <svg viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="cx-chat__body">
+      <p class="cx-chat__system" data-cx-chat-reference hidden>Reference: Order #OS-13987</p>
+      <div class="cx-chat__message cx-chat__message--agent">
+        Hi &mdash; how can we help today?
+      </div>
+    </div>
+
+    <form class="cx-chat__composer" onsubmit="event.preventDefault()">
+      <input type="text" class="cx-chat__input" placeholder="Type your message&hellip;" aria-label="Type your message">
+      <button type="submit" class="cx-chat__send" aria-label="Send message">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M2 8l11-6-4 14-2-6-5-2z" fill="currentColor"/>
+        </svg>
+      </button>
+    </form>
+  </aside>
 </body>
 </html>
