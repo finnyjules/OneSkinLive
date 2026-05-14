@@ -8,11 +8,13 @@
   <link rel="stylesheet" href="assets/account/base.css">
   <link rel="stylesheet" href="assets/body/section-header.css">
   <link rel="stylesheet" href="assets/account/account.css">
+  <link rel="stylesheet" href="assets/account/module-subscription.css">
   <link rel="stylesheet" href="assets/account/orders.css">
 
   <script src="assets/account/state-toggle.js" defer></script>
   <script src="assets/account/sticky-nav.js" defer></script>
   <script src="assets/account/orders.js" defer></script>
+  <script src="assets/account/module-subscription.js" defer></script>
 </head>
 <body data-account-page="orders">
   <header class="header" data-section-id="header">
@@ -88,7 +90,120 @@
         </header>
 
         <section class="account-orders__active" data-order-active aria-label="Active shipments">
-          <!-- Hero blocks injected per active order (Task 5) -->
+          <article class="subscription__order" data-shipment-state="transit" data-items-count="3">
+
+            <!-- ZONE A — Arrival moment + shipment timeline -->
+            <header class="subscription__order-moment">
+              <div class="subscription__order-moment-text">
+                <p class="subscription__order-eyebrow">Arriving Tuesday</p>
+                <p class="subscription__order-date">May 6</p>
+                <span class="subscription__order-id">Order #OS-14392 · Placed May 2</span>
+              </div>
+
+              <div class="subscription__order-moment-progress">
+                <ol class="subscription__order-steps" aria-label="Shipment progress">
+                  <li class="subscription__order-step" data-state="done">
+                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                    <span class="subscription__order-step-name">Ordered</span>
+                  </li>
+                  <li class="subscription__order-step" data-state="active">
+                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                    <span class="subscription__order-step-name">Shipped</span>
+                  </li>
+                  <li class="subscription__order-step" data-state="future">
+                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                    <span class="subscription__order-step-name">Out for delivery</span>
+                  </li>
+                  <li class="subscription__order-step" data-state="future">
+                    <span class="subscription__order-step-dot" aria-hidden="true"></span>
+                    <span class="subscription__order-step-name">Delivered</span>
+                  </li>
+                </ol>
+
+                <p class="subscription__order-progress-note" data-shipment-note hidden>
+                  Carrier reported a delay · updated May 4
+                </p>
+
+                <span class="subscription__order-tracking-pending" data-tracking-pending hidden>
+                  Tracking available when shipped
+                </span>
+
+                <a href="#" class="subscription__btn subscription__btn--ghost" data-track-link>
+                  Track package
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 7h8M8 4l3 3-3 3"/>
+                  </svg>
+                </a>
+              </div>
+            </header>
+
+            <!-- ZONE B — Items (collapsible when 2+) -->
+            <section class="subscription__order-items" aria-label="Items in this shipment">
+              <button
+                type="button"
+                class="subscription__order-items-summary"
+                data-items-toggle
+                aria-expanded="false"
+                aria-controls="active-os14392-items-list"
+              >
+                <span class="subscription__order-items-thumbs" aria-hidden="true">
+                  <span class="subscription__order-items-thumb"><img src="assets/body/prod_body.png" alt=""></span>
+                  <span class="subscription__order-items-thumb" data-multi-only><img src="assets/body/prod_face.png" alt=""></span>
+                  <span class="subscription__order-items-thumb" data-multi-only><img src="assets/body/prod_prep.png" alt=""></span>
+                </span>
+                <span class="subscription__order-items-summary-text">
+                  <span data-items-count-label>3 items</span>
+                  <span class="subscription__card-meta-sep" aria-hidden="true"></span>
+                  <span data-items-total-label>$215.00</span>
+                </span>
+                <span class="subscription__order-items-toggle-label" data-multi-only>
+                  <span data-toggle-show>Show items</span>
+                  <span data-toggle-hide hidden>Hide items</span>
+                  <svg class="subscription__order-items-chevron" viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M2 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+
+              <ul class="subscription__order-items-list" id="active-os14392-items-list" hidden>
+                <li class="subscription__order-item">
+                  <span class="subscription__order-item-thumb"><img src="assets/body/prod_body.png" alt=""></span>
+                  <span class="subscription__order-item-body">
+                    <span class="subscription__order-item-name">OS-01 BODY MOISTURIZER</span>
+                  </span>
+                  <span class="subscription__order-item-price">$90.00</span>
+                </li>
+                <li class="subscription__order-item" data-multi-only>
+                  <span class="subscription__order-item-thumb"><img src="assets/body/prod_face.png" alt=""></span>
+                  <span class="subscription__order-item-body">
+                    <span class="subscription__order-item-name">OS-01 FACE SPF</span>
+                  </span>
+                  <span class="subscription__order-item-price">$75.00</span>
+                </li>
+                <li class="subscription__order-item" data-multi-only>
+                  <span class="subscription__order-item-thumb"><img src="assets/body/prod_prep.png" alt=""></span>
+                  <span class="subscription__order-item-body">
+                    <span class="subscription__order-item-name">OS-01 EYE</span>
+                  </span>
+                  <span class="subscription__order-item-price">$50.00</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- ZONE D — Subscribe nudge -->
+            <section class="subscription__order-nudge" aria-label="Subscribe to save">
+              <p class="subscription__order-nudge-text" data-nudge-text>
+                Make it a routine — save 15% on every shipment.
+              </p>
+              <a href="/a/account/subscriptions" class="subscription__btn subscription__btn--primary">
+                Subscribe &amp; save
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 7h8M8 4l3 3-3 3"/>
+                </svg>
+              </a>
+            </section>
+
+          </article>
         </section>
 
         <section class="account-orders__history" aria-label="Past orders">
