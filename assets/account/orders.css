@@ -24,6 +24,11 @@
   gap: 24px;
 }
 
+.account-orders__active[hidden],
+.account-orders__history[hidden] {
+  display: none;
+}
+
 /* --- List + row --- */
 .account-orders__list {
   display: flex;
