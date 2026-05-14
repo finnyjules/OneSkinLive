@@ -169,9 +169,9 @@ git commit -m "account-orders: split into active + history, remove filter chips"
 **Step 1: Replace the file contents** with:
 
 ```javascript
-// Order History — Reorder buttons show a confirmation toast.
-// The live implementation would call Shopify's cart endpoint with
-// the original line items.
+// Order History — Reorder + "I have a problem" buttons show a toast.
+// The live implementation would call Shopify's cart endpoint and the
+// CX widget (Gorgias / Intercom / whichever is wired in) respectively.
 
 (function () {
   function showToast(message) {
@@ -193,10 +193,17 @@ git commit -m "account-orders: split into active + history, remove filter chips"
       showToast('Reordered — items added to your cart');
     });
   });
+
+  document.querySelectorAll('[data-order-help]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('Opening chat support…');
+    });
+  });
 })();
 ```
 
-**Step 2: Verify.** Reload `/account-orders`. Open DevTools console — no errors. Click any Reorder button — toast appears.
+**Step 2: Verify.** Reload `/account-orders`. Open DevTools console — no errors. Click any Reorder button — toast appears. The help-link handler will be tested in Task 7 once the markup lands.
 
 ```bash
 git add assets/account/orders.js
@@ -302,18 +309,31 @@ git commit -m "account-orders: promote in-transit order to Arriving Soon hero"
 
 **Step 6: Remove the `.account-orders__skio-action` rules** (lines 201–230). The convert-to-subscription nudge no longer lives in history rows — it's in the hero only. (If the rules are still referenced elsewhere, leave them; if they only powered the now-removed inline block, delete.)
 
-**Step 7: Add state-aware primary CTA hint via data-order-state.** Append:
+**Step 7: Push the "I have a problem" link to the right of the row footer.** Append:
 
 ```css
-/* State-aware: the FIRST action in the row is the primary CTA.
-   For subscription rows, swap the Reorder button for a "Manage subscription"
-   link styled as a button — handled directly in HTML in Task 7. */
-.account-orders__row[data-order-state="cancelled"] .account-orders__status {
-  /* status already styled by --cancelled variant; no extra rules needed */
+.account-orders__row-help {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--color-ink-3);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-line);
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.account-orders__row-help:hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
 }
 ```
 
-> The state-aware "primary CTA per state" rule is enforced in the HTML in Task 7 by reordering action elements and changing classes, not via CSS. This block is a placeholder for future hooks if needed.
+`margin-left: auto` is what makes the link float to the right while the primary CTA and View invoice stay grouped on the left. Relies on the existing `.account-orders__row-actions { display: flex; ... }` rule, which is already in place.
 
 **Step 8: Verify.** Reload `/account-orders`. Confirm:
 - Hero still renders correctly (its styles come from `module-subscription.css`, not touched).
@@ -335,12 +355,15 @@ git commit -m "account-orders: density tweaks and cancelled state variant"
 **Files:**
 - Modify: `account-orders.html`
 
+Every history row also gets a small right-aligned **"I have a problem"** button (stubbed CX chatbot trigger; handler wired in Task 4).
+
 **Step 1: For each delivered subscription row** (OS-14201, OS-13654), change the footer to:
 
 ```html
 <div class="account-orders__row-actions">
   <a href="/a/account/subscriptions" class="btn btn--primary btn--small">Manage subscription</a>
   <a href="#" class="account-orders__row-link">View invoice</a>
+  <button type="button" class="account-orders__row-help" data-order-help>I have a problem</button>
 </div>
 ```
 
@@ -352,18 +375,25 @@ The current `btn--ghost` Reorder is removed.
 <div class="account-orders__row-actions">
   <button type="button" class="btn btn--primary btn--small" data-order-reorder>Reorder</button>
   <a href="#" class="account-orders__row-link">View invoice</a>
+  <button type="button" class="account-orders__row-help" data-order-help>I have a problem</button>
 </div>
 ```
 
 The "Track package" link is removed (delivered orders don't need tracking).
 
-**Step 3: For the cancelled row** (OS-13802), the footer is already correct from Task 1 (Reorder + View invoice). Promote the Reorder button class from `btn--ghost` to `btn--primary` for parity with delivered OTP:
+**Step 3: For the cancelled row** (OS-13802), update the footer to:
 
 ```html
-<button type="button" class="btn btn--primary btn--small" data-order-reorder>Reorder</button>
+<div class="account-orders__row-actions">
+  <button type="button" class="btn btn--primary btn--small" data-order-reorder>Reorder</button>
+  <a href="#" class="account-orders__row-link">View invoice</a>
+  <button type="button" class="account-orders__row-help" data-order-help>I have a problem</button>
+</div>
 ```
 
-**Step 4: Verify.** Reload `/account-orders`. Each row has exactly one prominent button + one link. Subscription rows say "Manage subscription"; delivered one-time and cancelled say "Reorder"; no Track package links in the history.
+(Promoted from `btn--ghost` to `btn--primary` for parity with delivered OTP, and added the help button.)
+
+**Step 4: Verify.** Reload `/account-orders`. Each history row has exactly one prominent button + View invoice link + a small right-aligned "I have a problem" button. Subscription rows say "Manage subscription"; delivered one-time and cancelled say "Reorder"; no Track package links anywhere in the history. Clicking "I have a problem" triggers the "Opening chat support…" toast.
 
 ```bash
 git add account-orders.html

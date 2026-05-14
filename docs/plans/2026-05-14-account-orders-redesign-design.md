@@ -77,11 +77,11 @@ Same card shell, three variants. Each picks **one** primary CTA suited to the st
 │ [img] OS-01 LIP SPF     Qty 1                            │
 │ ● Delivered · March 14                                   │
 ├──────────────────────────────────────────────────────────┤
-│ [ Reorder ]   View invoice                               │
+│ [ Reorder ]   View invoice           I have a problem    │
 └──────────────────────────────────────────────────────────┘
 ```
 
-Primary = **Reorder**. Obvious next action on a finished one-time.
+Primary = **Reorder**. Obvious next action on a finished one-time. The `I have a problem` link on the right is the support escape hatch (see below).
 
 ### Delivered (subscription renewal)
 
@@ -92,7 +92,7 @@ Primary = **Reorder**. Obvious next action on a finished one-time.
 │ [img] OS-01 FACE        Qty 1 · 2-month delivery         │
 │ ● Delivered · April 22                                   │
 ├──────────────────────────────────────────────────────────┤
-│ [ Manage subscription ]   View invoice                   │
+│ [ Manage subscription ]   View invoice    I have a problem │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -108,11 +108,21 @@ Primary = **Manage subscription**. Reorder is wrong here — the subscription wi
 │ ● Cancelled · April 2                                    │
 │   We couldn't charge your card. You weren't charged.     │
 ├──────────────────────────────────────────────────────────┤
-│ [ Reorder ]   View invoice                               │
+│ [ Reorder ]   View invoice          I have a problem     │
 └──────────────────────────────────────────────────────────┘
 ```
 
 Primary = **Reorder** (try again). Explanation copy beneath the status pill softens an otherwise cold "Cancelled" badge.
+
+### Support escape hatch — "I have a problem"
+
+Every completed history card (delivered subscription, delivered one-time, cancelled) carries a small right-aligned `I have a problem` link that opens the CX chatbot. Rationale:
+
+- Customers who hit a real issue tend to look at their order list first. Routing them to chat from the row keeps the friction low and the order context attached.
+- Styling stays **muted** (small text link, right-aligned, secondary ink color) so it doesn't compete with the primary CTA. It's an escape hatch, not a feature.
+- In this prototype the click stubs out to the same toast pattern as Reorder ("Opening chat support…"). The live implementation would call `window.Gorgias?.open()` (or whichever CX widget is wired up) and pre-fill the message with the order number.
+
+Not on the active hero — an in-transit order's natural support path is Track package or "where's my order?" flows, which live elsewhere.
 
 ## Density and visual adjustments
 
