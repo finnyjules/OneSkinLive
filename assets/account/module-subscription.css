@@ -190,6 +190,8 @@
   flex-direction: column;
   align-items: stretch;
   gap: 12px;
+  /* Center the dot row against "May 6" — eyebrow (~22px) + half date line. */
+  margin-top: 34px;
 }
 
 .subscription__order-moment .subscription__order-steps {
@@ -208,6 +210,7 @@
   }
   .subscription__order-moment-progress {
     max-width: none;
+    margin-top: 0;
   }
 }
 
