@@ -4,7 +4,7 @@
 // In production, the shipment-state and items count come from order data.
 
 (function () {
-  const order = document.querySelector('[data-state-target="otp"] .subscription__order');
+  const order = document.querySelector('.subscription__order[data-shipment-state]');
   if (!order) return;
 
   // ---- Shipment-state demo (URL param) ----
